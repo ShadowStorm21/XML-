@@ -91,13 +91,18 @@ echo "</div>";
 echo "</form>";
 if(isset($_SESSION['uid']) && isset($_POST['username']) && isset($_POST['contactno'])&& isset($_POST['update'])){
 	
-	$sql="update users set uname = :un,contactno = :co where uid = '$uid'";
+		// don't update when the user didn't change his/her data
+	if( !($_POST['username'] == $uname &&  
+			$_POST['contactno'] == $contactno )) {
+
+		$sql="update users set uname = :un,contactno = :co where uid = '$uid'";
 		$stmt = $conn->prepare($sql);
 		$stmt->execute(array(
 		':un' => $_POST['username'],
 		':co' => $_POST['contactno']));
-		
-		header("Location:index.php");
+		// Refresh the same page 
+		header("Refresh:0");
+		}
 }
 
 
