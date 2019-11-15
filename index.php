@@ -100,6 +100,7 @@ include 'dbconnection.php';
 						<div class="text">
 							<h2>Intel i9 9900k</h2>
 							<p>high-end CPU with 8 cores for elite gamers</p>
+							<strong style="font-size:18px">$480</strong>
 							 <button class="btn btn-primary"><a href="payment.php">Purchase</a></button>
 							 <button class="btn btn-primary"><a href="cart.php">Add to cart</a></button>
 							
@@ -116,6 +117,7 @@ include 'dbconnection.php';
 						</figure>
 						<div class="text">
 							<h2>NVIDIA® GeForce® RTX 2080TI</h2>
+							<strong style="font-size:18px">$1100</strong>
 							<p>The world’s most advanced GPU architecture for gamers and creators.</p>
 							 <button class="btn btn-primary"><a href="payment.php">Purchase</a></button>
 							 <button class="btn btn-primary"><a href="cart.php">Add to cart</a></button>
@@ -130,6 +132,7 @@ include 'dbconnection.php';
 						</figure>
 						<div class="text">
 							<h2>AMD Ryzen™ 9 3900X</h2>
+							<strong style="font-size:18px">$499</strong>
 							<p>The world's most advanced processor with 12 cores for the world's elite gamers.</p>
 							 <button class="btn btn-primary"><a href="payment.php">Purchase</a></button>
 							 <button class="btn btn-primary"><a href="cart.php">Add to cart</a></button>
@@ -146,6 +149,7 @@ include 'dbconnection.php';
 						</figure>
 						<div class="text">
 							<h2>Samsung SSD 970 PRO 512GB - NVMe</h2>
+							<strong style="font-size:18px">$150</strong>
 							<p>Ideal for tech enthusiasts,high end gamers,and 4K & 3D content designers</p>
 							 <button class="btn btn-primary"><a href="payment.php">Purchase</a></button>
 							 <button class="btn btn-primary"><a href="cart.php">Add to cart</a></button>
@@ -162,6 +166,7 @@ include 'dbconnection.php';
 						</figure>
 						<div class="text">
 							<h2>AMD Ryzen™ 5 3600</h2>
+							<strong style="font-size:18px">$199</strong>
 							<p>The world's most advanced processor with 6 Cores for everyday tasks</p>
 							 <button class="btn btn-primary"><a href="payment.php">Purchase</a></button>
 							 <button class="btn btn-primary"><a href="cart.php">Add to cart</a></button>
