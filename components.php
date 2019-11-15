@@ -85,6 +85,7 @@
 						</figure>
 						<div class="text">
 							<h2>Intel i9 9900k</h2>
+							<strong style="font-size:18px">$150</strong>
 							<p>high-end CPU with 8 cores for elite gamers</p>
 							 <button class="btn btn-primary"><a href="payment.php">Purchase</a></button>
 							 <button class="btn btn-primary"><a href="cart.php">Add to cart</a></button>
@@ -99,6 +100,7 @@
 						</figure>
 						<div class="text">
 							<h2>NVIDIA® GeForce® RTX 2080TI</h2>
+							<strong style="font-size:18px">$1100</strong>
 							<p>The world’s most advanced GPU architecture for gamers and creators.</p>
 						 <button class="btn btn-primary"><a href="payment.php">Purchase</a></button>
 							 <button class="btn btn-primary"><a href="cart.php">Add to cart</a></button>
@@ -113,6 +115,7 @@
 						</figure>
 						<div class="text">
 							<h2>AMD Ryzen™ 9 3900X</h2>
+							<strong style="font-size:18px">$499</strong>
 							<p>The world's most advanced processor with 12 cores for the world's elite gamers.</p>
 								 <button class="btn btn-primary"><a href="payment.php">Purchase</a></button>
 							 <button class="btn btn-primary"><a href="cart.php">Add to cart</a></button>
@@ -129,6 +132,7 @@
 						</figure>
 						<div class="text">
 							<h2>Samsung SSD 970 PRO 512GB-NVMe</h2>
+							<strong style="font-size:18px">$150</strong>
 							<p>Ideal for tech enthusiasts,high-end gamers,and 4K & 3D content designers</p>
 							 <button class="btn btn-primary"><a href="payment.php">Purchase</a></button>
 							 <button class="btn btn-primary"><a href="cart.php">Add to cart</a></button>
@@ -144,6 +148,7 @@
 						</figure>
 						<div class="text">
 							<h2>AMD Ryzen™ 5 3600</h2>
+							<strong style="font-size:18px">$199</strong>
 							<p>The world's most advanced processor with 6 Cores for everyday tasks</p>
 							 <button class="btn btn-primary"><a href="payment.php">Purchase</a></button>
 							 <button class="btn btn-primary"><a href="cart.php">Add to cart</a></button>
@@ -159,6 +164,7 @@
 						</figure>
 						<div class="text">
 							<h2>The NVIDIA® GeForce® RTX 2060 SUPER</h2>
+							<strong style="font-size:18px">$399</strong>
 							<p>Mid tier GPU architecture for gamers for a decent price.</p>
 							 <button class="btn btn-primary"><a href="payment.php">Purchase</a></button>
 							 <button class="btn btn-primary"><a href="cart.php">Add to cart</a></button>
@@ -174,7 +180,8 @@
 							<img src="images/img_1.jpg" alt="Image" class="img-responsive">
 						</figure>
 						<div class="text">
-							<h2>AMD REDAON 5700XT</h2>
+							<h2>AMD Redaon 5700XT</h2>
+							<strong style="font-size:18px">$400</strong>
 							<p>mmmm</p>
 							 <button class="btn btn-primary"><a href="payment.php">Purchase</a></button>
 							 <button class="btn btn-primary"><a href="cart.php">Add to cart</a></button>
@@ -188,7 +195,8 @@
 							<img src="images/img_2.jpg" alt="Image" class="img-responsive">
 						</figure>
 						<div class="text">
-							<h2>CORE i7 9700k</h2>
+							<h2>Core i7 9700k</h2>
+							<strong style="font-size:18px">$370</strong>
 							<p>mmmmm</p>
 						 <button class="btn btn-primary"><a href="payment.php">Purchase</a></button>
 							 <button class="btn btn-primary"><a href="cart.php">Add to cart</a></button>
@@ -202,7 +210,8 @@
 							<img src="images/img_3.jpg" alt="Image" class="img-responsive">
 						</figure>
 						<div class="text">
-							<h2>G.SKILL RAM</h2>
+							<h2>G.SKILL 32GB RAM</h2>
+							<strong style="font-size:18px">$140</strong>
 							<p>mmmm</p>
 						 <button class="btn btn-primary"><a href="payment.php">Purchase</a></button>
 							 <button class="btn btn-primary"><a href="cart.php">Add to cart</a></button>
@@ -218,7 +227,8 @@
 							<img src="images/img_4.jpg" alt="Image" class="img-responsive">
 						</figure>
 						<div class="text">
-							<h2>Mechanical Keyboard</h2>
+							<h2>Razor Mechanical Keyboard</h2>
+							<strong style="font-size:18px">$95</strong>
 							<p>MMMMM</p>
 							 <button class="btn btn-primary"><a href="payment.php">Purchase</a></button>
 							 <button class="btn btn-primary"><a href="cart.php">Add to cart</a></button>
@@ -233,7 +243,8 @@
 							<img src="images/img_5.jpg" alt="Image" class="img-responsive">
 						</figure>
 						<div class="text">
-							<h2>GAMING MOUSE</h2>
+							<h2>Steelseries Gaming Mouse</h2>
+							<strong style="font-size:18px">$69</strong>
 							<p>MMMM</p>
 						 <button class="btn btn-primary"><a href="payment.php">Purchase</a></button>
 							 <button class="btn btn-primary"><a href="cart.php">Add to cart</a></button>
@@ -248,7 +259,8 @@
 							<img src="images/img_6.jpg" alt="Image" class="img-responsive">
 						</figure>
 						<div class="text">
-							<h2>GMAING HEADSET</h2>
+							<h2>Corsair Gaming Headset</h2>
+							<strong style="font-size:18px">$110</strong>
 							<p>mmmmmm</p>
 						 <button class="btn btn-primary"><a href="payment.php">Purchase</a></button>
 							 <button class="btn btn-primary"><a href="cart.php">Add to cart</a></button>
