@@ -83,9 +83,9 @@ $error = "All Fields required";}
 
 <!-- First Grid -->
 <div class="w3-row-padding w3-padding-32 w3-center">
-  <div class="w3-content form-group">
+  <div class="w3-content form-group" style="margin-right:205px">
     
-  <form method="post">
+  <form method="post" style="width:50%">
   <h2>Registration</h2>
   <div class="form-group w3-red  ">
     <i class="fa fa-user icon"></i>
