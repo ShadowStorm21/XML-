@@ -79,10 +79,10 @@ include 'dbconnection.php';
 <label for="CPU">Choose your CPU</label>
 <select name="#" id="cpu" class="form-control">
 <option value="" disabled selected>CPU</option>
-<option value="Toyota">Intel Pentium Gold G5400</option>		
-<option value="Lexus">AMD Ryzen 3 3200G</option>
-<option value="BMW">AMD Athlon 220GE </option>
-<option value="Mercedes">Intel Core i3-9100F</option>
+<option value="G5400">Intel Pentium Gold G5400</option>		
+<option value="3200G">AMD Ryzen 3 3200G</option>
+<option value="220GE">AMD Athlon 220GE </option>
+<option value="9100F">Intel Core i3-9100F</option>
 </select>
 </div>
 </div>
@@ -92,8 +92,8 @@ include 'dbconnection.php';
 <label for="RAM">Choose your RAM amount</label>
 <select name="#" id="ram" class="form-control">
 <option value="" disabled selected>RAM</option>
-<option value="Toyota">4GB DDR4</option>		
-<option value="Lexus">8GB DDR4</option>
+<option value="4GB">4GB DDR4</option>		
+<option value="8GB">8GB DDR4</option>
 
 </select>
 </div>
@@ -104,11 +104,11 @@ include 'dbconnection.php';
 <label for="CPU">Choose your GPU</label>
 <select name="#" id="gpu" class="form-control">
 <option value="" disabled selected>GPU</option>
-<option value="Toyota">No GPU</option>
-<option value="Toyota">Radeon RX 550 4GB GDDR5</option>
-<option value="Lexus">Radeon RX 560 4GB GDDR5</option>
-<option value="BMW">Radeon RX 570 4GB GDDR5</option>
-<option value="Mercedes">GeForce GTX 1650 4GB</option>
+<option value=">NoGPU">No GPU</option>
+<option value="RX550">Radeon RX 550 4GB GDDR5</option>
+<option value="RX560">Radeon RX 560 4GB GDDR5</option>
+<option value="RX570">Radeon RX 570 4GB GDDR5</option>
+<option value="GTX1650">GeForce GTX 1650 4GB</option>
 </select>
 </div>
 </div>
@@ -118,9 +118,9 @@ include 'dbconnection.php';
 <label for="CPU">Choose your Storage options</label>
 <select name="#" id="storage" class="form-control">
 <option value="" disabled selected>Storage</option>
-<option value="Toyota">1TB Internal Hard Drive HDD</option>
-<option value="Lexus">Samsung SSD 860 EVO 128GB SATA III Internal SSD</option>
-<option value="BMW">1TB HDD + Samsung SSD 860 EVO 128GB</option>
+<option value="1TB">WD 1TB Internal Hard Drive HDD</option>
+<option value="SSD860EVO">Samsung SSD 860 EVO 128GB SATA III Internal SSD</option>
+<option value="1TB_SSD">1TB HDD + Samsung SSD 860 EVO 128GB</option>
 </select>
 </div>
 </div>
