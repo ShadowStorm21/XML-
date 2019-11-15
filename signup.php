@@ -116,7 +116,7 @@ $error = "All Fields required";}
 	</div>
  
   <div class="text-center w3-light-grey">
-    <p>Already have an account? <a href="#" class="copyright" >Sign in</a>.</p>
+    <p>Already have an account? <a href="signup.php" class="copyright" >Sign in</a>.</p>
   </div>
 </form>
     </div>
@@ -139,7 +139,20 @@ $error = "All Fields required";}
  <small class="block">&copy; 2019 Higher College of Technology. All Rights Reserved.</small> 
 </footer>
 
+<div class="gototop js-top">
+		<a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
+	</div>
+	<!-- jQuery -->
+	<script src="js/jquery.min.js"></script>
+	<!-- jQuery Easing -->
+	<script src="js/jquery.easing.1.3.js"></script>
+	
+	<!-- Waypoints -->
+	<script src="js/jquery.waypoints.min.js"></script>
+	<!-- Carousel -->
+	<script src="js/owl.carousel.min.js"></script>
 
+<script src="js/main.js"></script>
 
 </body>
 </html>

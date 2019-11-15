@@ -16,7 +16,8 @@
 	<link rel="stylesheet" href="css/mstyles.css">
 
 	
-
+<!-- Icomoon Icon Fonts-->
+	<link rel="stylesheet" href="css/icomoon.css">
 
 <body>
 
@@ -27,12 +28,20 @@
     <a href="index.php" class="w3-bar-item w3-button w3-padding-large w3-hover-white">Home</a>
     <a href="pricing.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Pricing</a>
     <a href="components.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-white">Components</a>
-    <a href="signup.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Sign up</a>
-	<a href="login.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Login</a>
+<?php session_start();  if(!isset($_SESSION['uid'])) {echo "<a href='signup.php' class='w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white'>Sign up</a>
+	<a href='login.php' class='w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white'>Login</a>";}?>
 	<a href="contactus.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Contact us</a>
 		<a href="search.php" class="w3-bar-item w3-button w3-hide-small w3-spin w3-padding-large w3-hover-white"><i class="fa fa-search" style="font-size:30px"></i></a>
 	<a href="cart.php" class="w3-bar-item w3-button w3-hide-small w3-spin w3-padding-large w3-hover-white"><i class="material-icons" style="font-size:30px">shopping_cart</i></a>
-	
+				<?php if(isset($_SESSION['uname']) && isset($_SESSION['uid'])){echo "<div class='w3-dropdown-hover w3-right w3-bar-item w3-padding-large w3-hover-white'><i class='material-icons' style='font-size:30px'>person</i>
+  <div class='w3-dropdown-content w3-animate-zoom w3-border' style='right:0'>
+    <a href='changePassword.php' class='w3-bar-item w3-button'>Change Password</a>
+    <a href='profile.php' class='w3-bar-item w3-button'>Update Profile</a>
+    <a href='logout.php' class='w3-bar-item w3-button'>Logout</a>
+  </div>
+
+  </div>
+</div>";} ?>
   </div>
 
   <!-- Navbar on small screens -->
@@ -269,7 +278,20 @@
   <p>Powered by <a class="copyright" href="https://www.hct.edu.om" target="_blank">Higher College of Technology</a></p>
  <small class="block">&copy; 2019 Higher College of Technology. All Rights Reserved.</small> 
 </footer>
+<div class="gototop js-top">
+		<a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
+	</div>
+	<!-- jQuery -->
+	<script src="js/jquery.min.js"></script>
+	<!-- jQuery Easing -->
+	<script src="js/jquery.easing.1.3.js"></script>
+	
+	<!-- Waypoints -->
+	<script src="js/jquery.waypoints.min.js"></script>
+	<!-- Carousel -->
+	<script src="js/owl.carousel.min.js"></script>
 
+<script src="js/main.js"></script>
 
 	
 </body>

@@ -35,8 +35,8 @@ echo "<a class='w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-p
 echo "<a href='index.php' class='w3-bar-item w3-button w3-padding-large w3-hover-white'>Home</a>";
 echo "<a href='pricing.php' class='w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white'>Pricing</a>";
 echo "<a href='components.php' class='w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white'>Components</a>";
-echo "<a href='signup.php' class='w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white'>Sign up</a>";
-echo "<a href='login.php' class='w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white'>Login</a>";
+ if(!isset($_SESSION['uid'])) {echo "<a href='signup.php' class='w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white'>Sign up</a>
+	<a href='login.php' class='w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white'>Login</a>";}
 echo "<a href='contactus.php' class='w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white'>Contact us</a>";
 echo "<a href='search.php' class='w3-bar-item w3-button w3-hide-small w3-spin w3-padding-large w3-hover-white'><i class='fa fa-search' style='font-size:20px'></i></a>";
 echo "<a href='cart.php' class='w3-bar-item w3-button w3-hide-small w3-spin w3-padding-large w3-hover-white'><i class='material-icons' style='font-size:20px'>shopping_cart</i></a>";
