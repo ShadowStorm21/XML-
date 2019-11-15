@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 include 'dbconnection.php';
 
 ?>
@@ -39,7 +39,7 @@ include 'dbconnection.php';
 	<a href="contactus.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Contact us</a>
 	<a href="search.php" class="w3-bar-item w3-button w3-hide-small w3-spin w3-padding-large w3-hover-white"><i class="fa fa-search" style="font-size:30px"></i></a>
 	<a href="cart.php" class="w3-bar-item w3-button w3-hide-small w3-spin w3-padding-large w3-hover-white"><i class="material-icons" style="font-size:30px">shopping_cart</i></a>
-	<?php if(isset($_SESSION['uname']) || isset($_SESSION['uid'])){echo "<div class='w3-dropdown-hover w3-right w3-bar-item w3-padding-large w3-hover-white'><i class='material-icons' style='font-size:30px'>person</i>
+	<?php if(isset($_SESSION['uname']) && isset($_SESSION['uid'])){echo "<div class='w3-dropdown-hover w3-right w3-bar-item w3-padding-large w3-hover-white'><i class='material-icons' style='font-size:30px'>person</i>
   <div class='w3-dropdown-content w3-animate-zoom w3-border' style='right:0'>
     <a href='changePassword.php' class='w3-bar-item w3-button'>Change Password</a>
     <a href='profile.php' class='w3-bar-item w3-button'>Update Profile</a>
@@ -56,7 +56,7 @@ include 'dbconnection.php';
  <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large">
     <a href="pricing.php" class="w3-bar-item w3-button w3-padding-large">Pricing</a>
     <a href="components.php" class="w3-bar-item w3-button w3-padding-large">Components</a>
-  	<?php session_start();  if(!isset($_SESSION['uid'])) {echo "<a href='signup.php' class='w3-bar-item w3-button w3-padding-large w3-hover-white'>Sign up</a>
+  	<?php  if(!isset($_SESSION['uid'])) {echo "<a href='signup.php' class='w3-bar-item w3-button w3-padding-large w3-hover-white'>Sign up</a>
 	<a href='login.php' class='w3-bar-item w3-button w3-padding-large w3-hover-white'>Login</a>";}?>
 	<a href="contactus.php" class="w3-bar-item w3-button w3-padding-large">Contact us</a>
 	<?php if(isset($_SESSION['uname']) && isset($_SESSION['uid'])){echo "<div class='w3-dropdown-hover w3-right w3-bar-item w3-padding-large w3-hover-white'><i class='material-icons' style='font-size:30px'>person</i>
