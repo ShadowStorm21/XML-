@@ -33,7 +33,8 @@ $error = "All Fields required";}
 <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
 	<!-- Bootstrap  -->
 	<link rel="stylesheet" href="css/bootstrap.css">
-
+	<!-- Icomoon Icon Fonts-->
+	<link rel="stylesheet" href="css/icomoon.css">
 	<!-- Theme style  -->
 	<link rel="stylesheet" href="css/mstyles.css">
 <style>
