@@ -8,9 +8,19 @@ include 'dbconnection.php';
     	$stmt = $conn->query($sql);
     	$rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
     	$n = $stmt-> rowCount();
+
+		// if the normal search didn't  succeed , search from the description or tag
+		if( $n == 0) {
+		$sql = "select * from product where description like '%".$pname .'%\' or tag like'.'\''.$pname .'\'';
+    	$stmt = $conn->query($sql);
+    	$rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    	$n = $stmt-> rowCount();
+	
+		}
     }
 
 ?>
+
 
 <html lang="en">
 <title>Search a product </title>
