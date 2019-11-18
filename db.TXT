@@ -10,4 +10,55 @@ regdate datetime DEFAULT CURRENT_TIMESTAMP,
 pass VARCHAR(100) NOT NULL,
 primary key(uid)); 
 
+CREATE TABLE product (
+pid int auto_increment,
+pname VARCHAR(100) not null,
+price double not null,
+tag VARCHAR(15) not null,
+description VARCHAR(1000),
+primary key(pid));
 
+
+# pre-defined products !
+
+INSERT INTO product 
+(pname,price,tag,description) VALUES ("Intel i9 9900k",480,"CPU"," 8 Cores / 16 Threads
+Up to 5.0 GHz All Core Turbo Unlocked
+Scalability: 1S Only");
+
+INSERT INTO product 
+(pname,price,tag,description) VALUES ("NVIDIA GeForce RTX 2080TI",1100,"GPU"," 11GB GDDR6
+CUDA Cores: 4352
+Display Connectors: DisplayPort, HDMI, USB Type-C
+Maximum Digital Resolution: 7680x4320 ");
+
+
+INSERT INTO product 
+(pname,price,tag,description) VALUES ("AMD Ryzen 9 3900X",499,"CPU","
+12 Cores and 24 processing threads,4.6 GHz Max Boost, unlocked for overclocking, 70 MB of game Cache, ddr 3200 support");
+
+
+INSERT INTO product 
+(pname,price,tag,description) VALUES ("Samsung SSD 970 PRO 512GB - NVMe",150,"Storage","
+Sequential read and write performance levels of up to 3,500MB/s and 2,700MB/s, respectively");
+
+INSERT INTO product 
+(pname,price,tag,description) VALUES ("AMD Ryzen 5 3600",199,"CPU","
+6 Cores and 12 processing threads,Stealth cooler4.2 GHz Max Boost, unlocked for overclocking, ddr4 3200 support");
+
+
+INSERT INTO product 
+(pname,price,tag,description) VALUES ("AeroCool Cylon RGB Mid Tower with Acrylic Side Window, Black case",50,"Case","AeroCool Cylon RGB Mid Tower with Acrylic Side Window, Black");
+
+
+INSERT INTO product 
+(pname,price,tag,description) VALUES ("VGA 750 GQ, 80+ GOLD 750W, Semi Modular, Power Supply",94.99,"Power Supply"," efficient operation 80 PLUS Gold, with 90 percent (115VAC) / 92 percent");
+
+
+INSERT INTO product 
+(pname,price,tag,description) VALUES ("EVGA 500 W1, 80+ WHITE 500W,Power Supply",47.99,"Power Supply","
+Compatibility of the EVGA 500 W1, 80+ WHITE 500W,Power Supply 100 W1 0500 KR (100 W1 0500 KR) ");
+
+
+INSERT INTO product 
+(pname,price,tag,description) VALUES ("WD Blue 2TB PC Hard Drive",49.99,"Storage","WD Blue 2TB PC Hard Drive - 5400 RPM Class, SATA 6 Gb/s, 256 MB Cache, 3.5");
