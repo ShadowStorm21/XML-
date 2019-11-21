@@ -35,6 +35,9 @@
  *
 */
 
+//Easing functions specify the speed at which an animation progresses at different points within the animation
+
+
 // t: current time, b: begInnIng value, c: change In value, d: duration
 jQuery.easing['jswing'] = jQuery.easing['swing'];
 
