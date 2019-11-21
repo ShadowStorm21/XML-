@@ -1,3 +1,68 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"> </script>
+<script >
+	var cart = new Array();
+	function add_to_cart(product_id) {
+		// check if item exists
+		$.ajax({
+			type:"POST",
+			url:"cart_info.php",
+			data: { 'PRODUCT_CHECK' : product_id },
+			success : function( n ) { 
+				if( n != false){
+					alert("You've Already Chosen this item!");
+					return;
+					}
+			},
+			error : function() {}
+			});
+
+		cart.push(product_id);
+			
+		// push the new list to the session
+		$.ajax({
+			type:"POST",
+			url:"cart_info.php",
+			data: { 'CART_INFO' : cart },
+			success : function( msg ) { 
+					update(); 
+			},
+			error : function() {}
+			});
+			}
+	function purchase() {
+					
+		}
+			function update() {
+		var cart_icon = "<i class='material-icons' style='font-size:30px'>shopping_cart</i>";	
+		$.ajax({
+				type:"GET",
+				url:"cart_info.php",
+				data: "GET_N",
+				success : function( n ) {
+					$("#_cart_number").html( n + cart_icon);
+				},
+				error : function() { ;} 
+				});
+	}
+
+	function READY() {
+		update();	
+		$("div > button").click(function(){
+			switch ( $(this).attr("value") ) {
+				case 'buy':	add_to_cart( $(this).attr("id") ) ;
+					purchase();
+					break;
+				case 'add': add_to_cart( $(this).attr("id") ) ;
+					break;
+				default:
+					break;
+				}
+		});
+	}
+	$(document).ready(READY);
+</script>
+
+
 <?php session_start();
 include 'dbconnection.php';
 
@@ -11,16 +76,13 @@ include 'dbconnection.php';
 
 		// if the normal search didn't  succeed , search from the description or tag
 		if( $n == 0) {
-		$sql = "select * from product where description like '%".$pname .'%\' or tag like'.'\''.$pname .'\'';
-    	$stmt = $conn->query($sql);
-    	$rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    	$n = $stmt-> rowCount();
-	
+			$sql = "select * from product where description like '%".$pname .'%\' or tag like'.'\''.$pname .'\'';
+    		$stmt = $conn->query($sql);
+    		$rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    		$n = $stmt-> rowCount();
 		}
     }
-
 ?>
-
 
 <html lang="en">
 <title>Search a product </title>
@@ -49,14 +111,19 @@ include 'dbconnection.php';
 <div class="w3-top">
   <div class="w3-bar w3-red w3-card w3-left-align w3-large ">
     <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-red"><i class="fa fa-bars"></i></a>
-    <a href="index.php" class="w3-bar-item w3-button w3-padding-large w3-white">Home</a>
+    <a href="index.php" class="w3-bar-item w3-button w3-padding-large ">Home</a>
     <a href="pricing.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Pricing</a>
     <a href="components.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Components</a>
 	<?php  if(!isset($_SESSION['uid'])) {echo "<a href='signup.php' class='w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white'>Sign up</a>
 	<a href='login.php' class='w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white'>Login</a>";}?>
 	<a href="contactus.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Contact us</a>
 	<a href="search.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"><i class="fa fa-search" style="font-size:30px"></i></a>
-	<a href="cart.php" class="w3-bar-item w3-button w3-hide-small w3-spin w3-padding-large w3-hover-white"><i class="material-icons" style="font-size:30px">shopping_cart</i></a>
+
+	<!-- Cart ------------------------------------------------------------------------------------------------- -->
+		<a href="cart.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" id="_cart_number">0
+		<i class="material-icons" style="font-size:30px">shopping_cart</i>
+	</a>
+
 	<?php if(isset($_SESSION['uname']) && isset($_SESSION['uid'])){echo "<div class='w3-dropdown-hover w3-right w3-bar-item w3-padding-large w3-hover-white'><i class='material-icons' style='font-size:30px'>person</i>
   <div class='w3-dropdown-content w3-animate-zoom w3-border' style='right:0'>
     <a href='changePassword.php' class='w3-bar-item w3-button'>Change Password</a>
@@ -141,6 +208,7 @@ include 'dbconnection.php';
 
   	 
 
+		echo "<div>";
         // display products
         foreach($rows as $row ) {
             echo"  	<div class='col-lg-4'>";
@@ -156,14 +224,15 @@ include 'dbconnection.php';
 
 			echo"   		<strong style='font-size:18px'>$$row[price]</strong><br>";
 			echo"   		<p>$row[description]</p>";
-			echo"   		 <button class='btn btn-primary'><a href='payment.php'>Purchase</a></button>";
-			echo"   		 <button class='btn btn-primary'><a href='cart.php'>Add to cart</a></button>";
+			echo"   		 <button value='buy' id='$row[pid]' class='btn btn-primary'> <a href='payment.php'>Purchase</a></button>";
+			echo"   		 <button value='add' id='$row[pid]' class='btn btn-primary'>Add to cart</button>";
 			echo"   	</div>";
 			echo"   </div>";
 			echo"   </div>";
 
         }
 		echo"    </div >";
+		echo"</div>";
     ?>
 
 						
@@ -221,3 +290,4 @@ include 'dbconnection.php';
 	
 </body>
 </html>
+
