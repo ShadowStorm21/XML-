@@ -99,8 +99,9 @@ include 'dbconnection.php';
 						</figure>
 						<div class="text">
 							<h2>Intel i9 9900k</h2>
-							<p>high-end CPU with 8 cores for elite gamers</p>
 							<strong style="font-size:18px">$480</strong>
+							<p>high-end CPU with 8 cores for elite gamers</p>
+							
 							 <button class="btn btn-primary"><a href="payment.php">Purchase</a></button>
 							 <button class="btn btn-primary"><a href="cart.php">Add to cart</a></button>
 							
