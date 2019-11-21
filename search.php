@@ -38,7 +38,7 @@ include 'dbconnection.php';
 	<link rel="stylesheet" href="css/bootstrap.css">
 	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
 	<!-- Theme style  -->
-	<link rel="stylesheet" href="css/mstyles.css">
+	<link rel="stylesheet" href="css/style.css">
 
 
 
@@ -49,13 +49,13 @@ include 'dbconnection.php';
 <div class="w3-top">
   <div class="w3-bar w3-red w3-card w3-left-align w3-large ">
     <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-red"><i class="fa fa-bars"></i></a>
-    <a href="index.php" class="w3-bar-item w3-button w3-padding-large w3-white">Home</a>
+    <a href="index.php" class="w3-bar-item w3-button w3-padding-large w3-hover-white">Home</a>
     <a href="pricing.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Pricing</a>
     <a href="components.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Components</a>
 	<?php  if(!isset($_SESSION['uid'])) {echo "<a href='signup.php' class='w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white'>Sign up</a>
 	<a href='login.php' class='w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white'>Login</a>";}?>
 	<a href="contactus.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Contact us</a>
-	<a href="search.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"><i class="fa fa-search" style="font-size:30px"></i></a>
+	<a href="search.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-white"><i class="fa fa-search" style="font-size:30px"></i></a>
 	<a href="cart.php" class="w3-bar-item w3-button w3-hide-small w3-spin w3-padding-large w3-hover-white"><i class="material-icons" style="font-size:30px">shopping_cart</i></a>
 	<?php if(isset($_SESSION['uname']) && isset($_SESSION['uid'])){echo "<div class='w3-dropdown-hover w3-right w3-bar-item w3-padding-large w3-hover-white'><i class='material-icons' style='font-size:30px'>person</i>
   <div class='w3-dropdown-content w3-animate-zoom w3-border' style='right:0'>
@@ -166,9 +166,6 @@ include 'dbconnection.php';
 		echo"    </div >";
     ?>
 
-						
-		
-
 <!-- First Grid -->
 <div class="w3-row-padding w3-padding-32 w3-container w3-red">
   <div class="w3-content">
@@ -183,10 +180,6 @@ include 'dbconnection.php';
    
   </div>
 </div>
-
-	
-
-
 
 <!-- Footer -->
 <footer class="w3-container w3-padding-64 w3-center">  
@@ -204,20 +197,5 @@ include 'dbconnection.php';
  </div>
 </footer>
 
-<div class="gototop js-top">
-		<a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
-	</div>
-	<!-- jQuery -->
-	<script src="js/jquery.min.js"></script>
-	<!-- jQuery Easing -->
-	<script src="js/jquery.easing.1.3.js"></script>
-	
-	<!-- Waypoints -->
-	<script src="js/jquery.waypoints.min.js"></script>
-	<!-- Carousel -->
-	<script src="js/owl.carousel.min.js"></script>
-
-<script src="js/main.js"></script>
-	
 </body>
 </html>

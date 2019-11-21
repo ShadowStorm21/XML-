@@ -19,7 +19,7 @@ include 'dbconnection.php';
 	<link rel="stylesheet" href="css/bootstrap.css">
 	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
 	<!-- Theme style  -->
-	<link rel="stylesheet" href="css/mstyles.css">
+	<link rel="stylesheet" href="css/style.css">
 
 
 
@@ -30,8 +30,8 @@ include 'dbconnection.php';
 <div class="w3-top">
   <div class="w3-bar w3-red w3-card w3-left-align w3-large ">
     <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-red"><i class="fa fa-bars"></i></a>
-    <a href="index.php" class="w3-bar-item w3-button w3-padding-large w3-white">Home</a>
-    <a href="pricing.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Pricing</a>
+    <a href="index.php" class="w3-bar-item w3-button w3-padding-large w3-hover-white">Home</a>
+    <a href="pricing.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-white">Pricing</a>
     <a href="components.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Components</a>
 <?php session_start();  if(!isset($_SESSION['uid'])) {echo "<a href='signup.php' class='w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white'>Sign up</a>
 	<a href='login.php' class='w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white'>Login</a>";}?>
@@ -79,10 +79,10 @@ include 'dbconnection.php';
 <label for="CPU">Choose your CPU</label>
 <select name="#" id="cpu" class="form-control">
 <option value="" disabled selected>CPU</option>
-<option value="G5400">Intel Pentium Gold G5400</option>		
-<option value="3200G">AMD Ryzen 3 3200G</option>
-<option value="220GE">AMD Athlon 220GE </option>
-<option value="9100F">Intel Core i3-9100F</option>
+<option value="9400">Intel Core i5-9400</option>		
+<option value="9600K">Intel Core i5-9600K</option>
+<option value="3600">AMD Ryzen 5 3600</option>
+<option value="3600X">AMD Ryzen 5 3600X</option>
 </select>
 </div>
 </div>
@@ -92,7 +92,7 @@ include 'dbconnection.php';
 <label for="RAM">Choose your RAM amount</label>
 <select name="#" id="ram" class="form-control">
 <option value="" disabled selected>RAM</option>
-<option value="4GB">4GB DDR4</option>		
+<option value="16GB">16GB DDR4</option>		
 <option value="8GB">8GB DDR4</option>
 
 </select>
@@ -105,10 +105,10 @@ include 'dbconnection.php';
 <select name="#" id="gpu" class="form-control">
 <option value="" disabled selected>GPU</option>
 <option value=">NoGPU">No GPU</option>
-<option value="RX550">Radeon RX 550 4GB GDDR5</option>
-<option value="RX560">Radeon RX 560 4GB GDDR5</option>
-<option value="RX570">Radeon RX 570 4GB GDDR5</option>
-<option value="GTX1650">GeForce GTX 1650 4GB</option>
+<option value="RX590">AMD Radeon RX 590 8GB GDDR5</option>
+<option value="GTX1660">NVIDIA GeForce GTX 1660 Ti 6GB GDDR6</option>
+<option value="RX570">AMD Radeon RX 5700 8GB GDRR6</option>
+<option value="RTX2060">NVIDIA GeForce RTX 2060 SUPER 8GB GDDR6</option>
 </select>
 </div>
 </div>
@@ -118,9 +118,9 @@ include 'dbconnection.php';
 <label for="CPU">Choose your Storage options</label>
 <select name="#" id="storage" class="form-control">
 <option value="" disabled selected>Storage</option>
-<option value="1TB">WD 1TB Internal Hard Drive HDD</option>
-<option value="SSD860EVO">Samsung SSD 860 EVO 128GB SATA III Internal SSD</option>
-<option value="1TB_SSD">1TB HDD + Samsung SSD 860 EVO 128GB</option>
+<option value="1TB_HDD">WD 1TB Internal Hard Drive HDD</option>
+<option value="SSD970EVO">Samsung 970 EVO SSD 500GB - M.2 NVMe</option>
+<option value="500GB_SSD">1TB HDD + Samsung 970 EVO SSD 500GB</option>
 </select>
 </div>
 </div>
@@ -410,20 +410,7 @@ function openInfoStr(evt, partName) {
   evt.currentTarget.classList.add("w3-light-grey");
 }
 </script>
-<div class="gototop js-top">
-		<a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
-	</div>
-	<!-- jQuery -->
-	<script src="js/jquery.min.js"></script>
-	<!-- jQuery Easing -->
-	<script src="js/jquery.easing.1.3.js"></script>
-	
-	<!-- Waypoints -->
-	<script src="js/jquery.waypoints.min.js"></script>
-	<!-- Carousel -->
-	<script src="js/owl.carousel.min.js"></script>
 
-<script src="js/main.js"></script>
 	
 </body>
 </html>

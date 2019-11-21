@@ -13,7 +13,7 @@
 	<link rel="stylesheet" href="css/bootstrap.css">
 
 	<!-- Theme style  -->
-	<link rel="stylesheet" href="css/mstyles.css">
+	<link rel="stylesheet" href="css/style.css">
 
 	<!-- Icomoon Icon Fonts-->
 	<link rel="stylesheet" href="css/icomoon.css">
@@ -101,7 +101,7 @@
 							<li>GPU : up to RTX 2060 SUPER</li>
 							<li>SDD : up Samsung SSD 500GB</li>
 						</ul>
-						<a href="#" class="btn btn-primary">Get started</a>
+						<a href="regularplan.php" class="btn btn-primary">Get started</a>
 					</div>
 				</div>
 				<div>
@@ -117,21 +117,12 @@
 							<li>GPU : up to RTX Titan</li>
 							<li>SDD : up to Samsung NVME SSD 2TB</li>
 						</ul>
-						<a href="#" class="btn btn-default">Get started</a>
+						<a href="plusplan.php" class="btn btn-default">Get started</a>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-
-
-	
-	
-
-	
-
-
-
 
 
 <!-- Footer -->
@@ -143,24 +134,30 @@
     <i class="fa fa-pinterest-p w3-hover-opacity"></i>
     <i class="fa fa-twitter w3-hover-opacity"></i>
     <i class="fa fa-linkedin w3-hover-opacity"></i>
+	<div class="w3-container w3-padding-64 w3-right">
+		<button  class="btn btn-primary" onclick="scrollToTop(1000);"><i class="icon-arrow-up" style="font-size:30px; color:white;"></i></button>
+	</div>
  </div>
  <p>Powered by <a class="copyright" href="https://www.hct.edu.om" target="_blank">Higher College of Technology</a></p>
  <small class="block">&copy; 2019 Higher College of Technology. All Rights Reserved.</small> 
 </footer>
-<div class="gototop js-top">
-		<a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
-	</div>
-	<!-- jQuery -->
-	<script src="js/jquery.min.js"></script>
-	<!-- jQuery Easing -->
-	<script src="js/jquery.easing.1.3.js"></script>
-	
-	<!-- Waypoints -->
-	<script src="js/jquery.waypoints.min.js"></script>
-	<!-- Carousel -->
-	<script src="js/owl.carousel.min.js"></script>
-
-<script src="js/main.js"></script>
+<!--Function to scroll to top with animation-->
+	<script>
+function scrollToTop(scrollDuration) {
+    var cosParameter = window.scrollY / 2,
+        scrollCount = 0,
+        oldTimestamp = performance.now();
+    function step (newTimestamp) {
+        scrollCount += Math.PI / (scrollDuration / (newTimestamp - oldTimestamp));
+        if (scrollCount >= Math.PI) window.scrollTo(0, 0);
+        if (window.scrollY === 0) return;
+        window.scrollTo(0, Math.round(cosParameter + cosParameter * Math.cos(scrollCount)));
+        oldTimestamp = newTimestamp;
+        window.requestAnimationFrame(step);
+    }
+    window.requestAnimationFrame(step);
+}
+	</script>
 
 	
 </body>

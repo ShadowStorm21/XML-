@@ -18,7 +18,7 @@ echo "<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-a
 echo "<link rel='stylesheet' href='https://fonts.googleapis.com/icon?family=Material+Icons'>"; 
 echo "<link href='https://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet'>";
 echo "<link rel='stylesheet' href='css/bootstrap.css'>"; 
-echo "<link rel='stylesheet' href='css/mstyles.css'>";  
+echo "<link rel='stylesheet' href='css/style.css'>";  
 echo "</head>";
 echo "<body>";
 echo "<div class='w3-top'>";

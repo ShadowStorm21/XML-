@@ -20,7 +20,7 @@ include 'dbconnection.php';
 	<link rel="stylesheet" href="css/bootstrap.css">
 	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
 	<!-- Theme style  -->
-	<link rel="stylesheet" href="css/mstyles.css">
+	<link rel="stylesheet" href="css/style.css">
 
 
 
@@ -99,11 +99,11 @@ include 'dbconnection.php';
 						</figure>
 						<div class="text">
 							<h2>Intel i9 9900k</h2>
+							
 							<strong style="font-size:18px">$480</strong>
 							<p>high-end CPU with 8 cores for elite gamers</p>
-							
-							 <button class="btn btn-primary"><a href="payment.php">Purchase</a></button>
-							 <button class="btn btn-primary"><a href="cart.php">Add to cart</a></button>
+								<a href="payment.php"><button class="btn btn-primary">Purchase</button></a>
+							<a href="cart.php"><button class="btn btn-primary">Add to cart</button></a>
 							
 						</div>
 					
@@ -120,8 +120,8 @@ include 'dbconnection.php';
 							<h2>NVIDIA® GeForce® RTX 2080TI</h2>
 							<strong style="font-size:18px">$1100</strong>
 							<p>The world’s most advanced GPU architecture for gamers and creators.</p>
-							 <button class="btn btn-primary"><a href="payment.php">Purchase</a></button>
-							 <button class="btn btn-primary"><a href="cart.php">Add to cart</a></button>
+								<a href="payment.php"><button class="btn btn-primary">Purchase</button></a>
+							<a href="cart.php"><button class="btn btn-primary">Add to cart</button></a>
 						</div>
 					</div>
 				</div>
@@ -135,8 +135,8 @@ include 'dbconnection.php';
 							<h2>AMD Ryzen™ 9 3900X</h2>
 							<strong style="font-size:18px">$499</strong>
 							<p>The world's most advanced processor with 12 cores for the world's elite gamers.</p>
-							 <button class="btn btn-primary"><a href="payment.php">Purchase</a></button>
-							 <button class="btn btn-primary"><a href="cart.php">Add to cart</a></button>
+								<a href="payment.php"><button class="btn btn-primary">Purchase</button></a>
+							<a href="cart.php"><button class="btn btn-primary">Add to cart</button></a>
 						</div>
 					</div>
 				</div>
@@ -152,8 +152,8 @@ include 'dbconnection.php';
 							<h2>Samsung SSD 970 PRO 512GB - NVMe</h2>
 							<strong style="font-size:18px">$150</strong>
 							<p>Ideal for tech enthusiasts,high end gamers,and 4K & 3D content designers</p>
-							 <button class="btn btn-primary"><a href="payment.php">Purchase</a></button>
-							 <button class="btn btn-primary"><a href="cart.php">Add to cart</a></button>
+								<a href="payment.php"><button class="btn btn-primary">Purchase</button></a>
+							<a href="cart.php"><button class="btn btn-primary">Add to cart</button></a>
 							
 						</div>
 					</div>
@@ -169,8 +169,8 @@ include 'dbconnection.php';
 							<h2>AMD Ryzen™ 5 3600</h2>
 							<strong style="font-size:18px">$199</strong>
 							<p>The world's most advanced processor with 6 Cores for everyday tasks</p>
-							 <button class="btn btn-primary"><a href="payment.php">Purchase</a></button>
-							 <button class="btn btn-primary"><a href="cart.php">Add to cart</a></button>
+							<a href="payment.php"><button class="btn btn-primary">Purchase</button></a>
+							<a href="cart.php"><button class="btn btn-primary">Add to cart</button></a>
 						</div>
 					</a>
 				</div>
@@ -214,6 +214,9 @@ include 'dbconnection.php';
     <i class="fa fa-pinterest-p w3-hover-opacity"></i>
     <i class="fa fa-twitter w3-hover-opacity"></i>
     <i class="fa fa-linkedin w3-hover-opacity"></i>
+	<div class="w3-container w3-padding-64 w3-right">
+		<button  class="btn btn-primary" onclick="scrollToTop(1000);"><i class="icon-arrow-up" style="font-size:30px; color:white;"></i></button>
+	</div>
  </div>
  <div>
  <p>Powered by <a class="copyright" href="https://www.hct.edu.om" target="_blank">Higher College of Technology</a></p>
@@ -221,20 +224,23 @@ include 'dbconnection.php';
  </div>
 </footer>
 
-<div class="gototop js-top">
-		<a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
-	</div>
-	<!-- jQuery -->
-	<script src="js/jquery.min.js"></script>
-	<!-- jQuery Easing -->
-	<script src="js/jquery.easing.1.3.js"></script>
-	
-	<!-- Waypoints -->
-	<script src="js/jquery.waypoints.min.js"></script>
-	<!-- Carousel -->
-	<script src="js/owl.carousel.min.js"></script>
-
-<script src="js/main.js"></script>
+<!--Function to scroll to top with animation-->
+	<script>
+function scrollToTop(scrollDuration) {
+    var cosParameter = window.scrollY / 2,
+        scrollCount = 0,
+        oldTimestamp = performance.now();
+    function step (newTimestamp) {
+        scrollCount += Math.PI / (scrollDuration / (newTimestamp - oldTimestamp));
+        if (scrollCount >= Math.PI) window.scrollTo(0, 0);
+        if (window.scrollY === 0) return;
+        window.scrollTo(0, Math.round(cosParameter + cosParameter * Math.cos(scrollCount)));
+        oldTimestamp = newTimestamp;
+        window.requestAnimationFrame(step);
+    }
+    window.requestAnimationFrame(step);
+}
+	</script>
 	
 </body>
 </html>
