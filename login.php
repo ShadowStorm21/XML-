@@ -74,20 +74,8 @@ $error =  $_SESSION['confirm'];
 		else
 			echo "0";
 	?>
-	<i class="material-icons" style="font-size:20px">shopping_cart</i>
-			
-	</a>
-	<!-- Cart -->
-	<a href="cart.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" id="_cart">
-	<?php 
-		if( isset($_SESSION['cart']) ) 
-			echo count($_SESSION['cart']);
-		else
-			echo "0";
-	?>
 	<i class="material-icons" style="font-size:30px">shopping_cart</i>
-			
-	</a>
+	
 	
   </div>
 
