@@ -33,7 +33,7 @@
 					
 		}
 			function update() {
-		var cart_icon = "<i class='material-icons' style='font-size:30px'>shopping_cart</i>";	
+		var cart_icon = "<i class='material-icons' style='font-size:20px'>shopping_cart</i>";	
 		$.ajax({
 				type:"GET",
 				url:"cart_info.php",
@@ -125,7 +125,7 @@ include 'dbconnection.php';
 
 	<!-- Cart ------------------------------------------------------------------------------------------------- -->
 		<a href="cart.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" id="_cart_number">0
-		<i class="material-icons" style="font-size:30px">shopping_cart</i>
+		<i class="material-icons" style="font-size:20px">shopping_cart</i>
 	</a>
 
 

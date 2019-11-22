@@ -70,7 +70,7 @@ $error = "All Fields required";}
 		else
 			echo "0";
 	?>
-	<i class="material-icons" style="font-size:30px">shopping_cart</i>
+	<i class="material-icons" style="font-size:20px">shopping_cart</i>
 			
 	</a>
 	

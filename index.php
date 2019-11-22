@@ -46,7 +46,7 @@ include 'dbconnection.php';
 		else
 			echo "0";
 	?>
-	<i class="material-icons" style="font-size:30px">shopping_cart</i>
+	<i class="material-icons" style="font-size:20px">shopping_cart</i>
 			
 	</a>
 	<?php if(isset($_SESSION['uname']) && isset($_SESSION['uid'])){echo "<div class='w3-dropdown-hover w3-right w3-bar-item w3-padding-large w3-hover-white'><i class='material-icons' style='font-size:30px'>person</i>
