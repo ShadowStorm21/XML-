@@ -46,7 +46,6 @@
 				});	
 	}
 	function remove(object) {
-		alert("called");
 		$.ajax({
 				type:"POST",
 				url:"cart_info.php",
