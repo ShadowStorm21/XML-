@@ -4,7 +4,6 @@
 			$_SESSION['cart'] = array_unique(array_merge($_SESSION['cart'],$_POST['CART_INFO']));
 		}
 		else
-
 			$_SESSION['cart'] = array_unique($_POST['CART_INFO']);
 
 	}
@@ -21,8 +20,9 @@
 		$_SESSION['total'] = $_POST['TOTAL'];
 		
 	if( isset($_POST['PRODUCT_CHECK']) )
-		if(isset($_SESSION['cart']) )
-			echo in_array($_POST['PRODUCT_CHECK'],$_SESSION['cart']);
+		if(isset($_SESSION['cart']) ){
+				print in_array($_POST['PRODUCT_CHECK'],$_SESSION['cart']);
+			}
 		else
 			echo 0;
 			
