@@ -49,7 +49,7 @@ $error =  $_SESSION['confirm'];
 	<link rel="stylesheet" href="css/bootstrap.css">
 
 	<!-- Theme style  -->
-	<link rel="stylesheet" href="css/mstyles.css">
+	<link rel="stylesheet" href="css/style.css">
 
 	
 
@@ -110,11 +110,6 @@ $error =  $_SESSION['confirm'];
  
 </header>
 
-
-	
-	
-
-	
 <div class="w3-row-padding w3-padding-32 w3-center">
   <div class="w3-content form-group" style="margin-right:200px">
     
@@ -144,8 +139,6 @@ $error =  $_SESSION['confirm'];
     </div>
 
 </div>
-
-
 
 
 <!-- Footer -->

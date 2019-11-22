@@ -13,7 +13,7 @@
 	<link rel="stylesheet" href="css/bootstrap.css">
 
 	<!-- Theme style  -->
-	<link rel="stylesheet" href="css/mstyles.css">
+	<link rel="stylesheet" href="css/style.css">
 
 	<!-- Icomoon Icon Fonts-->
 	<link rel="stylesheet" href="css/icomoon.css">
@@ -70,10 +70,7 @@
 
   <h1 class="w3-margin w3-jumbo">Get In Touch</h1>
   
- 
- 
 </header>
-
 
 	<div class="section border-bottom heading">
 		<div class="container">
@@ -122,13 +119,6 @@
 		</div>
 	</div>
 	
-
-	
-
-
-
-
-
 <!-- Footer -->
 <footer class="w3-container w3-padding-64 w3-center">  
   <div class="w3-xlarge w3-padding-32">
@@ -142,21 +132,6 @@
  <p>Powered by <a class="copyright" href="https://www.hct.edu.om" target="_blank">Higher College of Technology</a></p>
  <small class="block">&copy; 2019 Higher College of Technology. All Rights Reserved.</small> 
 </footer>
-<div class="gototop js-top">
-		<a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
-	</div>
-	<!-- jQuery -->
-	<script src="js/jquery.min.js"></script>
-	<!-- jQuery Easing -->
-	<script src="js/jquery.easing.1.3.js"></script>
-	
-	<!-- Waypoints -->
-	<script src="js/jquery.waypoints.min.js"></script>
-	<!-- Carousel -->
-	<script src="js/owl.carousel.min.js"></script>
 
-<script src="js/main.js"></script>
-
-	
 </body>
 </html>

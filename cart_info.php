@@ -4,6 +4,7 @@
 			$_SESSION['cart'] = array_unique(array_merge($_SESSION['cart'],$_POST['CART_INFO']));
 		}
 		else
+
 			$_SESSION['cart'] = array_unique($_POST['CART_INFO']);
 
 	}
@@ -38,5 +39,6 @@
 			echo count($_SESSION['cart']);
 		else 
 			echo 0;
+
 		
 ?>

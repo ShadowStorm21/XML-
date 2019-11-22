@@ -1,3 +1,4 @@
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"> </script>
 <script >
 
@@ -188,7 +189,7 @@ include 'dbconnection.php';
       <h3 class="w3-padding-32"><center>The future of building your PC starts here.</center></h3>
 
       <p class="w3-text-white"><center>Built by experts from the ground up to power everything you need. our site provides a custom, turn-key solution for hassle-free PC gaming and Creative computer and multipropse computer. 
-						Upgrade and tweak for max performance as much as you’d like: pay the same flat build fee.</center></p>
+						Upgrade and tweak for max performance as much as youï¿½d like: pay the same flat build fee.</center></p>
     </div>
 
    
@@ -215,21 +216,10 @@ include 'dbconnection.php';
  </div>
 </footer>
 
-<div class="gototop js-top">
-		<a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
-	</div>
-	<!-- jQuery -->
-	<script src="js/jquery.min.js"></script>
-	<!-- jQuery Easing -->
-	<script src="js/jquery.easing.1.3.js"></script>
-	
-	<!-- Waypoints -->
-	<script src="js/jquery.waypoints.min.js"></script>
-	<!-- Carousel -->
-	<script src="js/owl.carousel.min.js"></script>
 
-<script src="js/main.js"></script>
 	
 </body>
 </html>
+
+
 
