@@ -27,24 +27,169 @@ Up to 5.0 GHz All Core Turbo Unlocked
 Scalability: 1S Only");
 
 INSERT INTO product 
+(pname,price,tag,description) VALUES ("Intel Pentium Gold G5400",60,"CPU"," 2 Cores / 4 Threads
+Up to 3.7GHz Core Turbo");
+
+INSERT INTO product 
+(pname,price,tag,description) VALUES ("AMD Ryzen 3 3200G",87,"CPU"," 4 Cores / 4 Threads
+Up to 4.0 GHz Core Turbo Unlocked");
+
+INSERT INTO product 
+(pname,price,tag,description) VALUES ("AMD Athlon 220GE",61,"CPU"," 2 Cores / 4 Threads
+Up to 3.5 GHz Core Turbo Unlocked");
+
+INSERT INTO product 
+(pname,price,tag,description) VALUES ("Intel i3-9100F",87,"CPU"," 4 Cores / 4 Threads
+Up to 4.2 GHz Core Turbo");
+
+INSERT INTO product 
+(pname,price,tag,description) VALUES ("Intel i5-9400",189,"CPU"," 6 Cores / 6 Threads
+Up to 4.1 GHz Core Turbo");
+
+INSERT INTO product 
+(pname,price,tag,description) VALUES ("Intel i3-9600K",240,"CPU"," 6 Cores / 6 Threads
+Up to 4.6 GHz Core Turbo Unlocked");
+
+INSERT INTO product 
+(pname,price,tag,description) VALUES ("Intel i7-9700K",339,"CPU"," 8 Cores / 8 Threads
+Up to 4.9 GHz Core Turbo");
+
+INSERT INTO product 
+(pname,price,tag,description) VALUES ("AMD Ryzen 9 3900X",480,"CPU","
+12 Cores and 24 processing threads,4.6 GHz Max Boost, unlocked for overclocking, 70 MB of game Cache, ddr 3200 support");
+
+INSERT INTO product 
+(pname,price,tag,description) VALUES ("AMD Ryzen 9 3800X",375,"CPU","
+8 Cores and 16 processing threads,4.5 GHz Max Boost, unlocked for overclocking, 36 MB of game Cache, ddr 3200 support");
+
+INSERT INTO product 
+(pname,price,tag,description) VALUES ("AMD Ryzen 9 3700X",325,"CPU","
+8 Cores and 16 processing threads,4.4 GHz Max Boost, unlocked for overclocking, 36 MB of game Cache, ddr 3200 support");
+
+INSERT INTO product 
+(pname,price,tag,description) VALUES ("AMD Ryzen 9 3600X",240,"CPU","
+6 Cores and 12 processing threads,4.4 GHz Max Boost, unlocked for overclocking, 35 MB of game Cache, ddr 3200 support");
+
+INSERT INTO product 
+(pname,price,tag,description) VALUES ("AMD Ryzen 5 3600",199,"CPU","
+6 Cores and 12 processing threads,Stealth cooler4.2 GHz Max Boost, unlocked for overclocking, 35 MB of game Cache, ddr4 3200 support");
+
+
+INSERT INTO product 
+(pname,price,tag,description) VALUES ("G.Skill Trident 4GB",22,"RAM"," 4GB DDR4 2666MHz memory speed");
+
+INSERT INTO product 
+(pname,price,tag,description) VALUES ("G.Skill Trident 8GB",40,"RAM"," 8GB DDR4 2666MHz memory speed");
+
+INSERT INTO product 
+(pname,price,tag,description) VALUES ("G.Skill Trident 16GB",70,"RAM"," 16GB DDR4 3400MHz memory speed");
+
+INSERT INTO product 
+(pname,price,tag,description) VALUES ("G.Skill Trident 32GB",130,"RAM"," 32GB DDR4 3400MHz memory speed");
+
+INSERT INTO product 
+(pname,price,tag,description) VALUES ("G.Skill Trident 64GB",300,"RAM"," 64GB DDR4 3600MHz memory speed");
+
+
+INSERT INTO product 
+(pname,price,tag,description) VALUES ("NO GPU",0,"GPU","No GPU");
+
+INSERT INTO product 
+(pname,price,tag,description) VALUES ("Radeon RX 550",99,"GPU","Stream Processors : 640 4GB GDDR5 Display Connectors: DisplayPort, HDMI, USB Type-C
+Maximum Digital Resolution: 7680x4320");
+
+INSERT INTO product 
+(pname,price,tag,description) VALUES ("Radeon RX 560",110,"GPU","Stream Processors : 896 4GB GDDR5 Display Connectors: DisplayPort, HDMI, USB Type-C
+Maximum Digital Resolution: 7680x4320");
+
+INSERT INTO product 
+(pname,price,tag,description) VALUES ("Radeon RX 570",140,"GPU","Stream Processors : 2048 8GB GDDR5 Display Connectors: DisplayPort, HDMI, USB Type-C
+Maximum Digital Resolution: 7680x4320");
+
+INSERT INTO product 
+(pname,price,tag,description) VALUES ("NVIDIA GeForce GTX 1650",150,"GPU"," 4GB GDDR5
+CUDA Cores: 896
+Display Connectors: DisplayPort, HDMI, USB Type-C
+Maximum Digital Resolution: 7680x4320 ");
+
+INSERT INTO product 
+(pname,price,tag,description) VALUES ("Radeon RX 590",189,"GPU","Stream Processors : 2304 8GB GDDR5 Display Connectors: DisplayPort, HDMI, USB Type-C
+Maximum Digital Resolution: 7680x4320");
+
+INSERT INTO product 
+(pname,price,tag,description) VALUES ("NVIDIA GeForce GTX 1660ti",260,"GPU"," 6GB GDDR6
+CUDA Cores: 1536
+Display Connectors: DisplayPort, HDMI, USB Type-C
+Maximum Digital Resolution: 7680x4320 ");
+
+INSERT INTO product 
+(pname,price,tag,description) VALUES ("Radeon RX 5700",329,"GPU","Stream Processors : 2560 8GB GDDR6 Display Connectors: DisplayPort, HDMI, USB Type-C
+Maximum Digital Resolution: 7680x4320");
+
+INSERT INTO product 
+(pname,price,tag,description) VALUES ("NVIDIA GeForce RTX 2060 SUPER",410,"GPU"," 8GB GDDR6
+CUDA Cores: 2176
+Display Connectors: DisplayPort, HDMI, USB Type-C
+Maximum Digital Resolution: 7680x4320 ");
+
+INSERT INTO product 
 (pname,price,tag,description) VALUES ("NVIDIA GeForce RTX 2080TI",1100,"GPU"," 11GB GDDR6
 CUDA Cores: 4352
 Display Connectors: DisplayPort, HDMI, USB Type-C
 Maximum Digital Resolution: 7680x4320 ");
 
+INSERT INTO product 
+(pname,price,tag,description) VALUES ("NVIDIA GeForce RTX 2080 SUPER",740,"GPU"," 8GB GDDR6
+CUDA Cores: 3072
+Display Connectors: DisplayPort, HDMI, USB Type-C
+Maximum Digital Resolution: 7680x4320 ");
 
 INSERT INTO product 
-(pname,price,tag,description) VALUES ("AMD Ryzen 9 3900X",499,"CPU","
-12 Cores and 24 processing threads,4.6 GHz Max Boost, unlocked for overclocking, 70 MB of game Cache, ddr 3200 support");
+(pname,price,tag,description) VALUES ("NVIDIA Quadro RTX 6000",3500,"GPU"," 24GB GDDR6
+CUDA Cores: 4,608
+Display Connectors: DisplayPort, HDMI, USB Type-C
+the power of hardware-accelerated ray tracing, deep learning, and advanced shading to dramatically boost productivity");
+
+INSERT INTO product 
+(pname,price,tag,description) VALUES ("NVIDIA Titan RTX",2499,"GPU"," 24GB GDDR6
+CUDA Cores: 4608
+Display Connectors: DisplayPort, HDMI, USB Type-C
+Maximum Digital Resolution: 7680x4320 
+NVIDIA TITAN RTX is the fastest PC graphics card ever built");
+
+
 
 
 INSERT INTO product 
 (pname,price,tag,description) VALUES ("Samsung SSD 970 PRO 512GB - NVMe",150,"Storage","
 Sequential read and write performance levels of up to 3,500MB/s and 2,700MB/s, respectively");
+INSERT INTO product 
+(pname,price,tag,description) VALUES ("Samsung SSD 970 EVO 500GB - NVMe",90,"Storage","
+Sequential read and write performance levels of up to 3,500MB/s and 2,500MB/s, respectively");
+INSERT INTO product 
+(pname,price,tag,description) VALUES ("Samsung SSD 970 EVO 1TB - NVMe",150,"Storage","
+Sequential read and write performance levels of up to 3,500MB/s and 2,500MB/s, respectively");
+INSERT INTO product 
+(pname,price,tag,description) VALUES ("Samsung SSD 970 EVO plus 2TB - NVMe",399,"Storage","
+Sequential read and write performance levels of up to 3,500MB/s and 3,300MB/s, respectively");
+INSERT INTO product 
+(pname,price,tag,description) VALUES ("Samsung SSD 970 EVO plus 1TB - NVMe",199,"Storage","
+Sequential read and write performance levels of up to 3,500MB/s and 3,300MB/s, respectively");
 
 INSERT INTO product 
-(pname,price,tag,description) VALUES ("AMD Ryzen 5 3600",199,"CPU","
-6 Cores and 12 processing threads,Stealth cooler4.2 GHz Max Boost, unlocked for overclocking, ddr4 3200 support");
+(pname,price,tag,description) VALUES ("WD 1TB Hard Drive",45,"Storage","
+WD Blue 1TB PC Hard Drive - 7200 RPM Class, SATA 6 Gb/s, 64 MB Cache, 3.5");
+
+INSERT INTO product 
+(pname,price,tag,description) VALUES ("WD 2TB Hard Drive",49.99,"Storage","WD Blue 2TB PC Hard Drive - 5400 RPM Class, SATA 6 Gb/s, 256 MB Cache, 3.5");
+
+INSERT INTO product 
+(pname,price,tag,description) VALUES ("Samsung SSD 860 EVO 250GB",50,"Storage","
+Sequential Read/Write speeds up to 550MB/s and 520MB/s respectively");
+
+INSERT INTO product 
+(pname,price,tag,description) VALUES ("HDD SSD",94,"Storage","
+A combination of Western Digital 1TB Internal Hard Drive HDD and Samsung SSD 860 EVO 250GB SATA III Internal SSD");
 
 
 INSERT INTO product 
@@ -60,5 +205,9 @@ INSERT INTO product
 Compatibility of the EVGA 500 W1, 80+ WHITE 500W,Power Supply 100 W1 0500 KR (100 W1 0500 KR) ");
 
 
-INSERT INTO product 
-(pname,price,tag,description) VALUES ("WD Blue 2TB PC Hard Drive",49.99,"Storage","WD Blue 2TB PC Hard Drive - 5400 RPM Class, SATA 6 Gb/s, 256 MB Cache, 3.5");
+
+
+
+
+
+
