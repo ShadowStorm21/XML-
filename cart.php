@@ -1,9 +1,6 @@
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"> </script>
 <script >
-
 	function display_product() {
-
 			var total = 0;
 				$.ajax({
 				type:"GET",
@@ -11,67 +8,55 @@
 				data: "GET_DATA",
 				dataType: "json",
 				success : function( products ) {
-
+					var cart_icon = "<i class='material-icons' style='font-size:30px'>shopping_cart</i>";
+					$("#_cart_number").html( (products.length == 0 || products == 0) ? 0 + cart_icon:products.length  + cart_icon);
 					table = "<center><table>";
 					table +="<tr > <th> N </th> <th>Image </th><th>Product Name</th> <th>Price</th> <th> Part Category </th> <th>  </th></tr> ";
-					var cart_icon = "<i class='material-icons' style='font-size:20px'>shopping_cart</i>";
-
-					$("#_cart_number").html( (products.length == 0 || products == 0) ? 0 + cart_icon:products.length  + cart_icon);
 					$(products).each(function(index,item){
-						table += "<tr> <td> " + (index + 1)+" </td>  <td> <img src='images/" + item.pid + " ' height='64' width='64'/> </td> </td><td>" + item.pname + "</td> <td>$"+item.price + "</td> <td>"+ item.tag + "</td>";
-						table += "<td><button id='" + item.pid +"'> Remove </button></td>";
+						table += "<tr> <td> " + (index + 1)+" </td>  <td> <img src='images/" + item.pid + " ' height='64' width='64'/> </td> <td>" + item.pname + "</td> <td>$"+item.price + "</td> <td>"+ item.tag + "</td>";
+						table += "<td><button id="+item.pid+"> Remove </button></td></tr>";
 						total += Number(item.price);
 					});
-
 					if(total != 0.0){
-					table += "<tr><td/><td/><td/>";
-					table += "<td>Total: </td><td>$"+ total + "</td>";	
-					table += "<td> <input type='button' id='_buy' value='BUY'/></td></tr>";
-					table += "</center></table>";
+						table += "<tr><td/><td/><td/>";
+						table += "<td>Total: </td><td>$"+ total + "</td>";	
+						table += "<td> <input type='button' id='_buy' value='BUY'/></td></tr>";
+						table += "</center></table>";
 					}
 					else {
-					table += "<tr><td  colspan='6'>-----------------------------------------------------------------------------------------------------------------------</td>";
-					table += "</center></table>";
-					
+						table += "<tr><td  colspan='6'>-----------------------------------------------------------------------------------------------------------------------</td>";
+						table += "</tr></center></table>";
 					}
-
 					$("#result").html(table);
-					$("#_buy").click(function(){ $(location).attr('href', 'payment.php'); });
-					store_total(total);
-					$("button").click(function(){
-						remove($(this));
-						display_product();
-					});
 
-				},
+					},
 				error : function() {alert("error");}
 				});
-
+					store_total(total);
+					$("#_buy").click(function(){ $(location).attr('href', 'payment.php'); });
+					$("button").click(function(){ remove($(this)); });
 		}
 	function store_total(money) {
 		$.ajax({
 				type:"POST",
 				url:"cart_info.php",
 				data: { 'TOTAL' :money},
-				success : function( msg ) {
-				},
+				success : function( msg ) { },
 				error : function() {alert("error");}
 				});	
 	}
 	function remove(object) {
-
 		$.ajax({
 				type:"POST",
 				url:"cart_info.php",
 				data: { 'DEL_PROD' : $(object).attr("id")},
-				success : function( msg ) {
-				},
+				success : function( msg ) { display_product(); },
 				error : function() {alert("error");}
 				});	
 	}
 
 
-	$(document).ready(display_product());
+	$(document).ready(display_product);
 
 </script>
 
@@ -106,7 +91,7 @@ include 'dbconnection.php';
 	<link rel="stylesheet" href="css/bootstrap.css">
 	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
 	<!-- Theme style  -->
-	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/mstyles.css">
 
 
 
@@ -128,7 +113,7 @@ include 'dbconnection.php';
 	<!-- Cart----------------------------------------------------------- -->
 
 	<a href="cart.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" id="_cart_number">0
-		<i class="material-icons" style="font-size:20px">shopping_cart</i>
+		<i class="material-icons" style="font-size:30px">shopping_cart</i>
 	</a>
 
 	<?php if(isset($_SESSION['uname']) && isset($_SESSION['uid'])){echo "<div class='w3-dropdown-hover w3-right w3-bar-item w3-padding-large w3-hover-white'><i class='material-icons' style='font-size:30px'>person</i>
