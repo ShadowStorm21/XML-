@@ -28,14 +28,14 @@
 						table += "</tr></center></table>";
 					}
 					$("#result").html(table);
+	store_total(total);
+					$("#_buy").click(function(){ $(location).attr('href', 'payment.php'); });
+					$("button").click(function(){ remove($(this)); });
 
 					},
 				error : function() {alert("error");}
 				});
-					store_total(total);
-					$("#_buy").click(function(){ $(location).attr('href', 'payment.php'); });
-					$("button").click(function(){ remove($(this)); });
-		}
+						}
 	function store_total(money) {
 		$.ajax({
 				type:"POST",
@@ -46,6 +46,7 @@
 				});	
 	}
 	function remove(object) {
+		alert("called");
 		$.ajax({
 				type:"POST",
 				url:"cart_info.php",
