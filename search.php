@@ -7,33 +7,31 @@
 			type:"POST",
 			url:"cart_info.php",
 			data: { 'PRODUCT_CHECK' : product_id },
-			success : function( n ) { 
-				if( n != false){
-					alert("You've Already Chosen this item!");
-					return;
-					}
+			success : function( product_exists  ) { 
+				if(product_exists == true ) {
+					alert("You've already chosen this product!");
+				}
+				else {
+					cart.push(product_id);
+					$.ajax({
+						type:"POST",
+						url:"cart_info.php",
+						data: { 'CART_INFO' : cart },
+						success : function( msg ) { 
+								update(); 
+						},
+						error : function() {}
+						});
+				}
 			},
-			error : function() {}
+			error : function() { alert("Error in checking product availiability!"); }
 			});
-
-		cart.push(product_id);
-			
-		// push the new list to the session
-		$.ajax({
-			type:"POST",
-			url:"cart_info.php",
-			data: { 'CART_INFO' : cart },
-			success : function( msg ) { 
-					update(); 
-			},
-			error : function() {}
-			});
-			}
+	}
 	function purchase() {
 					
 		}
 			function update() {
-		var cart_icon = "<i class='material-icons' style='font-size:20px'>shopping_cart</i>";	
+		var cart_icon = "<i class='material-icons' style='font-size:30px'>shopping_cart</i>";	
 		$.ajax({
 				type:"GET",
 				url:"cart_info.php",
@@ -125,7 +123,7 @@ include 'dbconnection.php';
 
 	<!-- Cart ------------------------------------------------------------------------------------------------- -->
 		<a href="cart.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" id="_cart_number">0
-		<i class="material-icons" style="font-size:20px">shopping_cart</i>
+		<i class="material-icons" style="font-size:30px">shopping_cart</i>
 	</a>
 
 
