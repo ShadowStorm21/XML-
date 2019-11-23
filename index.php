@@ -29,7 +29,7 @@ include 'dbconnection.php';
 <!-- Navbar -->
 
 <div class="w3-top">
-  <div class="w3-bar w3-red w3-card w3-left-align w3-large ">
+  <div class="w3-bar w3-red w3-card w3-left-align w3-large w3-animate-zoom">
     <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-red"><i class="fa fa-bars"></i></a>
     <a href="index.php" class="w3-bar-item w3-button w3-padding-large w3-white">Home</a>
     <a href="pricing.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Pricing</a>
@@ -63,7 +63,7 @@ include 'dbconnection.php';
   </div>
 
   <!-- Navbar on small screens -->
- <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large">
+ <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large w3-animate-zoom">
     <a href="pricing.php" class="w3-bar-item w3-button w3-padding-large">Pricing</a>
     <a href="components.php" class="w3-bar-item w3-button w3-padding-large">Components</a>
   	<?php  if(!isset($_SESSION['uid'])) {echo "<a href='signup.php' class='w3-bar-item w3-button w3-padding-large w3-hover-white'>Sign up</a>
@@ -82,15 +82,15 @@ include 'dbconnection.php';
 </div>
 
 <!-- Header -->
-
+<div >
 <header class="w3-container w3-red w3-center" style="padding:128px 16px">
-<div class="overlay"></div>
-  <h1 class="w3-margin w3-jumbo">PC Builder</h1>
+
+  <h1 class="w3-margin w3-jumbo" >PC Builder</h1>
   
   <button class="w3-black w3-padding-large w3-large w3-margin-top btn btn-primary">Get Started</button>
  
 </header>
-
+</div>
 	<div class="section">
 		<div class="container">
 			<div class="w3-margin-top">
@@ -101,11 +101,11 @@ include 'dbconnection.php';
 			</div>
 			<div >
 
-				<div class="col-lg-4">
+				<div class="col-lg-4" >
 					<div class="card-item">
 						<figure>
 							<div class="overlay"><i class="ti-plus"></i></div>
-							<img src="images/img_1.jpg" alt="Image" class="img-responsive">
+							<img src="images/1.jpg" alt="Image" class="img-responsive">
 						</figure>
 						<div class="text">
 							<h2>Intel i9 9900k</h2>
@@ -124,7 +124,7 @@ include 'dbconnection.php';
 					<div class="card-item">
 						<figure>
 							<div class="overlay"><i class="ti-plus"></i></div>
-							<img src="images/img_2.jpg" alt="Image" class="img-responsive">
+							<img src="images/2.jpg" alt="Image" class="img-responsive">
 						</figure>
 						<div class="text">
 							<h2>NVIDIA® GeForce® RTX 2080TI</h2>
@@ -139,7 +139,7 @@ include 'dbconnection.php';
 					<div class="card-item">
 						<figure>
 							<div class="overlay"><i class="ti-plus"></i></div>
-							<img src="images/img_3.jpg" alt="Image" class="img-responsive">
+							<img src="images/3.jpg" alt="Image" class="img-responsive">
 						</figure>
 						<div class="text">
 							<h2>AMD Ryzen™ 9 3900X</h2>
@@ -156,7 +156,7 @@ include 'dbconnection.php';
 					<div class="card-item">
 						<figure>
 							<div class="overlay"><i class="ti-plus"></i></div>
-							<img src="images/img_4.jpg" alt="Image" class="img-responsive">
+							<img src="images/4.jpg" alt="Image" class="img-responsive">
 						</figure>
 						<div class="text">
 							<h2>Samsung SSD 970 PRO 512GB - NVMe</h2>
@@ -173,7 +173,7 @@ include 'dbconnection.php';
 					<div class="card-item">
 						<figure>
 							<div class="overlay"><i class="ti-plus"></i></div>
-							<img src="images/img_5.jpg" alt="Image" class="img-responsive">
+							<img src="images/5.jpg" alt="Image" class="img-responsive">
 						</figure>
 						<div class="text">
 							<h2>AMD Ryzen™ 5 3600</h2>

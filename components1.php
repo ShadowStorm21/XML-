@@ -22,8 +22,8 @@
 <body>
 
 <!-- Navbar -->
-<div class="w3-top ">
-  <div class="w3-bar w3-red w3-card w3-left-align w3-large">
+<div class="w3-top">
+  <div class="w3-bar w3-red w3-card w3-left-align w3-large ">
     <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-red"><i class="fa fa-bars"></i></a>
     <a href="index.php" class="w3-bar-item w3-button w3-padding-large w3-hover-white">Home</a>
     <a href="pricing.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Pricing</a>
@@ -55,7 +55,7 @@
   </div>
 
   <!-- Navbar on small screens -->
- <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large w3-animate-zoom">
+ <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large">
     <a href="pricing.php" class="w3-bar-item w3-button w3-padding-large">Pricing</a>
     <a href="components.php" class="w3-bar-item w3-button w3-padding-large">Components</a>
     <a href="signup.php" class="w3-bar-item w3-button w3-padding-large">Sign up</a>
@@ -66,7 +66,7 @@
 
 <!-- Header -->
 
-<header class="w3-container w3-red w3-center " style="padding:128px 16px ">
+<header class="w3-container w3-red w3-center" style="padding:128px 16px ">
 
   <h1 class="w3-margin w3-jumbo">All Components</h1>
 
@@ -92,8 +92,8 @@
 							<h2>Intel i9 9900k</h2>
 							<strong style="font-size:18px">$150</strong>
 							<p>high-end CPU with 8 cores for elite gamers</p>
-						<a href="payment.php"><button class="btn btn-primary w3-animate-zoom">Purchase</button></a>
-							<a href="cart.php"><button class="btn btn-primary w3-animate-zoom">Add to cart</button></a>
+						<a href="payment.php"><button class="btn btn-primary">Purchase</button></a>
+							<a href="cart.php"><button class="btn btn-primary">Add to cart</button></a>
 						</div>
 					</div>
 				</div>
@@ -107,8 +107,8 @@
 							<h2>NVIDIA® GeForce® RTX 2080TI</h2>
 							<strong style="font-size:18px">$1100</strong>
 							<p>The world’s most advanced GPU architecture for gamers and creators.</p>
-						<a href="payment.php"><button class="btn btn-primary w3-animate-zoom">Purchase</button></a>
-							<a href="cart.php"><button class="btn btn-primary w3-animate-zoom">Add to cart</button></a>
+						<a href="payment.php"><button class="btn btn-primary">Purchase</button></a>
+							<a href="cart.php"><button class="btn btn-primary">Add to cart</button></a>
 						</div>
 					</div>
 				</div>
@@ -122,8 +122,8 @@
 							<h2>AMD Ryzen™ 9 3900X</h2>
 							<strong style="font-size:18px">$499</strong>
 							<p>The world's most advanced processor with 12 cores for the world's elite gamers.</p>
-								 <a href="payment.php"><button class="btn btn-primary w3-animate-zoom">Purchase</button></a>
-							<a href="cart.php"><button class="btn btn-primary w3-animate-zoom">Add to cart</button></a>
+								 <a href="payment.php"><button class="btn btn-primary">Purchase</button></a>
+							<a href="cart.php"><button class="btn btn-primary">Add to cart</button></a>
 						</div>
 					</div>
 				</div>
@@ -139,8 +139,8 @@
 							<h2>Samsung SSD 970 PRO 512GB-NVMe</h2>
 							<strong style="font-size:18px">$150</strong>
 							<p>Ideal for tech enthusiasts,high-end gamers,and 4K & 3D content designers</p>
-							 <a href="payment.php"><button class="btn btn-primary w3-animate-zoom">Purchase</button></a>
-							<a href="cart.php"><button class="btn btn-primary w3-animate-zoom">Add to cart</button></a>
+							 <a href="payment.php"><button class="btn btn-primary">Purchase</button></a>
+							<a href="cart.php"><button class="btn btn-primary">Add to cart</button></a>
 						</div>
 					</div>
 				</div>
@@ -155,8 +155,8 @@
 							<h2>AMD Ryzen™ 5 3600</h2>
 							<strong style="font-size:18px">$199</strong>
 							<p>The world's most advanced processor with 6 Cores for everyday tasks</p>
-							<a href="payment.php"><button class="btn btn-primary w3-animate-zoom">Purchase</button></a>
-							<a href="cart.php"><button class="btn btn-primary w3-animate-zoom">Add to cart</button></a>
+							<a href="payment.php"><button class="btn btn-primary">Purchase</button></a>
+							<a href="cart.php"><button class="btn btn-primary">Add to cart</button></a>
 						</div>
 					</div>
 				</div>
@@ -171,8 +171,8 @@
 							<h2>The NVIDIA® GeForce® RTX 2060 SUPER</h2>
 							<strong style="font-size:18px">$399</strong>
 							<p>Mid tier GPU architecture for gamers for a decent price.</p>
-							<a href="payment.php"><button class="btn btn-primary w3-animate-zoom">Purchase</button></a>
-							<a href="cart.php"><button class="btn btn-primary w3-animate-zoom">Add to cart</button></a>
+							<a href="payment.php"><button class="btn btn-primary">Purchase</button></a>
+							<a href="cart.php"><button class="btn btn-primary">Add to cart</button></a>
 						</div>
 					</div>
 				</div>
@@ -188,8 +188,8 @@
 							<h2>AMD Redaon 5700XT</h2>
 							<strong style="font-size:18px">$429</strong>
 							<p>mmmm</p>
-							<a href="payment.php"><button class="btn btn-primary w3-animate-zoom">Purchase</button></a>
-							<a href="cart.php"><button class="btn btn-primary w3-animate-zoom">Add to cart</button></a>
+							<a href="payment.php"><button class="btn btn-primary">Purchase</button></a>
+							<a href="cart.php"><button class="btn btn-primary">Add to cart</button></a>
 						</div>
 					</div>
 				</div>
@@ -203,8 +203,8 @@
 							<h2>Core i7 9700k</h2>
 							<strong style="font-size:18px">$370</strong>
 							<p>mmmmm</p>
-						 <a href="payment.php"><button class="btn btn-primary w3-animate-zoom">Purchase</button></a>
-							<a href="cart.php"><button class="btn btn-primary w3-animate-zoom">Add to cart</button></a>
+						 <a href="payment.php"><button class="btn btn-primary">Purchase</button></a>
+							<a href="cart.php"><button class="btn btn-primary">Add to cart</button></a>
 						</div>
 					</div>
 				</div>
@@ -218,8 +218,8 @@
 							<h2>G.SKILL 32GB RAM</h2>
 							<strong style="font-size:18px">$300</strong>
 							<p>mmmm</p>
-						<a href="payment.php"><button class="btn btn-primary w3-animate-zoom">Purchase</button></a>
-							<a href="cart.php"><button class="btn btn-primary w3-animate-zoom">Add to cart</button></a>
+						<a href="payment.php"><button class="btn btn-primary">Purchase</button></a>
+							<a href="cart.php"><button class="btn btn-primary">Add to cart</button></a>
 						</div>
 					</div>
 				</div>
@@ -235,8 +235,8 @@
 							<h2>Corsair Mechanical Keyboard</h2>
 							<strong style="font-size:18px">$129</strong>
 							<p>MMMMM</p>
-							 <a href="payment.php"><button class="btn btn-primary w3-animate-zoom">Purchase</button></a>
-							<a href="cart.php"><button class="btn btn-primary w3-animate-zoom">Add to cart</button></a>
+							 <a href="payment.php"><button class="btn btn-primary">Purchase</button></a>
+							<a href="cart.php"><button class="btn btn-primary">Add to cart</button></a>
 						</div>
 					</div>
 				</div>
@@ -251,8 +251,8 @@
 							<h2>Corsair Gaming Mouse</h2>
 							<strong style="font-size:18px">$77.85</strong>
 							<p>MMMM</p>
-						 <a href="payment.php"><button class="btn btn-primary w3-animate-zoom">Purchase</button></a>
-							<a href="cart.php"><button class="btn btn-primary w3-animate-zoom">Add to cart</button></a>
+						 <a href="payment.php"><button class="btn btn-primary">Purchase</button></a>
+							<a href="cart.php"><button class="btn btn-primary">Add to cart</button></a>
 						</div>
 					</div>
 				</div>
@@ -267,8 +267,8 @@
 							<h2>Corsair Gaming Headset</h2>
 							<strong style="font-size:18px">$90</strong>
 							<p>mmmmmm</p>
-						<a href="payment.php"><button class="btn btn-primary w3-animate-zoom">Purchase</button></a>
-							<a href="cart.php"><button class="btn btn-primary w3-animate-zoom">Add to cart</button></a>
+						<a href="payment.php"><button class="btn btn-primary">Purchase</button></a>
+							<a href="cart.php"><button class="btn btn-primary">Add to cart</button></a>
 						</div>
 					</div>
 				</div>
@@ -283,8 +283,8 @@
 							<h2>AeroCool Cylon RGB Mid Tower Black case</h2>
 							<strong style="font-size:18px">$129</strong>
 							<p>MMMMM</p>
-							 <a href="payment.php"><button class="btn btn-primary w3-animate-zoom">Purchase</button></a>
-							<a href="cart.php"><button class="btn btn-primary w3-animate-zoom">Add to cart</button></a>
+							 <a href="payment.php"><button class="btn btn-primary">Purchase</button></a>
+							<a href="cart.php"><button class="btn btn-primary">Add to cart</button></a>
 						</div>
 					</div>
 				</div>
@@ -299,8 +299,8 @@
 							<h2>EVGA 750 GQ 80+ GOLD 750W</h2>
 							<strong style="font-size:18px">$77.85</strong>
 							<p>MMMM</p>
-						 <a href="payment.php"><button class="btn btn-primary w3-animate-zoom">Purchase</button></a>
-							<a href="cart.php"><button class="btn btn-primary w3-animate-zoom">Add to cart</button></a>
+						 <a href="payment.php"><button class="btn btn-primary">Purchase</button></a>
+							<a href="cart.php"><button class="btn btn-primary">Add to cart</button></a>
 						</div>
 					</div>
 				</div>
@@ -315,8 +315,8 @@
 							<h2>Samsung SSD 970 EVO plus 2TB</h2>
 							<strong style="font-size:18px">$399</strong>
 							<p>mmmmmm</p>
-						<a href="payment.php"><button class="btn btn-primary w3-animate-zoom">Purchase</button></a>
-							<a href="cart.php"><button class="btn btn-primary w3-animate-zoom">Add to cart</button></a>
+						<a href="payment.php"><button class="btn btn-primary">Purchase</button></a>
+							<a href="cart.php"><button class="btn btn-primary">Add to cart</button></a>
 						</div>
 					</div>
 				</div>
@@ -326,7 +326,7 @@
 	</div>
 	
 	<div class="container w3-center w3-padding-64">
-	<a href="components1.php"><button class="btn btn-primary w3-animate-zoom w3-xlarge">Next</button></a>
+	<a href="components.php"><button class="btn btn-primary w3-animate-zoom w3-xlarge">Previous</button></a>
 	</div>
 	
 
