@@ -8,9 +8,9 @@
 				data: "GET_DATA",
 				dataType: "json",
 				success : function( products ) {
-					var cart_icon = "<i class='material-icons' style='font-size:30px'>shopping_cart</i>";
+					var cart_icon = "<i class='material-icons' style='font-size:20px'>shopping_cart</i>";
 					$("#_cart_number").html( (products.length == 0 || products == 0) ? 0 + cart_icon:products.length  + cart_icon);
-					table = "<center><table>";
+					table = "<center><table >";
 					table +="<tr > <th> N </th> <th>Image </th><th>Product Name</th> <th>Price</th> <th> Part Category </th> <th>  </th></tr> ";
 					$(products).each(function(index,item){
 						table += "<tr> <td> " + (index + 1)+" </td>  <td> <img src='images/" + item.pid + " ' height='64' width='64'/> </td> <td>" + item.pname + "</td> <td>$"+item.price + "</td> <td>"+ item.tag + "</td>";
@@ -76,11 +76,12 @@ include 'dbconnection.php';
 ?>
 
 <html lang="en">
-<title>Search a product </title>
+<title>Cart</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" type="text/css" href="css/table.css">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -91,7 +92,7 @@ include 'dbconnection.php';
 	<link rel="stylesheet" href="css/bootstrap.css">
 	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
 	<!-- Theme style  -->
-	<link rel="stylesheet" href="css/mstyles.css">
+	<link rel="stylesheet" href="css/style.css">
 
 
 
@@ -112,9 +113,7 @@ include 'dbconnection.php';
 
 	<!-- Cart----------------------------------------------------------- -->
 
-	<a href="cart.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" id="_cart_number">0
-		<i class="material-icons" style="font-size:30px">shopping_cart</i>
-	</a>
+	<a href="cart.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" id="_cart_number">0 </a>
 
 	<?php if(isset($_SESSION['uname']) && isset($_SESSION['uid'])){echo "<div class='w3-dropdown-hover w3-right w3-bar-item w3-padding-large w3-hover-white'><i class='material-icons' style='font-size:30px'>person</i>
   <div class='w3-dropdown-content w3-animate-zoom w3-border' style='right:0'>
