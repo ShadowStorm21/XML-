@@ -1,8 +1,136 @@
-<?php
+<?php 
 
+session_start();
 include 'dbconnection.php';
-?>
 
+?>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"> </script>
+<script>
+
+function getTotal()
+{
+n1 = $("#p1").text();
+n2 = $("#p2").text();
+n3 = $("#p3").text();
+n4 = $("#p4").text();
+
+
+$("#p5").text(Number(n1)+Number(n2)+Number(n3)+Number(n4));	
+ 
+}
+	
+$(document).ready(function(){
+	
+	
+	$("select").mouseenter(getTotal);
+	
+	
+});
+	
+
+
+function showPrice(str) {
+  
+        if (window.XMLHttpRequest) {
+            // code for IE7+, Firefox, Chrome, Opera, Safari
+            xmlhttp = new XMLHttpRequest();
+        } else {
+            // code for IE6, IE5
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("p1").innerHTML = this.responseText;
+
+            }
+        };
+		
+        xmlhttp.open("GET","test.php?q="+str,false);
+		
+        xmlhttp.send();
+		
+		
+    
+}
+
+function showPrice1(str) {
+  
+     if (window.XMLHttpRequest) {
+            // code for IE7+, Firefox, Chrome, Opera, Safari
+            xmlhttp = new XMLHttpRequest();
+        } else {
+            // code for IE6, IE5
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("p2").innerHTML = this.responseText;
+
+            }
+        };
+		
+        xmlhttp.open("GET","test.php?q="+str,false);
+		
+        xmlhttp.send();
+		
+		
+    
+}
+function showPrice2(str) {
+  
+        if (window.XMLHttpRequest) {
+            // code for IE7+, Firefox, Chrome, Opera, Safari
+            xmlhttp = new XMLHttpRequest();
+        } else {
+            // code for IE6, IE5
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("p3").innerHTML = this.responseText;
+				
+
+				
+
+            }
+        };
+		
+        xmlhttp.open("GET","test.php?q="+str,false);
+		
+        xmlhttp.send();
+		
+		
+    
+}
+function showPrice3(str) {
+  
+        if (window.XMLHttpRequest) {
+            // code for IE7+, Firefox, Chrome, Opera, Safari
+            xmlhttp = new XMLHttpRequest();
+        } else {
+            // code for IE6, IE5
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("p4").innerHTML = this.responseText;
+				
+
+				
+
+            }
+        };
+		
+        xmlhttp.open("GET","test.php?q="+str,false);
+		
+        xmlhttp.send();
+		
+		
+    
+}
+
+
+</script>
 <html lang="en">
 <title>PC Builder</title>
 <meta charset="UTF-8">
@@ -33,7 +161,7 @@ include 'dbconnection.php';
     <a href="index.php" class="w3-bar-item w3-button w3-padding-large w3-hover-white">Home</a>
     <a href="pricing.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-white">Pricing</a>
     <a href="components.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Components</a>
-<?php session_start();  if(!isset($_SESSION['uid'])) {echo "<a href='signup.php' class='w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white'>Sign up</a>
+<?php   if(!isset($_SESSION['uid'])) {echo "<a href='signup.php' class='w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white'>Sign up</a>
 	<a href='login.php' class='w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white'>Login</a>";}?>
 	<a href="contactus.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Contact us</a>
 		<a href="search.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"><i class="fa fa-search" style="font-size:30px"></i></a>
@@ -84,60 +212,81 @@ include 'dbconnection.php';
 		</div>
 			</div>
   <form method="post">
-<div class="row form-group">
+<div class="form-group">
+<div class="w3-margin w3-right">
+<h3><p id="p1"></p></h3><small>$</small>
+</div>
 <div class="col-md-12">
 <label for="CPU">Choose your CPU</label>
-<select name="#" id="cpu" class="form-control">
+<select name="cpu" class="form-control" onchange="showPrice(this.value)">
 <option value="" disabled selected>CPU</option>
-<option value="G5400">Intel Pentium Gold G5400</option>		
-<option value="3200G">AMD Ryzen 3 3200G</option>
-<option value="220GE">AMD Athlon 220GE </option>
-<option value="9100F">Intel Core i3-9100F</option>
+<option  value="2">Intel Pentium Gold G5400</option>		
+<option value="3">AMD Ryzen 3 3200G  </option>
+<option value="4">AMD Athlon 220GE  </option>
+<option value="5">Intel Core i3-9100F</option>
+
 </select>
+
+
+
 </div>
 </div>
 
-<div class="row form-group">
+<div class="form-group">
+<div class="w3-margin w3-right">
+<h3><p id="p2"></p></h3><small>$</small>
+</div>
 <div class="col-md-12">
 <label for="RAM">Choose your RAM amount</label>
-<select name="#" id="ram" class="form-control">
+<select name="ram" class="form-control" onchange="showPrice1(this.value)">
 <option value="" disabled selected>RAM</option>
-<option value="4GB">4GB DDR4</option>		
-<option value="8GB">8GB DDR4</option>
+<option value="14">4GB DDR4</option>		
+<option value="15">8GB DDR4</option>
 
 </select>
 </div>
 </div>
 
-<div class="row form-group">
+<div class="form-group">
+<div class="w3-margin w3-right">
+<h3><p id="p3"></p></h3><small>$</small>
+</div>
 <div class="col-md-12">
 <label for="CPU">Choose your GPU</label>
-<select name="#" id="gpu" class="form-control">
+<select name="gpu" class="form-control" onchange="showPrice2(this.value)">
 <option value="" disabled selected>GPU</option>
-<option value=">NoGPU">No GPU</option>
-<option value="RX550">Radeon RX 550 4GB GDDR5</option>
-<option value="RX560">Radeon RX 560 4GB GDDR5</option>
-<option value="RX570">Radeon RX 570 4GB GDDR5</option>
-<option value="GTX1650">GeForce GTX 1650 4GB</option>
+<option value="19">No GPU</option>
+<option value="20">Radeon RX 550 4GB GDDR5</option>
+<option value="21">Radeon RX 560 4GB GDDR5</option>
+<option value="22">Radeon RX 570 4GB GDDR5</option>
+<option value="23">GeForce GTX 1650 4GB</option>
 </select>
 </div>
 </div>
 
-<div class="row form-group">
+<div class="form-group">
+<div class="w3-margin w3-right">
+<h3><p id="p4"></p></h3><small>$</small>
+</div>
 <div class="col-md-12">
 <label for="CPU">Choose your Storage options</label>
-<select name="#" id="storage" class="form-control">
+<select name="storage" class="form-control" onchange="showPrice3(this.value)">
 <option value="" disabled selected>Storage</option>
-<option value="1TB">WD 1TB Internal Hard Drive HDD</option>
-<option value="SSD860EVO">Samsung SSD 860 EVO 128GB SATA III Internal SSD</option>
-<option value="1TB_SSD">1TB HDD + Samsung SSD 860 EVO 128GB</option>
+<option value="37">WD 1TB Internal Hard Drive HDD</option>
+<option value="39">Samsung SSD 860 EVO 250GB SATA III Internal SSD</option>
+<option value="40">1TB HDD + Samsung SSD 860 EVO 250GB</option>
 </select>
 </div>
 </div>
 
   <div class="form-group">
+  
+ <div class="w3-margin w3-center">
+<h1>Total Price : <p id="p5"></p></h1><small>$</small>
+</div>
 	<div>
-	<input type="submit" class="btn btn-primary btn-block" name="purchase" value="Purchase" ></input>
+	
+	<input class="btn btn-primary" name="btn" type="submit" value="Purchase"/>
 	</div>
 	</div>
   </div>
@@ -147,6 +296,9 @@ include 'dbconnection.php';
  
 </div>
 
+
+
+ 
 
 <div>
 
@@ -420,20 +572,33 @@ function openInfoStr(evt, partName) {
   evt.currentTarget.classList.add("w3-light-grey");
 }
 </script>
-<div class="gototop js-top">
-		<a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
-	</div>
-	<!-- jQuery -->
-	<script src="js/jquery.min.js"></script>
-	<!-- jQuery Easing -->
-	<script src="js/jquery.easing.1.3.js"></script>
-	
-	<!-- Waypoints -->
-	<script src="js/jquery.waypoints.min.js"></script>
-	<!-- Carousel -->
-	<script src="js/owl.carousel.min.js"></script>
 
-<script src="js/main.js"></script>
 	
 </body>
+
+
 </html>
+
+<?php 
+
+if(!empty($_POST['cpu']) && !empty($_POST['ram']) && !empty($_POST['gpu']) && !empty($_POST['storage']) && isset($_POST['btn']))
+	{
+		
+   
+
+		 
+
+ echo "<script>window.location = 'payment.php'</script>";
+
+		
+		
+	}
+	
+	
+		
+
+
+
+
+
+?>
