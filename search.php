@@ -1,87 +1,127 @@
+<?php session_start(); ?>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"> </script>
-<script >
-	var cart = new Array();
-	function add_to_cart(product_id) {
-		// check if item exists
+<script>
+	function search_products(){
 		$.ajax({
-			type:"POST",
-			url:"cart_info.php",
-			data: { 'PRODUCT_CHECK' : product_id },
-			success : function( product_exists  ) { 
-				if(product_exists == true ) {
-					alert("You've already chosen this product!");
+			type:"get",
+			url : "cart_info.php",
+			dataType:"json",
+			data : {"PRODUCT_NAME": $("#product_text_field").val() },
+			success : function(products){
+				if(products.status == "Failed") {
+					$("#title").html("<center> No Records Were Found for  <i><b>'"+ $('#product_text_field').val() +"' </i></b>  </center>");
+					$("#subtitle").html("<p><h4><center><i><b>Try with Matching case</i></b></center></h4><p> ");
+					$("#product_list").html("");
+					$("#product_page").html("");
 				}
 				else {
-					cart.push(product_id);
-					$.ajax({
-						type:"POST",
-						url:"cart_info.php",
-						data: { 'CART_INFO' : cart },
-						success : function( msg ) { 
-								update(); 
-						},
-						error : function() {}
-						});
-				}
-			},
-			error : function() { alert("Error in checking product availiability!"); }
-			});
-	}
-	function purchase() {
-					
-		}
-			function update() {
-		var cart_icon = "<i class='material-icons' style='font-size:20px'>shopping_cart</i>";	
-		$.ajax({
-				type:"GET",
-				url:"cart_info.php",
-				data: "GET_N",
-				success : function( n ) {
-					$("#_cart_number").html( n + cart_icon);
-				},
-				error : function() { ;} 
-				});
-	}
+					$("#title").html("<h2><center> " + products.length + " Records Found !</center></h2>");
+					$("#subtitle").html("<p><h4><center>Our most purchased components by our customers.</center></h4><p> ");
+		
+				// generate pages number
+				var n_pages = products.length;
+				// number of products per page
+				var n_p_p = 6;
+				var cur_page = 0;
+				var button_page = "<div id='btn_page'><center> Pages: ";
+				for(index = 0; index < products.length/n_p_p; ++index)
+					button_page += "<button class='w3-button w3-hover-cyan w3-circle' id='" + index + "'>" + (index + 1) + "</button>";
+				button_page += "</center></div>";
+				$("#product_page").html(button_page);
 
-	function READY() {
-		update();	
-		$("div > button").click(function(){
-			switch ( $(this).attr("value") ) {
-				case 'buy':	add_to_cart( $(this).attr("id") ) ;
-					purchase();
-					break;
-				case 'add': add_to_cart( $(this).attr("id") ) ;
-					break;
-				default:
-					break;
+				display_products(0,products,n_p_p);
+
+				var previous_btn = $('button[id=0]')
+				previous_btn.attr("class","w3-button w3-circle w3-red");
+				//$("#next_page_btn").html("<button class='btn btn-primary w3-animate-zoom w3-xlarge' id='"+cur_page+"'>NEXT</button>");
+			
+				$('#btn_page  button').click(function(){
+					display_products( $(this).attr("id"), products,n_p_p);
+
+					previous_btn.attr("class","w3-button w3-hover-cyan w3-circle");
+					previous_btn = $(this);
+					$(this).attr("class","w3-button w3-circle w3-red");
+
+					$("button").click( function() {
+						switch ($(this).attr("value")) {
+							case 'buy': add_product(this); purchase();break;
+							case 'add': add_product(this); break; 
+						default:;
+					}
+
+				} );
+
+				});
 				}
+				$("button").click( function() {
+					switch ($(this).attr("value")) {
+						case 'buy': add_product(this); purchase();break;
+						case 'add': add_product(this); break; 
+						default:;
+					}
+
+				} );
+
+							
+			},
+			error : function(){ alert("Something went wrong when sending request for product name"); }
+
 		});
 	}
+	function display_products(page,products,product_per_page) {
+			product_table = "<div class='container'> ";
+			for(start = page * product_per_page,end = start + product_per_page; start != end && start < products.length; ++start){
+				product_table += " <div class='col-lg-4'> <div class='card-item'> <figure> <div class='overlay'><i class='ti-plus'></i></div>";
+				product_table += "<img src='images/"+ products[start]['pid'] +".jpg' alt='Image' class='img-responsive'> </figure> <div class='text'>";
+				product_table += "<h2>" + products[start]['pname'] + "</h2> <strong style='font-size:18px'>$" + products[start]['price'] + "";
+				product_table += "</strong> <br> <p> " + products[start]['description'] + "</p>";
+				product_table += "<button value='buy' id='" + products[start]['pid'] + "' class='btn btn-primary'> <a href='payment.php'>Purchase</a></button>";
+				product_table += "<button value='add' id='" + products[start]['pid'] + "' class='btn btn-primary'>Add to cart</button> </div> </div> </div> "; 
+				}
+				product_table += "</div></div>";
+			$("#product_list").html(product_table);
+	}
+	function add_product(pid){
+		// store the cart in the session
+		cart.push($(pid).attr("id"));
+			$.ajax({
+			type:"post",
+			url : "cart_session.php",
+			data: {"CART_INFO":cart},
+			dataType : "json",
+			success: function(session_cart){
+				$("#_cart_number").html(session_cart.length + "<i class='material-icons' style='font-size:20px'>shopping_cart</i>");
+			},
+			error : function(){alert("error in sending cart inforamtion to the session");} });
+		
+	}
+	function purchase() {
+			$.ajax({
+			type:"post",
+			url : "purchase.php",
+			success : function(data){ 
+				if(data.status == "Failed")
+					alert("failed");
+				else
+					$(location).attr('href','payment.php');	
+			},
+			error : function(){alert("Error in receiving data from session");}
+		});
+	}
+	function READY() {
+		cart = new Array();
+		$.ajax({
+			type:"get",
+			url : "cart_session.php",
+			data : "N",
+			success : function(n){ $("#_cart_number").html(n + "<i class='material-icons' style='font-size:20px'>shopping_cart</i>");},
+			error : function(){alert("Error in receiving data from session");}
+		});
+		$("#search_btn").click( search_products );
+			}
 	$(document).ready(READY);
 </script>
-
-
-<?php session_start();
-include 'dbconnection.php';
-
-    $n = null;
-    if(isset($_GET['submit'])){
-        $pname = $_GET['searched_product'];
-    	$sql = "select * from product where pname like '%".$pname .'%\'';
-    	$stmt = $conn->query($sql);
-    	$rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    	$n = $stmt-> rowCount();
-
-		// if the normal search didn't  succeed , search from the description or tag
-		if( $n == 0) {
-			$sql = "select * from product where description like '%".$pname .'%\' or tag like'.'\''.$pname .'\'';
-    		$stmt = $conn->query($sql);
-    		$rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    		$n = $stmt-> rowCount();
-		}
-    }
-?>
-
 <html lang="en">
 <title>Search a product </title>
 <meta charset="UTF-8">
@@ -123,8 +163,8 @@ include 'dbconnection.php';
 
 	<!-- Cart ------------------------------------------------------------------------------------------------- -->
 		<a href="cart.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" id="_cart_number">0
+ <i class="material-icons" style="font-size:20px">shopping_cart</i>
 	</a>
-
 
 
 	<?php if(isset($_SESSION['uname']) && isset($_SESSION['uid'])){echo "<div class='w3-dropdown-hover w3-right w3-bar-item w3-padding-large w3-hover-white'><i class='material-icons' style='font-size:30px'>person</i>
@@ -167,76 +207,23 @@ include 'dbconnection.php';
   
   <!-- <button class="w3-black w3-padding-large w3-large w3-margin-top btn btn-primary">Get Started</button> -->
 
-    <form method="get">
-    <input type="text" name="searched_product" placeholder="Search a product!" class="w3-padding-large w3-large w3-margin-top btn btn-primary"/>
-    <input class="btn btn-primary btn-block" type="submit" name="submit" value="Search"/>
-  </form>
+    <input type="text" name="searched_product" id="product_text_field" placeholder="Search a product!" class="w3-padding-large w3-large w3-margin-top btn btn-primary"/>
+    <input class="btn btn-primary btn-block" type="submit" id="search_btn" name="submit" value="Search"/>
  
 </header>
 
-    <?php 
+<div class='section'> 
+		     <div class='w3-margin-top'> 
+		     	    <div class='text-center heading'> 
+		     		    <h2 id="title"><center> We have Got everthing you Want </center></h2> 
+		     		    <h4 id="subtitle"><center>Just type and HIT Search </center></h4> 
+		     	    </div> 
+		         </div>  
 
-        // if the user did not yet search
-        if(!isset($_GET['searched_product'])) {
-                echo" <div class='section'>";
-		    echo" <div class='container'>";
-		    echo"<div class='w3-margin-top'>";
-		    echo"	    <div class='text-center heading'>";
-		    echo"		    <h2><center> We have Got everthing you Want </center></h2>";
-		    echo"		    <p><h4><center>Just type and HIT Search </center></h4><p>";
-		    echo"	    </div>";
-		    echo"    </div>"; 
-            return;
-        }
-        
-        $no_products = false;
-        if( $n == 0)
-            $no_products = true;
-
-        echo" <div class='section'>";
-		echo" <div class='container'>";
-		echo"<div class='w3-margin-top'>";
-		echo"	    <div class='text-center heading'>";
-              if($no_products ){
-		        echo"<h2><center> No Records Were Found for <i><b>'$_GET[searched_product]' </i></b> </center></h2>";
-		        echo"<p><h4><center><i><b>Try with Matching case</i></b></center></h4><p>";
-                    for($i = 0; $i < 10; $i += 1) echo "<br>";
-                }
-              else {
-		echo"		    <h2><center> $n Records Found !</center></h2>";
-		echo"		    <p><h4><center>Our most purchased components by our customers.</center></h4><p>";
-                    }   
-		echo"	    </div>";
-		echo"    </div>";
-
-  	 
-
-		echo "<div>";
-        // display products
-        foreach($rows as $row ) {
-            echo"  	<div class='col-lg-4'>";
-			echo"   <div class='card-item'>";
-			echo"   	<figure>";
-			echo"   		<div class='overlay'><i class='ti-plus'></i></div>";
-			echo"   		<img src='images/$row[pid].jpg' alt='Image' class='img-responsive'>";
-			echo"   	</figure>";
-			echo"   	<div class='text'>";
-			echo"   		<h2>$row[pname]</h2>";
-
-                            //  description might be added later
-
-			echo"   		<strong style='font-size:18px'>$$row[price]</strong><br>";
-			echo"   		<p>$row[description]</p>";
-			echo"   		 <button value='buy' id='$row[pid]' class='btn btn-primary'> <a href='payment.php'>Purchase</a></button>";
-			echo"   		 <button value='add' id='$row[pid]' class='btn btn-primary'>Add to cart</button>";
-			echo"   	</div>";
-			echo"   </div>";
-			echo"   </div>";
-
-        }
-		echo"    </div >";
-		echo"</div>";
-    ?>
+	<p id="product_page"> </p> 
+	<p id="product_list"> </p> 
+	<p id="next_page_btn"> </p> 
+	<?php for($i = 0; $i < 20; $i++) echo "<br>"; ?>
 
 <!-- First Grid -->
 <div class="w3-row-padding w3-padding-32 w3-container w3-red">
