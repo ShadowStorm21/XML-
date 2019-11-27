@@ -1,3 +1,68 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"> </script>
+
+<script>
+
+	function send_to_cart(pid){
+		exists(pid)
+		$.ajax({
+			type:"post",
+			url : "cart_session.php",
+			data: {"CART_INFO":Array($(pid).attr("id"))},
+			dataType : "json",
+			success: function(session_cart){
+				$("#_cart_number").html(session_cart.length + "<i class='material-icons' style='font-size:20px'>shopping_cart</i>");
+			},
+			error : function(){alert("error in sending cart inforamtion to the session");} });	
+	}
+	function update_cart() {
+			
+	}
+	function exists(pid) {
+	$.ajax({
+			type:"post",
+			url : "cart_session.php",
+			data : {"PRODUCT_EXISTS":$(pid).attr("id")},
+			success : function(n){ 
+				if( n == true  || n == "true")
+					alert("This Product is Already in the Cart!");
+			},
+			error : function(){alert("Error in checking product availibility");}
+		});	
+	}
+	function purchase() {
+			$.ajax({
+			type:"post",
+			url : "purchase.php",
+			success : function(data){ 
+				if(data.status == "Failed")
+					alert("failed");
+				else
+					$(location).attr('href','payment.php');	
+			},
+			error : function(){alert("Error in receiving data from session");}
+		});
+	}
+
+	$(document).ready(function(){
+	$.ajax({
+			type:"get",
+			url : "cart_session.php",
+			data : "N",
+			success : function(n){ $("#_cart_number").html(n + "<i class='material-icons' style='font-size:20px'>shopping_cart</i>");},
+			error : function(){alert("Error in receiving data from session");}
+		});
+		$("button").click( function(){
+			switch ($(this).attr("value")) {
+						case 'buy': send_to_cart(this); purchase();break;
+						case 'add': send_to_cart(this); break; 
+						default:;
+			}	
+		});
+	
+	});
+</script>
+
+
 <?php
 session_start();
 include 'dbconnection.php';
@@ -39,16 +104,10 @@ include 'dbconnection.php';
 	<a href="contactus.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Contact us</a>
 	<a href="search.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"><i class="fa fa-search" style="font-size:30px"></i></a>
 	<!-- Cart -->
-	<a href="cart.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" id="_cart">
-	<?php 
-		if( isset($_SESSION['cart']) ) 
-			echo count($_SESSION['cart']);
-		else
-			echo "0";
-	?>
+	<a href="cart.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" id="_cart_number">0
 	<i class="material-icons" style="font-size:20px">shopping_cart</i>
-			
 	</a>
+
 	<?php if(isset($_SESSION['uname']) && isset($_SESSION['uid'])){echo "<div class='w3-dropdown-hover w3-right w3-bar-item w3-padding-large w3-hover-white'><i class='material-icons' style='font-size:30px'>person</i>
   <div class='w3-dropdown-content w3-animate-zoom w3-border' style='right:0'>
     <a href='changePassword.php' class='w3-bar-item w3-button'>Change Password</a>
@@ -91,7 +150,16 @@ include 'dbconnection.php';
  
 </header>
 </div>
-	<div class="section">
+
+<?php
+	$connection = mysqli_connect("localhost","root","","pc") or die("Error " . mysqli_error($connection));
+	$sql = "select count(*) from product;";
+	$result = mysqli_query($connection, $sql) or die("Error in Selecting " . mysqli_error($connection));
+	$n_products = mysqli_fetch_row($result)[0];
+	$upper = rand(7, $n_products);
+	$lower = $upper - 7;
+
+	$html ='	<div class="section">
 		<div class="container">
 			<div class="w3-margin-top">
 				<div class="text-center heading">
@@ -101,96 +169,45 @@ include 'dbconnection.php';
 			</div>
 			<div >
 
-				<div class="col-lg-4" >
+			
+			';
+
+	for(;$lower != $upper; $lower++){
+		$sql = "select * from product where pid = $lower;";
+		$result = mysqli_query($connection, $sql) or die("Error in Selecting " . mysqli_error($connection));
+		$row = mysqli_fetch_row($result);
+		$html .= '	<div class="col-lg-4" >
 					<div class="card-item">
 						<figure>
 							<div class="overlay"><i class="ti-plus"></i></div>
-							<img src="images/1.jpg" alt="Image" class="img-responsive">
+							<img src="images/'.$row[0].'.jpg" alt="Image" class="img-responsive">
 						</figure>
 						<div class="text">
-							<h2>Intel i9 9900k</h2>
+							<h2>'.$row[1].'</h2>
 							
-							<strong style="font-size:18px">$480</strong>
-							<p>high-end CPU with 8 cores for elite gamers</p>
-								<a href="payment.php"><button class="btn btn-primary">Purchase</button></a>
-							<a href="cart.php"><button class="btn btn-primary">Add to cart</button></a>
+							<strong style="font-size:18px">$'.$row[2].'</strong>
+							<p>'.$row[4].'</p>
+								<button value=buy id='.$row[0].' class="btn btn-primary">Purchase</button>
+							<a ><button value=add id='.$row[0].' class="btn btn-primary">Add to cart</button></a>
 							
 						</div>
 					
 					
 					</div>
-				</div>
-				<div class="col-lg-4">
-					<div class="card-item">
-						<figure>
-							<div class="overlay"><i class="ti-plus"></i></div>
-							<img src="images/2.jpg" alt="Image" class="img-responsive">
-						</figure>
-						<div class="text">
-							<h2>NVIDIA® GeForce® RTX 2080TI</h2>
-							<strong style="font-size:18px">$1100</strong>
-							<p>The world’s most advanced GPU architecture for gamers and creators.</p>
-								<a href="payment.php"><button class="btn btn-primary">Purchase</button></a>
-							<a href="cart.php"><button class="btn btn-primary">Add to cart</button></a>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-4">
-					<div class="card-item">
-						<figure>
-							<div class="overlay"><i class="ti-plus"></i></div>
-							<img src="images/3.jpg" alt="Image" class="img-responsive">
-						</figure>
-						<div class="text">
-							<h2>AMD Ryzen™ 9 3900X</h2>
-							<strong style="font-size:18px">$499</strong>
-							<p>The world's most advanced processor with 12 cores for the world's elite gamers.</p>
-								<a href="payment.php"><button class="btn btn-primary">Purchase</button></a>
-							<a href="cart.php"><button class="btn btn-primary">Add to cart</button></a>
-						</div>
-					</div>
-				</div>
+				</div>';
+	}
 
 
-				<div class="col-lg-6">
-					<div class="card-item">
-						<figure>
-							<div class="overlay"><i class="ti-plus"></i></div>
-							<img src="images/4.jpg" alt="Image" class="img-responsive">
-						</figure>
-						<div class="text">
-							<h2>Samsung SSD 970 PRO 512GB - NVMe</h2>
-							<strong style="font-size:18px">$150</strong>
-							<p>Ideal for tech enthusiasts,high end gamers,and 4K & 3D content designers</p>
-								<a href="payment.php"><button class="btn btn-primary">Purchase</button></a>
-							<a href="cart.php"><button class="btn btn-primary">Add to cart</button></a>
-							
-						</div>
-					</div>
-				</div>
-
-				<div class="col-lg-6">
-					<div class="card-item">
-						<figure>
-							<div class="overlay"><i class="ti-plus"></i></div>
-							<img src="images/5.jpg" alt="Image" class="img-responsive">
-						</figure>
-						<div class="text">
-							<h2>AMD Ryzen™ 5 3600</h2>
-							<strong style="font-size:18px">$199</strong>
-							<p>The world's most advanced processor with 6 Cores for everyday tasks</p>
-							<a href="payment.php"><button class="btn btn-primary">Purchase</button></a>
-							<a href="cart.php"><button class="btn btn-primary">Add to cart</button></a>
-						</div>
-					</a>
-				</div>
-
-				
-
-			</div>
-		</div>
-	</div>
 	
+	$html .= "</div> </div> </div>";
+	echo $html;
+	
+?>
+
+
+
+			
+				
 	
 
 			
