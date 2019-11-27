@@ -1,6 +1,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"> </script>
 <script >
 	function display_product() {
+		load_products_to_session();
 			var total = 0;
 				$.ajax({
 				type:"GET",
@@ -28,7 +29,7 @@
 						table += "</tr></center></table>";
 					}
 					$("#result").html(table);
-	store_total(total);
+					store_total(total);
 					$("#_buy").click(function(){ $(location).attr('href', 'payment.php'); });
 					$("button").click(function(){ remove($(this)); });
 
@@ -55,7 +56,15 @@
 				});	
 	}
 
-
+	function load_products_to_session() {
+		$.ajax({
+			type:"post",
+			url:"cart_session.php",
+			data:"ROWS",
+			success: function(data) {},
+			error : function(){alert("error in sending rows");}
+		});
+	}
 	$(document).ready(display_product);
 
 </script>
@@ -63,17 +72,7 @@
 
 <?php session_start();
 include 'dbconnection.php';
-		$rows = [];
-		if( isset($_SESSION['cart'])){
-		foreach( $_SESSION['cart'] as $i => $pi ){
-				$stmt = $conn-> query("SELECT * FROM product WHERE pid='$pi'");
-				$stmt-> execute(); 
-				$row = $stmt-> fetch(PDO::FETCH_ASSOC);
-				$rows[$i] = $row;
-			}
-		$_SESSION['ROWS'] = array_values($rows);
-		}
-?>
+	?>
 
 <html lang="en">
 <title>Cart</title>
