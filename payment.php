@@ -1,5 +1,27 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"> </script>
 <script >
+
+
+	$(document).ready(function(){
+		$("#order").click( function(){
+			// send data to the database
+			$.ajax({
+				type:"post",
+				url :"order_info.php",
+				data:"ORDER",
+				success : function(data){
+					if(data.status == "Failed")
+						alert("Failed to order!");
+					else{
+						alert("Congratulations!,Your order has been sent");
+						$(location).attr('href', 'orders.php');
+					}
+				},
+				error : function(){alert("Error in sending order information!");}
+			});
+		});	
+	});
+
 </script>
 
 
@@ -112,7 +134,7 @@ include 'dbconnection.php';
 		    echo"<div class='w3-margin-top'>";
 		    echo"	    <div class='text-center heading'>";
 		    echo"		    <h2><center> Total payment : $$_SESSION[total]</center></h2>";
-		    echo"		    <p><h4><center>---------</center></h4><p>";
+		    echo"		    <p><h4><center><button id='order' class='w3-button w3-red w3-circle'> ORDER NOW </button></center></h4><p>";
 		    echo"	    </div>";
 		    echo"    </div>"; 
 		for($i = 0; $i < 20; $i++) echo "<br>";
