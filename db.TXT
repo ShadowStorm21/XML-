@@ -18,6 +18,14 @@ tag VARCHAR(15) not null,
 description VARCHAR(1000),
 primary key(pid));
 
+CREATE TABLE orders (
+oid int AUTO_INCREMENT,uid int,
+pids json not null,
+total_price double not null,
+ordate datetime DEFAULT CURRENT_TIMESTAMP,
+primary key(oid),FOREIGN key(uid) REFERENCES users(uid));); 
+
+
 
 # pre-defined products !
 
