@@ -46,7 +46,7 @@
 					$("button").click( function() {
 						switch ($(this).attr("value")) {
 							case 'buy': add_product(this); purchase();break;
-							case 'add': add_product(this); break; 
+							case 'add': exists(this);add_product(this); break; 
 						default:;
 					}
 
@@ -57,7 +57,7 @@
 				$("button").click( function() {
 					switch ($(this).attr("value")) {
 						case 'buy': add_product(this); purchase();break;
-						case 'add': add_product(this); break; 
+						case 'add': exists(this); add_product(this); break; 
 						default:;
 					}
 
@@ -69,6 +69,20 @@
 
 		});
 	}
+
+function exists(pid) {
+	$.ajax({
+			type:"post",
+			url : "cart_session.php",
+			data : {"PRODUCT_EXISTS":$(pid).attr("id")},
+			success : function(n){ 
+				if( n == true  || n == "true")
+					alert("This Product is Already in the Cart!");
+			},
+			error : function(){alert("Error in checking product availibility");}
+		});	
+	}
+
 	function display_products(page,products,product_per_page) {
 			product_table = "<div class='container'> ";
 			for(start = page * product_per_page,end = start + product_per_page; start != end && start < products.length; ++start){
