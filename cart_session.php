@@ -22,7 +22,10 @@
 		}
 	}
 	else if( isset($_POST['PRODUCT_EXISTS']) && isset($_SESSION['cart']) ) {
-		echo in_array( $_POST['PRODUCT_EXISTS'] , $_SESSION['cart'] );
+		if(in_array( $_POST['PRODUCT_EXISTS'] , $_SESSION['cart'] ) == true)
+			echo true;
+		else
+			echo false;
 	}
 	else {
 		if(isset($_GET['N']) && isset($_SESSION['cart']))
