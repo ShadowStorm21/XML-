@@ -50,6 +50,7 @@ include 'dbconnection.php';
 	</a>
 	<?php if(isset($_SESSION['uname']) && isset($_SESSION['uid'])){echo "<div class='w3-dropdown-hover w3-right w3-bar-item w3-padding-large w3-hover-white'><i class='material-icons' style='font-size:30px'>person</i>
   <div class='w3-dropdown-content w3-animate-zoom w3-border' style='right:0'>
+    <a href='orders.php' class='w3-bar-item w3-button'>Orders</a>
     <a href='changePassword.php' class='w3-bar-item w3-button'>Change Password</a>
     <a href='profile.php' class='w3-bar-item w3-button'>Update Profile</a>
     <a href='logout.php' class='w3-bar-item w3-button'>Logout</a>
