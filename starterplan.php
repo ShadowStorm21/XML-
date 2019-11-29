@@ -40,19 +40,7 @@ $(document).ready(function(){
 
 	});
 	
-		$(":input").click(function(){
-			$.ajax({
-				type:"post",
-				url: "order_info.php",
-				data : {"order_id":$(this).attr("value")},
-				success : function(data){
-					
-				},
-				error : function(){
-					alert("Error in sending order information");
-				}
-			});
-		});
+		
 
 });	
 function sendPrice(total)
