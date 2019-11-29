@@ -2,7 +2,7 @@
 
 <script>
 
-	function send_to_cart(pid){
+	function send_to_cart(pid,purchase_func = null){
 		exists(pid)
 		$.ajax({
 			type:"post",
@@ -11,11 +11,10 @@
 			dataType : "json",
 			success: function(session_cart){
 				$("#_cart_number").html(session_cart.length + "<i class='material-icons' style='font-size:20px'>shopping_cart</i>");
+				if(purchase_func != null)
+					purchase_func();
 			},
 			error : function(){alert("error in sending cart inforamtion to the session");} });	
-	}
-	function update_cart() {
-			
 	}
 	function exists(pid) {
 	$.ajax({
@@ -34,8 +33,9 @@
 			type:"post",
 			url : "purchase.php",
 			success : function(data){ 
-				if(data.status == "Failed")
+				if(data.status == "Failed"){
 					alert("failed");
+				}
 				else
 					$(location).attr('href','payment.php');	
 			},
@@ -53,7 +53,7 @@
 		});
 		$("button").click( function(){
 			switch ($(this).attr("value")) {
-						case 'buy': send_to_cart(this); purchase();break;
+						case 'buy': send_to_cart(this,purchase); break;
 						case 'add': send_to_cart(this); break; 
 						default:;
 			}	

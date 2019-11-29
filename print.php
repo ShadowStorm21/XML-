@@ -20,7 +20,7 @@ include 'fpdf\fpdf.php';
 	
 	$pdf = new FPDF('L','mm','A3'); 
 	$pdf -> AddPage();
-	$pdf -> SetFont('Arial','B',16);
+	$pdf -> SetFont('Times','B',16);
 	$pdf -> SetFillColor(193,229,252); // Background color of header
 	
 	$pdf->Write(10,"User : " .$_SESSION['uname']."");
@@ -44,17 +44,19 @@ include 'fpdf\fpdf.php';
 	
 	 
 	// Header starts ///   Cell($width, $hight=0, $textt='', $border=0, $linebreak=0, $align='', $fillcolor=false, $link='')
+
+	$pdf -> SetFont('Helvetica','BIU',16);
 	$pdf -> Cell(10,10,'PID',1,0,'C',true); // First header column 
 	$pdf -> Cell($max_name,10,'product name',1,0,'C',true); // Second header column
 	$pdf -> Cell($max_desc,10,'product details',1,0,'C',true); // Third header column 
 	$pdf -> Cell(15,10,'Price',1,0,'C',true); // Third header column 
-	$pdf -> Cell(20,10,'tag',1,1,'C',true); // Third header column 
+	$pdf -> Cell(25,10,'tag',1,1,'C',true); // Third header column 
 
 	
 	$pdf->SetAutoPageBreak(true);
 	//// header ends ///////
 	$tempFontSize = 10;
-	$pdf-> SetFont('Arial','',$tempFontSize);
+	$pdf-> SetFont('Times','',$tempFontSize);
 	$pdf-> SetFillColor(235,236,236); // Background color of header 
 	$fill = false; // to give alternate background fill color to rows 
 	
@@ -65,19 +67,22 @@ include 'fpdf\fpdf.php';
 		while($pdf->getStringWidth($product['pname']) > $max_name){// loop until the string width is smaller than cell width
 			$pdf->SetFontSize($tempFontSize -= 0.1);
 		}
-		$pdf -> Cell($max_name,10,$product['pname'],1,0,'L',$fill);
+		$pdf -> Cell($max_name,10,$product['pname'],1,0,'C',$fill);
 		$tempFontSize = 10;
 		
 		
 		while($pdf->getStringWidth($product['description']) > $max_desc){// loop until the string width is smaller than cell width
 			$pdf->SetFontSize($tempFontSize -= 0.1);
 		}
-		$pdf -> Cell($max_desc,10,$product['description'],1,0,'L',$fill);
+		$pdf -> Cell($max_desc,10,$product['description'],1,0,'C',$fill);
 		$tempFontSize = 10;
 
+		$pdf-> SetFont('Times','BI',$tempFontSize); // give different style for the price and tag
 		
-		$pdf -> Cell(15,10,$product['price'],1,0,'C',$fill);
-		$pdf -> Cell(20,10,$product['tag'],1,1,'C',$fill);
+		$pdf -> Cell(15,10,"$".$product['price'],1,0,'C',$fill);
+		$pdf -> Cell(25,10,$product['tag'],1,1,'C',$fill);
+
+		$pdf-> SetFont('Times','',$tempFontSize); // set back the font configurations
 		$fill = !$fill; 
 		} // to give alternate background fill  color to rows
 	

@@ -7,6 +7,11 @@ try
     
     $total = 0;
 	$myObj = new stdClass();
+	if(!isset($_SESSION['cart'])){
+		$myObj->status = "Failed";
+		echo json_encode($myObj);
+		return;
+	}
 	foreach( $_SESSION['cart'] as $i => $pi ){
 			$sql = "select price from product where pid=$pi";
 			$result = mysqli_query($connection, $sql) or die("Error in Selecting " . mysqli_error($connection));

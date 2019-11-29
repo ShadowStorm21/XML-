@@ -45,7 +45,7 @@
 
 					$("button").click( function() {
 						switch ($(this).attr("value")) {
-							case 'buy': add_product(this); purchase();break;
+							case 'buy': add_product(this,purchase);break;
 							case 'add': exists(this);add_product(this); break; 
 						default:;
 					}
@@ -56,7 +56,7 @@
 				}
 				$("button").click( function() {
 					switch ($(this).attr("value")) {
-						case 'buy': add_product(this); purchase();break;
+						case 'buy': add_product(this,purchase); break;
 						case 'add': exists(this); add_product(this); break; 
 						default:;
 					}
@@ -96,7 +96,7 @@ function exists(pid) {
 				product_table += "</div></div>";
 			$("#product_list").html(product_table);
 	}
-	function add_product(pid){
+	function add_product(pid,purchase_func = null){
 		// store the cart in the session
 		cart.push($(pid).attr("id"));
 			$.ajax({
@@ -106,6 +106,8 @@ function exists(pid) {
 			dataType : "json",
 			success: function(session_cart){
 				$("#_cart_number").html(session_cart.length + "<i class='material-icons' style='font-size:20px'>shopping_cart</i>");
+				if(purchase_func != null)
+					purchase_func();
 			},
 			error : function(){alert("error in sending cart inforamtion to the session");} });
 		
