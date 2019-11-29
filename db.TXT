@@ -29,6 +29,7 @@ primary key(oid),FOREIGN key(uid) REFERENCES users(uid)););
 
 # pre-defined products !
 
+# order matters dont not change anything
 
 INSERT INTO product 
 (pname,price,tag,description) VALUES ("Intel Pentium Gold G5400",60,"CPU"," 2 Cores / 4 Threads
@@ -216,6 +217,15 @@ Sequential read and write performance levels of up to 3,500MB/s and 3,300MB/s, r
 INSERT INTO product 
 (pname,price,tag,description) VALUES ("Samsung SSD 970 EVO plus 1TB - NVMe",199,"Storage","
 Sequential read and write performance levels of up to 3,500MB/s and 3,300MB/s, respectively");
+
+INSERT INTO product 
+(pname,price,tag,description) VALUES ("SSD_HDDt1",130,"Storage","
+A combination of Western Digital 1TB Internal Hard Drive HDD and Samsung SSD 970 EVO 500GB NVMe SSD");
+
+INSERT INTO product 
+(pname,price,tag,description) VALUES ("SSD_HDDt2",190,"Storage","
+A combination of Western Digital 1TB Internal Hard Drive HDD and Samsung SSD 970 EVO 1000GB NVMe SSD");
+
 
 # Storage Ends !
 
