@@ -1,7 +1,131 @@
-<?php
-
+<?php session_start();
 include 'dbconnection.php';
+
+if(isset($_SESSION['uid']))
+{
+
+if(isset($_POST['cpu']) && isset($_POST['ram']) && isset($_POST['gpu']) && isset($_POST['storage']) && isset($_POST['btn']))
+	{	
+
+		header("Location:payment.php");
+			
+		 
+	}
+	
+}
+else
+{
+	header("Location:login.php");
+	
+}
+
+
 ?>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"> </script>
+<script>
+
+var prices = {339,480,325,375,480,300,130,70,740,1100,3500,2499,399,150,199};
+
+$(document).ready(function(){
+	
+
+	$("select").mouseleave(function(){
+		
+		 n1 = $("#p1").text();
+		n2 = $("#p2").text();
+		 n3 = $("#p3").text();
+		n4 = $("#p4").text();
+		Number($("#p5").html(Number(n1)+Number(n2)+Number(n3)+Number(n4)));
+
+	});
+
+});	
+function sendPrice(total)
+{
+		
+ if (window.XMLHttpRequest) {
+            // code for IE7+, Firefox, Chrome, Opera, Safari
+            xmlhttp = new XMLHttpRequest();
+        } else {
+            // code for IE6, IE5
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+		
+		n1 = $("#p1").text();
+		n2 = $("#p2").text();
+		n3 = $("#p3").text();
+		n4 = $("#p4").text();
+		total = Number(n1)+Number(n2)+Number(n3)+Number(n4);
+		
+		if($("#p1").text() == 0.0 || $("#p2").text() == 0.0 || $("#p3").text() == 0.0 || $("#p4").text() == 0.0)
+		{
+			alert("All Components are mandontory");
+		}
+		if(total == 0.0)
+		{
+			alert("All Components are mandontory");
+		}
+		else
+		{
+		xmlhttp.open("GET","plans_info.php?tot="+total+"&id="+1500,false);
+        xmlhttp.send();
+		}
+        
+
+}
+	
+function showPrice(id) {
+  
+  if(id == 8)
+	  $("#p1").text(prices[5]);
+		
+  if(id == 7)
+	  $("#p1").text(prices[1]);
+		
+  if(id == 11)
+	  $("#p1").text(prices[2]);
+		
+  if(id == 10)
+	  $("#p1").text(prices[3]);
+  
+   if(id == 8)
+	  $("#p1").text(prices[5]);
+
+    if(id == 18)
+	  $("#p2").text(prices[5]);
+		
+  if(id == 17)
+	  $("#p2").text(prices[6]);
+  
+   if(id == 16)
+	  $("#p2").text(prices[7]);
+		
+ 
+  if(id == 31)
+	  $("#p3").text(prices[8]);
+ 
+    if(id == 30)
+	  $("#p3").text(prices[9]);
+  
+  if(id == 32)
+	  $("#p3").text(prices[10]);
+  
+  if(id == 33)
+	  $("#p3").text(prices[11]);
+  
+    if(id == 41)
+	  $("#p4").text(prices[12]);
+  
+    if(id == 40)
+	  $("#p4").text(prices[13]);
+  
+    if(id == 42)
+	  $("#p4").text(prices[14]);
+  
+}
+
+</script>
 
 <html lang="en">
 <title>PC Builder</title>
@@ -31,7 +155,7 @@ include 'dbconnection.php';
     <a href="index.php" class="w3-bar-item w3-button w3-padding-large w3-hover-white">Home</a>
     <a href="pricing.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-white">Pricing</a>
     <a href="components.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Components</a>
-<?php session_start();  if(!isset($_SESSION['uid'])) {echo "<a href='signup.php' class='w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white'>Sign up</a>
+<?php if(!isset($_SESSION['uid'])) {echo "<a href='signup.php' class='w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white'>Sign up</a>
 	<a href='login.php' class='w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white'>Login</a>";}?>
 	<a href="contactus.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Contact us</a>
 	<a href="search.php" class="w3-bar-item w3-button w3-hide-small  w3-padding-large w3-hover-white"><i class="fa fa-search" style="font-size:30px"></i></a>
@@ -85,67 +209,80 @@ include 'dbconnection.php';
 			</div>
   <form method="post">
 <div class="row form-group">
+<div class="w3-margin w3-right">
+<h3><p id="p1"></p></h3><small>$</small>
+</div>
 <div class="col-md-12">
-<label for="CPU">Choose your CPU</label>
-<select name="#" id="cpu" class="form-control">
-<option value="" disabled selected>CPU</option>
-<option value="9700K">Intel Core i7-9700K</option>		
-<option value="9900K">Intel Core i9-9900K</option>
-<option value="3700X">AMD Ryzen 7 3700X</option>
-<option value="3800X">AMD Ryzen 7 3800X</option>
-<option value="3900X">AMD Ryzen 9 3900X</option>
+<label>Choose your CPU</label>
+<select name="cpu" class="form-control" onchange="showPrice(this.value)">
+<option value="#" disabled selected>CPU</option>
+<option value="8">Intel Core i7-9700K</option>		
+<option value="7">Intel Core i9-9900K</option>
+<option value="11">AMD Ryzen 7 3700X</option>
+<option value="10">AMD Ryzen 7 3800X</option>
+
 
 </select>
 </div>
 </div>
 
 <div class="row form-group">
+<div class="w3-margin w3-right">
+<h3><p id="p2"></p></h3><small>$</small>
+</div>
 <div class="col-md-12">
-<label for="RAM">Choose your RAM amount</label>
-<select name="#" id="ram" class="form-control">
-<option value="" disabled selected>RAM</option>
-<option value="64GB">64GB DDR4</option>
-<option value="32GB">32GB DDR4</option>		
-<option value="16GB">16GB DDR4</option>		
+<label>Choose your RAM amount</label>
+<select name="ram" class="form-control" onchange="showPrice(this.value)">
+<option value="#" disabled selected>RAM</option>
+<option value="18">64GB DDR4</option>
+<option value="17">32GB DDR4</option>		
+<option value="16">16GB DDR4</option>		
 
 </select>
 </div>
 </div>
 
 <div class="row form-group">
+<div class="w3-margin w3-right">
+<h3><p id="p3"></p></h3><small>$</small>
+</div>
 <div class="col-md-12">
-<label for="CPU">Choose your GPU</label>
-<select name="#" id="gpu" class="form-control">
-<option value="" disabled selected>GPU</option>
-<option value=">NoGPU">No GPU</option>
-<option value="RTX2080">NVIDIA GeForce RTX 2080 SUPER 8GB GDDR6</option>
-<option value="RTX2080TI">NVIDIA GeForce RTX 2080TI 11G GDDR6</option>
-<option value="RTX6000">NVIDIA Quadro RTX 6000</option>
-<option value="RTX24">NVIDIA Titan RTX 24 GB GDDR6</option>
+<label>Choose your GPU</label>
+<select name="gpu" class="form-control" onchange="showPrice(this.value)">
+<option value="#" disabled selected>GPU</option>
+<option value="31">NVIDIA GeForce RTX 2080 SUPER 8GB GDDR6</option>
+<option value="30">NVIDIA GeForce RTX 2080TI 11G GDDR6</option>
+<option value="32">NVIDIA Quadro RTX 6000</option>
+<option value="34">NVIDIA Titan RTX 24 GB GDDR6</option>
 </select>
 </div>
 </div>
 
 <div class="row form-group">
+<div class="w3-margin w3-right">
+<h3><p id="p4"></p></h3><small>$</small>
+</div>
 <div class="col-md-12">
 <label for="CPU">Choose your Storage options</label>
-<select name="#" id="storage" class="form-control">
-<option value="" disabled selected>Storage</option>
-<option value="2TB">Samsung 970 EVO Plus SSD 2TB - M.2 NVMe</option>
-<option value="SSD970EVO1TB">Samsung 970 PRO SSD 1TB - M.2 NVMe</option>
-<option value="2TB_SSD">Intel 660p M.2 2280 2TB NVMe</option>
+<select name="storage" class="form-control" onchange="showPrice(this.value)">
+<option value="#" disabled selected>Storage</option>
+<option value="41">Samsung 970 EVO Plus SSD 2TB - M.2 NVMe</option>
+<option value="40">Samsung 970 PRO SSD 512TB - M.2 NVMe</option>
+<option value="42">Samsung 970 EVO Plus SSD 1TB - M.2 NVMe</option>
 </select>
 </div>
 </div>
-
+<div class="w3-margin w3-center">
+<h1>Total Price : <p id="p5"></p></h1><small>$</small>
+</div>
   <div class="form-group">
 	<div>
-	<input type="submit" class="btn btn-primary btn-block" name="purchase" value="Purchase" ></input>
+	<input type="submit" class="btn btn-primary btn-block" name="btn" value="Purchase" onclick="sendPrice(p5.value)"></input>
 	</div>
 	</div>
   </div>
 		
-			</form>
+	</form>
     </div>
  
 </div>
