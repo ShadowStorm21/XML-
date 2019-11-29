@@ -1,134 +1,141 @@
-<?php 
-
-session_start();
+<?php session_start();
 include 'dbconnection.php';
 
+if(isset($_SESSION['uid']))
+{
+
+if(isset($_POST['cpu']) && isset($_POST['ram']) && isset($_POST['gpu']) && isset($_POST['storage']) && isset($_POST['btn']))
+	{	
+
+		header("Location:payment.php");
+			
+		 
+	}
+	
+}
+else
+{
+	header("Location:login.php");
+	
+}
+
+
 ?>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"> </script>
 <script>
 
-function getTotal()
-{
-n1 = $("#p1").text();
-n2 = $("#p2").text();
-n3 = $("#p3").text();
-n4 = $("#p4").text();
+var prices = [60,87,61,87,22,40,0.000001,99,110,140,150,45,50,94];
 
-
-$("#p5").text(Number(n1)+Number(n2)+Number(n3)+Number(n4));	
- 
-}
-	
 $(document).ready(function(){
 	
-	
-	$("select").mouseenter(getTotal);
-	
-	
-});
-	
 
+	$("select").mouseleave(function(){
+		
+		 n1 = $("#p1").text();
+		n2 = $("#p2").text();
+		 n3 = $("#p3").text();
+		n4 = $("#p4").text();
+		Number($("#p5").html(Number(n1)+Number(n2)+Number(n3)+Number(n4)));
 
-function showPrice(str) {
-  
-        if (window.XMLHttpRequest) {
+	});
+	
+		$(":input").click(function(){
+			$.ajax({
+				type:"post",
+				url: "order_info.php",
+				data : {"order_id":$(this).attr("value")},
+				success : function(data){
+					
+				},
+				error : function(){
+					alert("Error in sending order information");
+				}
+			});
+		});
+
+});	
+function sendPrice(total)
+{
+		
+ if (window.XMLHttpRequest) {
             // code for IE7+, Firefox, Chrome, Opera, Safari
             xmlhttp = new XMLHttpRequest();
         } else {
             // code for IE6, IE5
             xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
         }
-        xmlhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                document.getElementById("p1").innerHTML = this.responseText;
-
-            }
-        };
 		
-        xmlhttp.open("GET","test.php?q="+str,false);
+		n1 = $("#p1").text();
+		n2 = $("#p2").text();
+		n3 = $("#p3").text();
+		n4 = $("#p4").text();
+		total = Number(n1)+Number(n2)+Number(n3)+Number(n4);
 		
+		if($("#p1").text() == 0.0 || $("#p2").text() == 0.0 || $("#p3").text() == 0.0 || $("#p4").text() == 0.0)
+		{
+			alert("All Components are mandontory");
+		}
+		if(total == 0.0)
+		{
+			alert("All Components are mandontory");
+		}
+		else
+		{
+		xmlhttp.open("GET","plans_info.php?tot="+total+"&id="+500,false);
         xmlhttp.send();
-		
-		
-    
-}
+		}
+        
 
-function showPrice1(str) {
+}
+	
+
+function showPrice(id) {
   
-     if (window.XMLHttpRequest) {
-            // code for IE7+, Firefox, Chrome, Opera, Safari
-            xmlhttp = new XMLHttpRequest();
-        } else {
-            // code for IE6, IE5
-            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-        }
-        xmlhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                document.getElementById("p2").innerHTML = this.responseText;
+  if(id == 2)
+	  $("#p1").text(prices[0]);
+		
+  if(id == 3)
+	  $("#p1").text(prices[1]);
+		
+  if(id == 4)
+	  $("#p1").text(prices[2]);
+		
+  if(id == 5)
+	  $("#p1").text(prices[3]);
 
-            }
-        };
+    if(id == 14)
+	  $("#p2").text(prices[4]);
 		
-        xmlhttp.open("GET","test.php?q="+str,false);
+  if(id == 15)
+	  $("#p2").text(prices[5]);
 		
-        xmlhttp.send();
-		
-		
-    
-}
-function showPrice2(str) {
+  if(id == 19)
+	  $("#p3").text(prices[6]);
+ 
+  if(id == 20)
+	  $("#p3").text(prices[7]);
+ 
+    if(id == 21)
+	  $("#p3").text(prices[8]);
   
-        if (window.XMLHttpRequest) {
-            // code for IE7+, Firefox, Chrome, Opera, Safari
-            xmlhttp = new XMLHttpRequest();
-        } else {
-            // code for IE6, IE5
-            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-        }
-        xmlhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                document.getElementById("p3").innerHTML = this.responseText;
-				
-
-				
-
-            }
-        };
-		
-        xmlhttp.open("GET","test.php?q="+str,false);
-		
-        xmlhttp.send();
-		
-		
-    
-}
-function showPrice3(str) {
+  if(id == 22)
+	  $("#p3").text(prices[9]);
   
-        if (window.XMLHttpRequest) {
-            // code for IE7+, Firefox, Chrome, Opera, Safari
-            xmlhttp = new XMLHttpRequest();
-        } else {
-            // code for IE6, IE5
-            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-        }
-        xmlhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                document.getElementById("p4").innerHTML = this.responseText;
-				
+  if(id == 23)
+	  $("#p3").text(prices[10]);
+  
+  if(id == 37)
+	  $("#p4").text(prices[11]);
+  
+    if(id == 39)
+	  $("#p4").text(prices[12]);
+  
+    if(id == 40)
+	  $("#p4").text(prices[13]);
 
-				
 
-            }
-        };
-		
-        xmlhttp.open("GET","test.php?q="+str,false);
-		
-        xmlhttp.send();
-		
-		
-    
 }
-
 
 </script>
 <html lang="en">
@@ -178,7 +185,6 @@ function showPrice3(str) {
 	</a>
 	<?php if(isset($_SESSION['uname']) && isset($_SESSION['uid'])){echo "<div class='w3-dropdown-hover w3-right w3-bar-item w3-padding-large w3-hover-white'><i class='material-icons' style='font-size:30px'>person</i>
   <div class='w3-dropdown-content w3-animate-zoom w3-border' style='right:0'>
-    <a href='orders.php' class='w3-bar-item w3-button'>Orders</a>
     <a href='changePassword.php' class='w3-bar-item w3-button'>Change Password</a>
     <a href='profile.php' class='w3-bar-item w3-button'>Update Profile</a>
     <a href='logout.php' class='w3-bar-item w3-button'>Logout</a>
@@ -218,7 +224,7 @@ function showPrice3(str) {
 <h3><p id="p1"></p></h3><small>$</small>
 </div>
 <div class="col-md-12">
-<label for="CPU">Choose your CPU</label>
+<label>Choose your CPU</label>
 <select name="cpu" class="form-control" onchange="showPrice(this.value)">
 <option value="" disabled selected>CPU</option>
 <option  value="2">Intel Pentium Gold G5400</option>		
@@ -238,8 +244,8 @@ function showPrice3(str) {
 <h3><p id="p2"></p></h3><small>$</small>
 </div>
 <div class="col-md-12">
-<label for="RAM">Choose your RAM amount</label>
-<select name="ram" class="form-control" onchange="showPrice1(this.value)">
+<label>Choose your RAM amount</label>
+<select name="ram" class="form-control" onchange="showPrice(this.value)">
 <option value="" disabled selected>RAM</option>
 <option value="14">4GB DDR4</option>		
 <option value="15">8GB DDR4</option>
@@ -253,8 +259,8 @@ function showPrice3(str) {
 <h3><p id="p3"></p></h3><small>$</small>
 </div>
 <div class="col-md-12">
-<label for="CPU">Choose your GPU</label>
-<select name="gpu" class="form-control" onchange="showPrice2(this.value)">
+<label>Choose your GPU</label>
+<select name="gpu" class="form-control" onchange="showPrice(this.value)">
 <option value="" disabled selected>GPU</option>
 <option value="19">No GPU</option>
 <option value="20">Radeon RX 550 4GB GDDR5</option>
@@ -270,8 +276,8 @@ function showPrice3(str) {
 <h3><p id="p4"></p></h3><small>$</small>
 </div>
 <div class="col-md-12">
-<label for="CPU">Choose your Storage options</label>
-<select name="storage" class="form-control" onchange="showPrice3(this.value)">
+<label>Choose your Storage options</label>
+<select name="storage" class="form-control" onchange="showPrice(this.value)">
 <option value="" disabled selected>Storage</option>
 <option value="37">WD 1TB Internal Hard Drive HDD</option>
 <option value="39">Samsung SSD 860 EVO 250GB SATA III Internal SSD</option>
@@ -287,19 +293,14 @@ function showPrice3(str) {
 </div>
 	<div>
 	
-	<input class="btn btn-primary" name="btn" type="submit" value="Purchase"/>
+	<input class="btn btn-primary" name="btn" type="submit" value="Purchase" onclick="sendPrice(p5.value)"/>
 	</div>
 	</div>
   </div>
-		
-			</form>
+</form>
     </div>
  
 </div>
-
-
-
- 
 
 <div>
 
@@ -495,11 +496,6 @@ Supports up-to 3 monitors with HDMI 2.0B, DisplayPort 1.4, and DVI-D ports.</p><
 </div>
 
 
-
-
-
-
-
 <!-- Footer -->
 <footer class="w3-container w3-padding-64 w3-center">  
   <div class="w3-xlarge w3-padding-32">
@@ -580,26 +576,3 @@ function openInfoStr(evt, partName) {
 
 </html>
 
-<?php 
-
-if(!empty($_POST['cpu']) && !empty($_POST['ram']) && !empty($_POST['gpu']) && !empty($_POST['storage']) && isset($_POST['btn']))
-	{
-		
-   
-
-		 
-
- echo "<script>window.location = 'payment.php'</script>";
-
-		
-		
-	}
-	
-	
-		
-
-
-
-
-
-?>

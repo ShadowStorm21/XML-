@@ -8,4 +8,6 @@ $stmt-> execute(array(
 ':pr' => intval($_GET['tot']),
 ':ui' => $_SESSION['uid']
 ));
+
+unset($_SESSION['total']);
 ?>

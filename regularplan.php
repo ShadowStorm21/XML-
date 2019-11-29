@@ -1,7 +1,139 @@
-<?php
-
+<?php session_start();
 include 'dbconnection.php';
+
+if(isset($_SESSION['uid']))
+{
+
+if(isset($_POST['cpu']) && isset($_POST['ram']) && isset($_POST['gpu']) && isset($_POST['storage']) && isset($_POST['btn']))
+	{	
+
+		header("Location:payment.php");
+			
+		 
+	}
+	
+}
+else
+{
+	header("Location:login.php");
+	
+}
+
+
 ?>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"> </script>
+<script>
+
+var prices = [189,240,199,240,130,70,40,189,260,329,410,429,499,45,90,150,130,190];
+
+$(document).ready(function(){
+	
+
+	$("select").mouseleave(function(){
+		
+		 n1 = $("#p1").text();
+		n2 = $("#p2").text();
+		 n3 = $("#p3").text();
+		n4 = $("#p4").text();
+		Number($("#p5").html(Number(n1)+Number(n2)+Number(n3)+Number(n4)));
+
+	});
+
+});	
+function sendPrice(total)
+{
+		
+ if (window.XMLHttpRequest) {
+            // code for IE7+, Firefox, Chrome, Opera, Safari
+            xmlhttp = new XMLHttpRequest();
+        } else {
+            // code for IE6, IE5
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+		
+		n1 = $("#p1").text();
+		n2 = $("#p2").text();
+		n3 = $("#p3").text();
+		n4 = $("#p4").text();
+		total = Number(n1)+Number(n2)+Number(n3)+Number(n4);
+		
+		if($("#p1").text() == 0.0 || $("#p2").text() == 0.0 || $("#p3").text() == 0.0 || $("#p4").text() == 0.0)
+		{
+			alert("All Components are mandontory");
+		}
+		if(total == 0.0)
+		{
+			alert("All Components are mandontory");
+		}
+		else
+		{
+		xmlhttp.open("GET","plans_info.php?tot="+total+"&id="+1000,false);
+        xmlhttp.send();
+		}
+        
+}
+	
+
+function showPrice(id) {
+  
+  if(id == 6)
+	  $("#p1").text(prices[0]);
+		
+  if(id == 7)
+	  $("#p1").text(prices[1]);
+		
+  if(id == 12)
+	  $("#p1").text(prices[2]);
+		
+  if(id == 13)
+	  $("#p1").text(prices[3]);
+
+    if(id == 17)
+	  $("#p2").text(prices[4]);
+		
+  if(id == 16)
+	  $("#p2").text(prices[5]);
+		
+  if(id == 15)
+	  $("#p2").text(prices[6]);
+ 
+    if(id == 24)
+	  $("#p3").text(prices[7]);
+  
+  if(id == 25)
+	  $("#p3").text(prices[8]);
+  
+  if(id == 26)
+	  $("#p3").text(prices[9]);
+  
+    if(id == 27)
+	  $("#p3").text(prices[10]);
+  
+    if(id == 28)
+	  $("#p3").text(prices[11]);
+  
+    if(id == 29)
+	  $("#p3").text(prices[12]);
+  
+  if(id == 34)
+	  $("#p3").text(prices[13]);
+  
+    if(id == 38)
+	  $("#p3").text(prices[14]);
+  
+    if(id == 39)
+	  $("#p4").text(prices[15]);
+  
+      if(id == 43)
+	  $("#p4").text(prices[16]);
+  
+      if(id == 44)
+	  $("#p4").text(prices[17]);
+
+}
+
+</script>
 
 <html lang="en">
 <title>PC Builder</title>
@@ -33,7 +165,7 @@ include 'dbconnection.php';
     <a href="index.php" class="w3-bar-item w3-button w3-padding-large w3-hover-white">Home</a>
     <a href="pricing.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-white">Pricing</a>
     <a href="components.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Components</a>
-<?php session_start();  if(!isset($_SESSION['uid'])) {echo "<a href='signup.php' class='w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white'>Sign up</a>
+<?php if(!isset($_SESSION['uid'])) {echo "<a href='signup.php' class='w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white'>Sign up</a>
 	<a href='login.php' class='w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white'>Login</a>";}?>
 	<a href="contactus.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Contact us</a>
 		<a href="search.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"><i class="fa fa-search" style="font-size:30px"></i></a>
@@ -50,7 +182,6 @@ include 'dbconnection.php';
 	</a>
 	<?php if(isset($_SESSION['uname']) && isset($_SESSION['uid'])){echo "<div class='w3-dropdown-hover w3-right w3-bar-item w3-padding-large w3-hover-white'><i class='material-icons' style='font-size:30px'>person</i>
   <div class='w3-dropdown-content w3-animate-zoom w3-border' style='right:0'>
-    <a href='orders.php' class='w3-bar-item w3-button'>Orders</a>
     <a href='changePassword.php' class='w3-bar-item w3-button'>Change Password</a>
     <a href='profile.php' class='w3-bar-item w3-button'>Update Profile</a>
     <a href='logout.php' class='w3-bar-item w3-button'>Logout</a>
@@ -86,59 +217,77 @@ include 'dbconnection.php';
 			</div>
   <form method="post">
 <div class="row form-group">
+<div class="w3-margin w3-right">
+<h3><p id="p1"></p></h3><small>$</small>
+</div>
 <div class="col-md-12">
-<label for="CPU">Choose your CPU</label>
-<select name="#" id="cpu" class="form-control">
+<label>Choose your CPU</label>
+<select name="cpu" class="form-control" onchange="showPrice(this.value)">
 <option value="" disabled selected>CPU</option>
-<option value="9400">Intel Core i5-9400</option>		
-<option value="9600K">Intel Core i5-9600K</option>
-<option value="3600">AMD Ryzen 5 3600</option>
-<option value="3600X">AMD Ryzen 5 3600X</option>
+<option value="6">Intel Core i5-9400</option>		
+<option value="7">Intel Core i5-9600K</option>
+<option value="12">AMD Ryzen 5 3600</option>
+<option value="13">AMD Ryzen 5 3600X</option>
 </select>
 </div>
 </div>
 
 <div class="row form-group">
+<div class="w3-margin w3-right">
+<h3><p id="p2"></p></h3><small>$</small>
+</div>
 <div class="col-md-12">
-<label for="RAM">Choose your RAM amount</label>
-<select name="#" id="ram" class="form-control">
+<label>Choose your RAM amount</label>
+<select name="ram" class="form-control" onchange="showPrice(this.value)">
 <option value="" disabled selected>RAM</option>
-<option value="16GB">16GB DDR4</option>		
-<option value="8GB">8GB DDR4</option>
+<option value="17">32GB DDR4</option>	
+<option value="16">16GB DDR4</option>		
+<option value="15">8GB DDR4</option>
 
 </select>
 </div>
 </div>
 
 <div class="row form-group">
+<div class="w3-margin w3-right">
+<h3><p id="p3"></p></h3><small>$</small>
+</div>
 <div class="col-md-12">
-<label for="CPU">Choose your GPU</label>
-<select name="#" id="gpu" class="form-control">
+<label>Choose your GPU</label>
+<select name="gpu" class="form-control" onchange="showPrice(this.value)">
 <option value="" disabled selected>GPU</option>
-<option value=">NoGPU">No GPU</option>
-<option value="RX590">AMD Radeon RX 590 8GB GDDR5</option>
-<option value="GTX1660">NVIDIA GeForce GTX 1660 Ti 6GB GDDR6</option>
-<option value="RX570">AMD Radeon RX 5700 8GB GDRR6</option>
-<option value="RTX2060">NVIDIA GeForce RTX 2060 SUPER 8GB GDDR6</option>
+<option value="24">AMD Radeon RX 590 8GB GDDR5</option>
+<option value="25">NVIDIA GeForce GTX 1660 Ti 6GB GDDR6</option>
+<option value="26">AMD Radeon RX 5700 8GB GDRR6</option>
+<option value="27">NVIDIA GeForce RTX 2060 SUPER 8GB GDDR6</option>
+<option value="28">AMD Radeon RX 5700XT 8GB GDRR6</option>
+<option value="29">NVIDIA GeForce RTX 2070 SUPER 8GB GDDR6</option>
 </select>
 </div>
 </div>
 
 <div class="row form-group">
+<div class="w3-margin w3-right">
+<h3><p id="p4"></p></h3><small>$</small>
+</div>
 <div class="col-md-12">
 <label for="CPU">Choose your Storage options</label>
-<select name="#" id="storage" class="form-control">
+<select name="storage" class="form-control" onchange="showPrice(this.value)">
 <option value="" disabled selected>Storage</option>
-<option value="1TB_HDD">WD 1TB Internal Hard Drive HDD</option>
-<option value="SSD970EVO">Samsung 970 EVO SSD 500GB - M.2 NVMe</option>
-<option value="500GB_SSD">1TB HDD + Samsung 970 EVO SSD 500GB</option>
+<option value="34">WD 1TB Internal Hard Drive HDD</option>
+<option value="38">Samsung 970 EVO SSD 500GB - M.2 NVMe</option>
+<option value="39">970 EVO SSD 1TB - M.2 NVMe</option>
+<option value="43">1TB HDD + Samsung 970 EVO SSD 500GB</option>
+<option value="44">1TB HDD + Samsung 970 EVO SSD 1TB</option>
 </select>
 </div>
 </div>
-
+<div class="w3-margin w3-center">
+<h1>Total Price : <p id="p5"></p></h1><small>$</small>
+</div>
   <div class="form-group">
 	<div>
-	<input type="submit" class="btn btn-primary btn-block" name="purchase" value="Purchase" ></input>
+	<input type="submit" class="btn btn-primary btn-block" name="btn" value="Purchase" onclick="sendPrice(p5.value)"></input>
 	</div>
 	</div>
   </div>

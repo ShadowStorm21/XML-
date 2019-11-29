@@ -25,7 +25,7 @@ else
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"> </script>
 <script>
 
-var prices = {339,480,325,375,480,300,130,70,740,1100,3500,2499,399,150,199};
+var prices = [339,480,325,375,480,300,130,70,740,1100,3500,2499,399,150,199];
 
 $(document).ready(function(){
 	
@@ -78,7 +78,7 @@ function sendPrice(total)
 function showPrice(id) {
   
   if(id == 8)
-	  $("#p1").text(prices[5]);
+	  $("#p1").text(prices[0]);
 		
   if(id == 7)
 	  $("#p1").text(prices[1]);
@@ -89,8 +89,8 @@ function showPrice(id) {
   if(id == 10)
 	  $("#p1").text(prices[3]);
   
-   if(id == 8)
-	  $("#p1").text(prices[5]);
+    if(id == 9)
+	  $("#p1").text(prices[4]);
 
     if(id == 18)
 	  $("#p2").text(prices[5]);
@@ -101,17 +101,16 @@ function showPrice(id) {
    if(id == 16)
 	  $("#p2").text(prices[7]);
 		
- 
   if(id == 31)
 	  $("#p3").text(prices[8]);
  
-    if(id == 30)
+   if(id == 30)
 	  $("#p3").text(prices[9]);
   
   if(id == 32)
 	  $("#p3").text(prices[10]);
   
-  if(id == 33)
+  if(id == 34)
 	  $("#p3").text(prices[11]);
   
     if(id == 41)
@@ -220,7 +219,7 @@ function showPrice(id) {
 <option value="7">Intel Core i9-9900K</option>
 <option value="11">AMD Ryzen 7 3700X</option>
 <option value="10">AMD Ryzen 7 3800X</option>
-
+<option value="9">AMD Ryzen 9 3900X</option>
 
 </select>
 </div>
@@ -263,7 +262,7 @@ function showPrice(id) {
 <h3><p id="p4"></p></h3><small>$</small>
 </div>
 <div class="col-md-12">
-<label for="CPU">Choose your Storage options</label>
+<label>Choose your Storage options</label>
 <select name="storage" class="form-control" onchange="showPrice(this.value)">
 <option value="#" disabled selected>Storage</option>
 <option value="41">Samsung 970 EVO Plus SSD 2TB - M.2 NVMe</option>

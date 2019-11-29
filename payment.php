@@ -1,7 +1,38 @@
+<?php
+session_start();
+include 'dbconnection.php';
+
+if(isset($_SESSION['uid']) && isset($_SESSION['uname']))
+{
+	
+		$sql = "SELECT * FROM orders WHERE uid = :ui ORDER BY ordate DESC";
+			$stmt = $conn-> prepare($sql);
+			$stmt-> execute(array(
+			':ui' => $_SESSION['uid']));
+			$row = $stmt->fetch(PDO::FETCH_ASSOC);
+			$_SESSION['order_id'] = $row['oid'];
+			
+			
+	$sql = "SELECT total_price FROM orders WHERE oid = :oi ORDER BY ordate DESC";
+			$stmt = $conn-> prepare($sql);
+			$stmt-> execute(array(
+			':oi' => $_SESSION['order_id']));
+			$row = $stmt->fetch(PDO::FETCH_ASSOC);
+			$_SESSION['total'] = $row['total_price'];
+			
+	
+}
+
+else
+	
+	{
+		unset($_SESSION['total']);
+		header("Location:login.php");
+	}
+
+?>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"> </script>
 <script >
-
-
 	$(document).ready(function(){
 		$("#order").click( function(){
 			// send data to the database
@@ -21,13 +52,9 @@
 			});
 		});	
 	});
-
 </script>
 
 
-<?php session_start();
-include 'dbconnection.php';
-?>
 
 <html lang="en">
 <title>Payment </title>
@@ -59,7 +86,7 @@ include 'dbconnection.php';
     <a href="index.php" class="w3-bar-item w3-button w3-padding-large ">Home</a>
     <a href="pricing.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Pricing</a>
     <a href="components.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Components</a>
-	<?php  if(!isset($_SESSION['uid'])) {echo "<a href='signup.php' class='w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white'>Sign up</a>
+	<?php if(!isset($_SESSION['uid'])) {echo "<a href='signup.php' class='w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white'>Sign up</a>
 	<a href='login.php' class='w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white'>Login</a>";}?>
 	<a href="contactus.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Contact us</a>
 	<a href="search.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"><i class="fa fa-search" style="font-size:30px"></i></a>
@@ -80,7 +107,6 @@ include 'dbconnection.php';
     <a href='profile.php' class='w3-bar-item w3-button'>Update Profile</a>
     <a href='logout.php' class='w3-bar-item w3-button'>Logout</a>
   </div>
-
   </div>
 </div>";} ?><!-- Change it later-->
 	
@@ -100,7 +126,6 @@ include 'dbconnection.php';
     <a href='profile.php' class='w3-bar-item w3-button'>Update Profile</a>
     <a href='logout.php' class='w3-bar-item w3-button'>Logout</a>
   </div>
-
   </div>
 </div>";} ?>
   </div>
@@ -138,6 +163,7 @@ include 'dbconnection.php';
 		    echo"	    </div>";
 		    echo"    </div>"; 
 		for($i = 0; $i < 20; $i++) echo "<br>";
+		
         
     ?>
 
@@ -179,21 +205,6 @@ include 'dbconnection.php';
  </div>
 </footer>
 
-<div class="gototop js-top">
-		<a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
-	</div>
-	<!-- jQuery -->
-	<script src="js/jquery.min.js"></script>
-	<!-- jQuery Easing -->
-	<script src="js/jquery.easing.1.3.js"></script>
-	
-	<!-- Waypoints -->
-	<script src="js/jquery.waypoints.min.js"></script>
-	<!-- Carousel -->
-	<script src="js/owl.carousel.min.js"></script>
 
-<script src="js/main.js"></script>
-	
 </body>
 </html>
-
