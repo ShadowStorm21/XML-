@@ -4,23 +4,12 @@ include 'dbconnection.php';
 
 if(isset($_SESSION['uid']) && isset($_SESSION['uname']))
 {
-	
 		$sql = "SELECT * FROM orders WHERE uid = :ui ORDER BY ordate DESC";
 			$stmt = $conn-> prepare($sql);
 			$stmt-> execute(array(
 			':ui' => $_SESSION['uid']));
 			$row = $stmt->fetch(PDO::FETCH_ASSOC);
-			$_SESSION['order_id'] = $row['oid'];
-			
-			
-	$sql = "SELECT total_price FROM orders WHERE oid = :oi ORDER BY ordate DESC";
-			$stmt = $conn-> prepare($sql);
-			$stmt-> execute(array(
-			':oi' => $_SESSION['order_id']));
-			$row = $stmt->fetch(PDO::FETCH_ASSOC);
-			$_SESSION['total'] = $row['total_price'];
-			
-	
+			$_SESSION['total_plans'] = $row['total_price'];
 }
 
 else
@@ -158,7 +147,15 @@ else
 		    echo" <div class='container'>";
 		    echo"<div class='w3-margin-top'>";
 		    echo"	    <div class='text-center heading'>";
+			if(isset($_SESSION['total']))
+			{
+				
 		    echo"		    <h2><center> Total payment : $$_SESSION[total]</center></h2>";
+			}
+			else
+			{
+				 echo"		    <h2><center> Total payment : $$_SESSION[total_plans]</center></h2>";
+			}
 		    echo"		    <p><h4><center><button id='order' class='w3-button w3-red w3-circle'> ORDER NOW </button></center></h4><p>";
 		    echo"	    </div>";
 		    echo"    </div>"; 

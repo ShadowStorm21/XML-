@@ -26,7 +26,7 @@ else
 <script>
 
 var prices = [60,87,61,87,22,40,0.000001,99,110,140,150,45,50,94];
-
+var pids = [];
 $(document).ready(function(){
 	
 
@@ -37,7 +37,7 @@ $(document).ready(function(){
 		 n3 = $("#p3").text();
 		n4 = $("#p4").text();
 		Number($("#p5").html(Number(n1)+Number(n2)+Number(n3)+Number(n4)));
-
+		
 	});
 	
 		
@@ -70,57 +70,134 @@ function sendPrice(total)
 		}
 		else
 		{
-		xmlhttp.open("GET","plans_info.php?tot="+total+"&id="+500,false);
+			
+		xmlhttp.open("GET","plans_info.php?tot="+total+"&cpu="+pids[0]+"&ram="+pids[1]+"&gpu="+pids[2]+"&sto="+pids[3],false);
         xmlhttp.send();
+		
 		}
         
-
 }
 	
 
 function showPrice(id) {
   
   if(id == 2)
+  {
 	  $("#p1").text(prices[0]);
+	var x = document.getElementById("G5400").selected;
+	if(x == true)
+		pids.push("2"); 
+  }
 		
   if(id == 3)
-	  $("#p1").text(prices[1]);
+  {
+	  $("#p1").text(prices[1]);	  
+	var x = document.getElementById("3200G").selected;
+	if(x == true)
+		pids.push("3"); 
+	}
+		
 		
   if(id == 4)
+	{
 	  $("#p1").text(prices[2]);
+	var x = document.getElementById("220GE").selected;
+	if(x == true)
+		pids.push("4"); 
+	  }
+		
 		
   if(id == 5)
+  {
 	  $("#p1").text(prices[3]);
+	  var x = document.getElementById("9100F").selected;
+	if(x == true)
+		pids.push("5"); 
+  }
+		
 
     if(id == 14)
+	{		
+		
 	  $("#p2").text(prices[4]);
+	  var x = document.getElementById("4GB").selected;
+	if(x == true)
+		pids.push("14"); 
+	}
+	  
 		
   if(id == 15)
+  {
 	  $("#p2").text(prices[5]);
+	   var x = document.getElementById("8GB").selected;
+	if(x == true)
+		pids.push("15"); 
+  }
+	
 		
   if(id == 19)
+  {
 	  $("#p3").text(prices[6]);
+	   var x = document.getElementById("NOGPU").selected;
+	if(x == true)
+		pids.push("19"); 
+  }
  
   if(id == 20)
+  {
 	  $("#p3").text(prices[7]);
+	   var x = document.getElementById("RX550").selected;
+	if(x == true)
+		pids.push("20"); 
+  }
  
     if(id == 21)
+	{
 	  $("#p3").text(prices[8]);
+	   var x = document.getElementById("RX560").selected;
+	if(x == true)
+		pids.push("21"); 
+	}
   
   if(id == 22)
+  {
 	  $("#p3").text(prices[9]);
+	   var x = document.getElementById("RX570").selected;
+	if(x == true)
+		pids.push("22"); 
+	  }
   
   if(id == 23)
+  {
 	  $("#p3").text(prices[10]);
+	   var x = document.getElementById("GTX1650").selected;
+	if(x == true)
+		pids.push("23"); 
+  }
   
   if(id == 37)
+  {
 	  $("#p4").text(prices[11]);
+	   var x = document.getElementById("1TB").selected;
+	if(x == true)
+		pids.push("37"); 
+  }
   
     if(id == 39)
+	{
 	  $("#p4").text(prices[12]);
+	   var x = document.getElementById("250GB").selected;
+	if(x == true)
+		pids.push("39"); 
+	}
   
     if(id == 40)
+	{
 	  $("#p4").text(prices[13]);
+	   var x = document.getElementById("1TB250GB").selected;
+	if(x == true)
+		pids.push("40"); 
+	}
 
 
 }
@@ -215,10 +292,10 @@ function showPrice(id) {
 <label>Choose your CPU</label>
 <select name="cpu" class="form-control" onchange="showPrice(this.value)">
 <option value="" disabled selected>CPU</option>
-<option  value="2">Intel Pentium Gold G5400</option>		
-<option value="3">AMD Ryzen 3 3200G  </option>
-<option value="4">AMD Athlon 220GE  </option>
-<option value="5">Intel Core i3-9100F</option>
+<option id="G5400" value="2">Intel Pentium Gold G5400</option>		
+<option id="3200G" value="3">AMD Ryzen 3 3200G  </option>
+<option id="220GE" value="4">AMD Athlon 220GE  </option>
+<option id="9100F" value="5">Intel Core i3-9100F</option>
 
 </select>
 
@@ -235,8 +312,8 @@ function showPrice(id) {
 <label>Choose your RAM amount</label>
 <select name="ram" class="form-control" onchange="showPrice(this.value)">
 <option value="" disabled selected>RAM</option>
-<option value="14">4GB DDR4</option>		
-<option value="15">8GB DDR4</option>
+<option id="4GB" value="14">4GB DDR4</option>		
+<option id="8GB" value="15">8GB DDR4</option>
 
 </select>
 </div>
@@ -250,11 +327,11 @@ function showPrice(id) {
 <label>Choose your GPU</label>
 <select name="gpu" class="form-control" onchange="showPrice(this.value)">
 <option value="" disabled selected>GPU</option>
-<option value="19">No GPU</option>
-<option value="20">Radeon RX 550 4GB GDDR5</option>
-<option value="21">Radeon RX 560 4GB GDDR5</option>
-<option value="22">Radeon RX 570 4GB GDDR5</option>
-<option value="23">GeForce GTX 1650 4GB</option>
+<option id="NOGPU" value="19">No GPU</option>
+<option id="RX550" value="20">Radeon RX 550 4GB GDDR5</option>
+<option id="RX560" value="21">Radeon RX 560 4GB GDDR5</option>
+<option id="RX570" value="22">Radeon RX 570 4GB GDDR5</option>
+<option id="GTX1650" value="23">GeForce GTX 1650 4GB</option>
 </select>
 </div>
 </div>
@@ -267,9 +344,9 @@ function showPrice(id) {
 <label>Choose your Storage options</label>
 <select name="storage" class="form-control" onchange="showPrice(this.value)">
 <option value="" disabled selected>Storage</option>
-<option value="37">WD 1TB Internal Hard Drive HDD</option>
-<option value="39">Samsung SSD 860 EVO 250GB SATA III Internal SSD</option>
-<option value="40">1TB HDD + Samsung SSD 860 EVO 250GB</option>
+<option id="1TB" value="37">WD 1TB Internal Hard Drive HDD</option>
+<option id="250GB" value="39">Samsung SSD 860 EVO 250GB SATA III Internal SSD</option>
+<option id="1TB250GB" value="40">1TB HDD + Samsung SSD 860 EVO 250GB</option>
 </select>
 </div>
 </div>

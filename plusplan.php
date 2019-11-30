@@ -6,17 +6,12 @@ if(isset($_SESSION['uid']))
 
 if(isset($_POST['cpu']) && isset($_POST['ram']) && isset($_POST['gpu']) && isset($_POST['storage']) && isset($_POST['btn']))
 	{	
-
-		header("Location:payment.php");
-			
-		 
+		header("Location:payment.php");	
 	}
-	
 }
 else
 {
 	header("Location:login.php");
-	
 }
 
 
@@ -26,6 +21,7 @@ else
 <script>
 
 var prices = [339,480,325,375,480,300,130,70,740,1100,3500,2499,399,150,199];
+var pids = [];
 
 $(document).ready(function(){
 	
@@ -68,7 +64,7 @@ function sendPrice(total)
 		}
 		else
 		{
-		xmlhttp.open("GET","plans_info.php?tot="+total+"&id="+1500,false);
+		xmlhttp.open("GET","plans_info.php?tot="+total+"&cpu="+pids[0]+"&ram="+pids[1]+"&gpu="+pids[2]+"&sto="+pids[3],false);
         xmlhttp.send();
 		}
         
@@ -78,49 +74,127 @@ function sendPrice(total)
 function showPrice(id) {
   
   if(id == 8)
+  {
 	  $("#p1").text(prices[0]);
+	  var x = document.getElementById("9700K").selected;
+	if(x == true)
+		pids.push("8");
+  }
 		
   if(id == 7)
+  {
 	  $("#p1").text(prices[1]);
+	  var x = document.getElementById("9900K").selected;
+	if(x == true)
+		pids.push("7");
+  }
 		
   if(id == 11)
+  {
 	  $("#p1").text(prices[2]);
+	  var x = document.getElementById("3700X").selected;
+	if(x == true)
+		pids.push("11");
+  }
 		
   if(id == 10)
+  {
 	  $("#p1").text(prices[3]);
+	  var x = document.getElementById("3800X").selected;
+	if(x == true)
+		pids.push("10");
+  }
   
     if(id == 9)
+	{
 	  $("#p1").text(prices[4]);
+	  var x = document.getElementById("3900X").selected;
+	if(x == true)
+		pids.push("9");
+	}
 
     if(id == 18)
+	{
 	  $("#p2").text(prices[5]);
+	  var x = document.getElementById("64GB").selected;
+	if(x == true)
+		pids.push("18");
+	}
 		
   if(id == 17)
+  {
 	  $("#p2").text(prices[6]);
+	  var x = document.getElementById("32GB").selected;
+	if(x == true)
+		pids.push("17");
+  }
   
    if(id == 16)
+   {
 	  $("#p2").text(prices[7]);
+	  var x = document.getElementById("16GB").selected;
+	if(x == true)
+		pids.push("16");
+   }
 		
   if(id == 31)
+  {
 	  $("#p3").text(prices[8]);
+	  var x = document.getElementById("RTX2080").selected;
+	if(x == true)
+		pids.push("31");
+  }
  
    if(id == 30)
+   {
 	  $("#p3").text(prices[9]);
+	  var x = document.getElementById("RTX2080TI").selected;
+	if(x == true)
+		pids.push("30");
+   }
   
   if(id == 32)
+  {
 	  $("#p3").text(prices[10]);
+	  var x = document.getElementById("RTX6000").selected;
+	if(x == true)
+		pids.push("32");
+	  
+  }
   
   if(id == 34)
+  {
 	  $("#p3").text(prices[11]);
+	  var x = document.getElementById("TITANRTX").selected;
+	if(x == true)
+		pids.push("34");
+  }
   
     if(id == 41)
+	{
 	  $("#p4").text(prices[12]);
+	  var x = document.getElementById("2TB").selected;
+	if(x == true)
+		pids.push("41");
+	}
   
     if(id == 40)
+	{
 	  $("#p4").text(prices[13]);
+	  var x = document.getElementById("512GB").selected;
+	if(x == true)
+		pids.push("40");
+	  
+	}
   
     if(id == 42)
+	{
 	  $("#p4").text(prices[14]);
+	  var x = document.getElementById("1TB").selected;
+	if(x == true)
+		pids.push("42");
+	  
+	}
   
 }
 
@@ -215,11 +289,11 @@ function showPrice(id) {
 <label>Choose your CPU</label>
 <select name="cpu" class="form-control" onchange="showPrice(this.value)">
 <option value="#" disabled selected>CPU</option>
-<option value="8">Intel Core i7-9700K</option>		
-<option value="7">Intel Core i9-9900K</option>
-<option value="11">AMD Ryzen 7 3700X</option>
-<option value="10">AMD Ryzen 7 3800X</option>
-<option value="9">AMD Ryzen 9 3900X</option>
+<option id="9700K" value="8">Intel Core i7-9700K</option>		
+<option id="9900K" value="7">Intel Core i9-9900K</option>
+<option id="3700X" value="11">AMD Ryzen 7 3700X</option>
+<option id="3800X" value="10">AMD Ryzen 7 3800X</option>
+<option id="3900X" value="9">AMD Ryzen 9 3900X</option>
 
 </select>
 </div>
@@ -233,9 +307,9 @@ function showPrice(id) {
 <label>Choose your RAM amount</label>
 <select name="ram" class="form-control" onchange="showPrice(this.value)">
 <option value="#" disabled selected>RAM</option>
-<option value="18">64GB DDR4</option>
-<option value="17">32GB DDR4</option>		
-<option value="16">16GB DDR4</option>		
+<option id="64GB" value="18">64GB DDR4</option>
+<option id="32GB" value="17">32GB DDR4</option>		
+<option id="16GB" value="16">16GB DDR4</option>		
 
 </select>
 </div>
@@ -249,10 +323,10 @@ function showPrice(id) {
 <label>Choose your GPU</label>
 <select name="gpu" class="form-control" onchange="showPrice(this.value)">
 <option value="#" disabled selected>GPU</option>
-<option value="31">NVIDIA GeForce RTX 2080 SUPER 8GB GDDR6</option>
-<option value="30">NVIDIA GeForce RTX 2080TI 11G GDDR6</option>
-<option value="32">NVIDIA Quadro RTX 6000</option>
-<option value="34">NVIDIA Titan RTX 24 GB GDDR6</option>
+<option id="RTX2080" value="31">NVIDIA GeForce RTX 2080 SUPER 8GB GDDR6</option>
+<option id="RTX2080TI" value="30">NVIDIA GeForce RTX 2080TI 11G GDDR6</option>
+<option id="RTX6000" value="32">NVIDIA Quadro RTX 6000</option>
+<option id="TITANRTX" value="34">NVIDIA Titan RTX 24 GB GDDR6</option>
 </select>
 </div>
 </div>
@@ -265,9 +339,9 @@ function showPrice(id) {
 <label>Choose your Storage options</label>
 <select name="storage" class="form-control" onchange="showPrice(this.value)">
 <option value="#" disabled selected>Storage</option>
-<option value="41">Samsung 970 EVO Plus SSD 2TB - M.2 NVMe</option>
-<option value="40">Samsung 970 PRO SSD 512TB - M.2 NVMe</option>
-<option value="42">Samsung 970 EVO Plus SSD 1TB - M.2 NVMe</option>
+<option id="2TB" value="41">Samsung 970 EVO Plus SSD 2TB - M.2 NVMe</option>
+<option id="512GB" value="40">Samsung 970 PRO SSD 512TB - M.2 NVMe</option>
+<option id="1TB" value="42">Samsung 970 EVO Plus SSD 1TB - M.2 NVMe</option>
 </select>
 </div>
 </div>
