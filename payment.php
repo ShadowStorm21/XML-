@@ -10,41 +10,64 @@ if(isset($_SESSION['uid']) && isset($_SESSION['uname']))
 			':ui' => $_SESSION['uid']));
 			$row = $stmt->fetch(PDO::FETCH_ASSOC);
 			$_SESSION['total_plans'] = $row['total_price'];
+			$_SESSION['order_id'] = $row['oid'];
 }
 
 else
 	
-	{
+	{	
+		unset($_SESSION['total_price']);
 		unset($_SESSION['total']);
 		header("Location:login.php");
 	}
+	
+
+if(isset($_SESSION['uid']))
+{
+			
+if(isset($_POST['cardholder']) && isset($_POST['cardnumber']) && isset($_POST['cvv']) && isset($_POST['ba']) && isset($_POST['city']) && isset($_POST['pay'])){
+	
+	if(isset($_SESSION['total']))
+	{
+		$sql="INSERT INTO payment (cname,total_price, uid, oid) VALUES (:cn,:tp,:ui,:oi)";
+		$stmt = $conn->prepare($sql);
+		$stmt->execute(array(
+		':cn' => $_POST['cardholder'],
+		':tp' => $_SESSION['total'],
+		':ui' => $_SESSION['uid'],
+		':oi' => $_SESSION['order_id']));
+		echo "<script>alert('Transaction Successed');</script>";
+		header("Location:orders.php");
+		
+	}
+	else
+	{
+		$sql="INSERT INTO payment (cname,total_price, uid, oid) VALUES (:cn,:tp,:ui,:oi)";
+		$stmt = $conn->prepare($sql);
+		$stmt->execute(array(
+		':cn' => $_POST['cardholder'],
+		':tp' => $_SESSION['total_plans'],
+		':ui' => $_SESSION['uid'],
+		':oi' => $_SESSION['order_id']));
+		echo "<script>alert('Transaction Successed');</script>";
+		header("Location:orders.php");
+		
+	}
+}
+	
+else
+{
+$error = "All fields are required";
+}
+
+
+if(empty($_POST['cardholder']) && empty($_POST['cardnumber']) && empty($_POST['cvv']) && empty($_POST['ba']) && empty($_POST['city']) && isset($_POST['pay'])){
+
+$error = "All fields are required";}
+}
+
 
 ?>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"> </script>
-<script >
-	$(document).ready(function(){
-		$("#order").click( function(){
-			// send data to the database
-			$.ajax({
-				type:"post",
-				url :"order_info.php",
-				data:"ORDER",
-				success : function(data){
-					if(data.status == "Failed")
-						alert("Failed to order!");
-					else{
-						alert("Congratulations!,Your order has been sent");
-						$(location).attr('href', 'orders.php');
-					}
-				},
-				error : function(){alert("Error in sending order information!");}
-			});
-		});	
-	});
-</script>
-
-
-
 <html lang="en">
 <title>Payment </title>
 <meta charset="UTF-8">
@@ -123,29 +146,30 @@ else
 <!-- Header -->
 
 <header class="w3-container w3-red w3-center" style="padding:128px 16px">
-<div class="overlay"></div>
+
   <h1 class="w3-margin w3-jumbo">Payment</h1>
+ 
+  <i class="fa fa-credit-card-alt" style="font-size:72px;color:white"></i>
   
-  <!-- <button class="w3-black w3-padding-large w3-large w3-margin-top btn btn-primary">Get Started</button> -->
 
  
 </header>
 
-    <?php 
+
+
+  <?php 
 	
         if(!isset($_SESSION['uname']) && !isset($_SESSION['uid'])) {
-                echo" <div class='section'>";
-		    echo" <div class='container'>";
-		    echo"<div class='w3-margin-top'>";
+               
+		   
 		    echo"	    <div class='text-center heading'>";
 		    echo"		    <h2><center> Please, "."<a href='login.php' style='background-color:red'>Sign in</a>"."First to pay! </center></h2>";
 		    echo"	    </div>";
-		    echo"    </div>"; 
+		   
             return;
         }
-            echo" <div class='section'>";
-		    echo" <div class='container'>";
-		    echo"<div class='w3-margin-top'>";
+      
+		   
 		    echo"	    <div class='text-center heading'>";
 			if(isset($_SESSION['total']))
 			{
@@ -156,16 +180,51 @@ else
 			{
 				 echo"		    <h2><center> Total payment : $$_SESSION[total_plans]</center></h2>";
 			}
-		    echo"		    <p><h4><center><button id='order' class='w3-button w3-red w3-circle'> ORDER NOW </button></center></h4><p>";
+		    //echo"		    <p><h4><center><button id='order' class='w3-button w3-red w3-circle'> ORDER NOW </button></center></h4><p>";
 		    echo"	    </div>";
-		    echo"    </div>"; 
-		for($i = 0; $i < 20; $i++) echo "<br>";
 		
-        
-    ?>
+	?>
+<div class="w3-content w3-center">
+  <div class="form-group">
+    
+  <form method="post" style="width:100%">
+  <div class="heading">
+  <h2>Payment Information</h2>
+  </div>
+  <div class="form-group w3-red ">
+    <i class="material-icons" style="font-size:20px;color:white">account_box</i>
+    <input class="form-control " type="text" placeholder="Card Holder" name="cardholder">
+  </div>
 
-						
-		
+  <div class="form-group w3-red">
+     <i class="material-icons" style="font-size:20px;color:white">payment</i>
+    <input class="form-control" type="Number" placeholder="Card Number" name="cardnumber">
+  </div>
+  <div class="form-group w3-red">
+     <i class="fa fa-key icon"></i>
+    <input class="form-control" type="number" placeholder="CVV" name="cvv">
+  </div>
+  
+  <div class="form-group w3-red">
+   <i class="material-icons" style="font-size:20px;color:white">place</i>
+    <input class="form-control" type="text" placeholder="Billing Address" name="ba">
+  </div>
+  <div class="form-group w3-red">
+    <i class="material-icons" style="font-size:20px;color:white">location_city</i>
+    <input class="form-control" type="text" placeholder="City" name="city">
+  </div>
+  <div class="form-group">
+  
+
+	<div>
+	<input type="submit" class="btn btn-primary btn-block" name="pay" value="Pay Now!" ><?php if(isset($error)){echo $error;} ?></input>
+	</div>
+	</div>
+
+</form>
+    </div>
+ 
+</div>
 
 <!-- First Grid -->
 <div class="w3-row-padding w3-padding-32 w3-container w3-red">
@@ -181,9 +240,6 @@ else
    
   </div>
 </div>
-
-	
-
 
 
 <!-- Footer -->
@@ -201,7 +257,6 @@ else
  <small class="block">&copy; 2019 Higher College of Technology. All Rights Reserved.</small> 
  </div>
 </footer>
-
 
 </body>
 </html>

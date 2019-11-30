@@ -23,7 +23,17 @@ oid int AUTO_INCREMENT,uid int,
 pids json not null,
 total_price double not null,
 ordate datetime DEFAULT CURRENT_TIMESTAMP,
-primary key(oid),FOREIGN key(uid) REFERENCES users(uid));); 
+primary key(oid),FOREIGN key(uid) REFERENCES users(uid));
+
+CREATE TABLE payment (
+pid int AUTO_INCREMENT,
+cname VARCHAR(100) not null,
+uid int,
+oid int,
+total_price double not null,
+pdate datetime DEFAULT CURRENT_TIMESTAMP,
+primary key(pid),FOREIGN key(uid) REFERENCES users(uid),FOREIGN key(oid) REFERENCES orders(oid));
+
 
 
 
