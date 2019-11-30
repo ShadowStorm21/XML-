@@ -34,9 +34,9 @@
 		
 			if(mysqli_num_rows($result) == 0){
 				$sql = "select * from product where description like '%".$pname .'%\' or tag like'.'\''.$pname .'\'';
+				$result = mysqli_query($connection, $sql) or die("Error in Selecting " . mysqli_error($connection));
 			}
 		
-			//$result = mysqli_query($connection, $sql) or die("Error in Selecting " . mysqli_error($connection));
 			
 			$userData = array();
 			$myObj = new stdClass();
