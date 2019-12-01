@@ -20,9 +20,6 @@ else
 		unset($_SESSION['total']);
 		header("Location:login.php");
 	}
-	
-
-
 
 
 ?>
@@ -51,6 +48,7 @@ $(document).ready(function(){
 					else{
 						alert("Congratulations!,Your Payment has been accepted");
 						$(location).attr('href', 'orders.php');
+						
 					}
                  
                 },
@@ -64,11 +62,14 @@ $(document).ready(function(){
 
 
 	});
+	
+	
+
+	
 
 		
 
 });	
-
 
 </script>
 <html lang="en">
@@ -104,9 +105,9 @@ $(document).ready(function(){
 	<?php if(!isset($_SESSION['uid'])) {echo "<a href='signup.php' class='w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white'>Sign up</a>
 	<a href='login.php' class='w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white'>Login</a>";}?>
 	<a href="contactus.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Contact us</a>
-	<a href="search.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"><i class="fa fa-search" style="font-size:30px"></i></a>
+	<a href="search.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" ><i class="fa fa-search" style="font-size:30px"></i></a>
 	<!-- Cart -->
-	<a href="cart.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" id="_cart">
+	<a href="cart.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" id="_cart" onclick="return confirm('Plan Progress will be lost if you leave the page');">
 	<?php 
 		if( isset($_SESSION['cart']) ) 
 			echo count($_SESSION['cart']);
@@ -145,6 +146,7 @@ $(document).ready(function(){
 </div>";} ?>
   </div>
 </div>
+
 
 <!-- Header -->
 
@@ -195,7 +197,7 @@ $(document).ready(function(){
 <div class="w3-content w3-center">
   <div class="form-group">
     
-  <form style="width:100%">
+  <form style="width:100%" action="payment.php">
   <div class="heading">
   <h2>Payment Information</h2>
   </div>
@@ -268,3 +270,4 @@ $(document).ready(function(){
 
 </body>
 </html>
+

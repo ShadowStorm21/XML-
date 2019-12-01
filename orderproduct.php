@@ -1,30 +1,6 @@
 <?php
 session_start();
 include 'dbconnection.php';
-
-if(isset($_SESSION['uid']) && isset($_SESSION['uname']))
-{
-		$sql = "SELECT * FROM orders WHERE uid = :ui ORDER BY ordate DESC";
-			$stmt = $conn-> prepare($sql);
-			$stmt-> execute(array(
-			':ui' => $_SESSION['uid']));
-			$row = $stmt->fetch(PDO::FETCH_ASSOC);
-			$_SESSION['total_plans'] = $row['total_price'];
-			$_SESSION['order_id'] = $row['oid'];
-}
-
-else
-	
-	{	
-		unset($_SESSION['total_price']);
-		unset($_SESSION['total']);
-		header("Location:login.php");
-	}
-	
-	
-	
-
-
 ?>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"> </script>
 <script >
