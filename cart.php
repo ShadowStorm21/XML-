@@ -11,22 +11,22 @@
 				success : function( products ) {
 					var cart_icon = "<i class='material-icons' style='font-size:20px'>shopping_cart</i>";
 					$("#_cart_number").html( (products.length == 0 || products == 0) ? 0 + cart_icon:products.length  + cart_icon);
-					table = "<center><table >";
-					table +="<tr > <th> N </th> <th>Image </th><th>Product Name</th> <th>Price</th> <th> Part Category </th> <th>  </th></tr> ";
+					table = "<center><table class=table-style-two><thead>";
+					table +="<tr > <th> N </th> <th>Image </th><th>Product Name</th> <th>Price</th> <th> Part Category </th> <th>  </th></tr> </thead><tbody>";
 					$(products).each(function(index,item){
 						table += "<tr> <td> " + (index + 1)+" </td>  <td> <img src='images/" + item.pid + " ' height='64' width='64'/> </td> <td>" + item.pname + "</td> <td>$"+item.price + "</td> <td>"+ item.tag + "</td>";
-						table += "<td><button id="+item.pid+"> Remove </button></td></tr>";
+						table += "<td><button class=btn-1 id="+item.pid+"> Remove </button></td></tr>";
 						total += Number(item.price);
 					});
 					if(total != 0.0){
 						table += "<tr><td/><td/><td/>";
 						table += "<td>Total: </td><td>$"+ total + "</td>";	
-						table += "<td> <input type='button' id='_buy' value='BUY'/></td></tr>";
-						table += "</center></table>";
+						table += "<td> <input type='button' class=btn-1 id='_buy' value='BUY'/></td></tr>";
+						table += "</center></tbody></table>";
 					}
 					else {
 						table += "<tr><td  colspan='6'>-----------------------------------------------------------------------------------------------------------------------</td>";
-						table += "</tr></center></table>";
+						table += "</tr></center></tbody></table>";
 					}
 					$("#result").html(table);
 					store_total(total);
