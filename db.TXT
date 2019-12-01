@@ -72,45 +72,50 @@ Scalability: 1S Only");
 
 INSERT INTO product 
 (pname,price,tag,description) VALUES ("Intel i7-9700K",339,"CPU"," 8 Cores / 8 Threads
-Up to 4.9 GHz Core Turbo");
+Up to 4.9 GHz Core Turbo Unlocked");
 
 INSERT INTO product 
 (pname,price,tag,description) VALUES ("AMD Ryzen 9 3900X",480,"CPU","
-12 Cores and 24 processing threads,4.6 GHz Max Boost, unlocked for overclocking, 70 MB of game Cache, ddr 3200 support");
+ 12 Cores / 24 Threads
+Up to 4.6 GHz Core Turbo Unlocked");
 
 INSERT INTO product 
 (pname,price,tag,description) VALUES ("AMD Ryzen 7 3800X",375,"CPU","
-8 Cores and 16 processing threads,4.5 GHz Max Boost, unlocked for overclocking, 36 MB of game Cache, ddr 3200 support");
+ 8 Cores / 16 Threads
+Up to 4.5 GHz Core Turbo Unlocked");
 
 INSERT INTO product 
 (pname,price,tag,description) VALUES ("AMD Ryzen 7 3700X",325,"CPU","
-8 Cores and 16 processing threads,4.4 GHz Max Boost, unlocked for overclocking, 36 MB of game Cache, ddr 3200 support");
+ 8 Cores / 16 Threads
+Up to 4.4 GHz Core Turbo Unlocked");
 
 INSERT INTO product 
 (pname,price,tag,description) VALUES ("AMD Ryzen 5 3600X",240,"CPU","
-6 Cores and 12 processing threads,4.4 GHz Max Boost, unlocked for overclocking, 35 MB of game Cache, ddr 3200 support");
+ 6 Cores / 12 Threads
+Up to 4.4 GHz Core Turbo Unlocked");
 
 INSERT INTO product 
 (pname,price,tag,description) VALUES ("AMD Ryzen 5 3600",199,"CPU","
-6 Cores and 12 processing threads,Stealth cooler4.2 GHz Max Boost, unlocked for overclocking, 35 MB of game Cache, ddr4 3200 support");
+ 6 Cores / 12 Threads
+Up to 4.2 GHz Core Turbo Unlocked");
 
 
 # CPU Ends !
 
 INSERT INTO product 
-(pname,price,tag,description) VALUES ("G.Skill Trident 4GB",22,"RAM"," 4GB DDR4 2666MHz memory speed");
+(pname,price,tag,description) VALUES ("G.Skill Trident 4GB",22,"RAM","G.Skill Trident Z 4GB DDR4 2666MHz memory speed");
 
 INSERT INTO product 
-(pname,price,tag,description) VALUES ("G.Skill Trident 8GB",40,"RAM"," 8GB DDR4 2666MHz memory speed");
+(pname,price,tag,description) VALUES ("G.Skill Trident 8GB",40,"RAM","G.Skill Trident Z 8GB DDR4 2666MHz memory speed");
 
 INSERT INTO product 
-(pname,price,tag,description) VALUES ("G.Skill Trident 16GB",70,"RAM"," 16GB DDR4 3400MHz memory speed");
+(pname,price,tag,description) VALUES ("G.Skill Trident 16GB",70,"RAM","G.Skill Trident Z 16GB DDR4 3400MHz memory speed");
 
 INSERT INTO product 
-(pname,price,tag,description) VALUES ("G.Skill Trident 32GB",130,"RAM"," 32GB DDR4 3400MHz memory speed");
+(pname,price,tag,description) VALUES ("G.Skill Trident 32GB",130,"RAM","G.Skill Trident Z 32GB DDR4 3400MHz memory speed");
 
 INSERT INTO product 
-(pname,price,tag,description) VALUES ("G.Skill Trident 64GB",300,"RAM"," 64GB DDR4 3600MHz memory speed");
+(pname,price,tag,description) VALUES ("G.Skill Trident 64GB",300,"RAM","G.Skill Trident Z 64GB DDR4 3600MHz memory speed");
 
 
 # RAM Ends !
@@ -119,77 +124,46 @@ INSERT INTO product
 (pname,price,tag,description) VALUES ("NO GPU",0,"GPU","No GPU");
 
 INSERT INTO product 
-(pname,price,tag,description) VALUES ("Radeon RX 550",99,"GPU","Stream Processors : 640 4GB GDDR5 Display Connectors: DisplayPort, HDMI, USB Type-C
-Maximum Digital Resolution: 7680x4320");
+(pname,price,tag,description) VALUES ("Radeon RX 550",99,"GPU","The Radeon RX 550 is an entry-level graphics card by AMD suitable for low 1080p gaming");
 
 INSERT INTO product 
-(pname,price,tag,description) VALUES ("Radeon RX 560",110,"GPU","Stream Processors : 896 4GB GDDR5 Display Connectors: DisplayPort, HDMI, USB Type-C
-Maximum Digital Resolution: 7680x4320");
+(pname,price,tag,description) VALUES ("Radeon RX 560",110,"GPU","The Radeon RX 560 is an entry-level graphics card by AMD suitable for low to medium 1080p gaming");
 
 INSERT INTO product 
-(pname,price,tag,description) VALUES ("Radeon RX 570",140,"GPU","Stream Processors : 2048 8GB GDDR5 Display Connectors: DisplayPort, HDMI, USB Type-C
-Maximum Digital Resolution: 7680x4320");
+(pname,price,tag,description) VALUES ("Radeon RX 570",140,"GPU","The Radeon RX 570 is an entry-level graphics card by AMD suitable for high to medium 1080p gaming");
 
 INSERT INTO product 
-(pname,price,tag,description) VALUES ("NVIDIA GeForce GTX 1650",150,"GPU"," 4GB GDDR5
-CUDA Cores: 896
-Display Connectors: DisplayPort, HDMI, USB Type-C
-Maximum Digital Resolution: 7680x4320 ");
+(pname,price,tag,description) VALUES ("NVIDIA GeForce GTX 1650",150,"GPU","The GeForece GTX 1650 is an medium-level graphics card by NVIDIA suitable for high to medium 1080p gaming");
 
 INSERT INTO product 
-(pname,price,tag,description) VALUES ("Radeon RX 590",189,"GPU","Stream Processors : 2304 8GB GDDR5 Display Connectors: DisplayPort, HDMI, USB Type-C
-Maximum Digital Resolution: 7680x4320");
+(pname,price,tag,description) VALUES ("Radeon RX 590",189,"GPU","The Radeon RX 590 is an medium-level graphics card by AMD suitable for high 1080p gaming");
 
 INSERT INTO product 
-(pname,price,tag,description) VALUES ("NVIDIA GeForce GTX 1660ti",260,"GPU"," 6GB GDDR6
-CUDA Cores: 1536
-Display Connectors: DisplayPort, HDMI, USB Type-C
-Maximum Digital Resolution: 7680x4320 ");
+(pname,price,tag,description) VALUES ("NVIDIA GeForce GTX 1660ti",260,"GPU","The GeForece GTX 1660ti is an medium-level graphics card by NVIDIA suitable for high to ultra 1080p gaming");
 
 INSERT INTO product 
-(pname,price,tag,description) VALUES ("Radeon RX 5700",329,"GPU","Stream Processors : 2560 8GB GDDR6 Display Connectors: DisplayPort, HDMI, USB Type-C
-Maximum Digital Resolution: 7680x4320");
+(pname,price,tag,description) VALUES ("Radeon RX 5700",329,"GPU","The Radeon RX 5700 is an high-level graphics card by AMD suitable for high 1440p gaming");
 
 INSERT INTO product 
-(pname,price,tag,description) VALUES ("NVIDIA GeForce RTX 2060 SUPER",410,"GPU"," 8GB GDDR6
-CUDA Cores: 2176
-Display Connectors: DisplayPort, HDMI, USB Type-C
-Maximum Digital Resolution: 7680x4320 ");
+(pname,price,tag,description) VALUES ("NVIDIA GeForce RTX 2060 SUPER",410,"GPU","The GeForece RTX 2060S is an high-level graphics card by NVIDIA suitable for high 1440p gaming");
 
 INSERT INTO product 
-(pname,price,tag,description) VALUES ("Radeon RX 5700XT",429,"GPU","Stream Processors : 2560 8GB GDDR6 Display Connectors: DisplayPort, HDMI, USB Type-C
-Maximum Digital Resolution: 7680x4320");
+(pname,price,tag,description) VALUES ("Radeon RX 5700XT",429,"GPU","The Radeon RX 5700XT is an high-level graphics card by AMD suitable for ultra 1440p gaming");
 
 INSERT INTO product 
-(pname,price,tag,description) VALUES ("NVIDIA GeForce RTX 2070 SUPER",499,"GPU"," 8GB GDDR6
-CUDA Cores: 2560
-Display Connectors: DisplayPort, HDMI, USB Type-C
-Maximum Digital Resolution: 7680x4320 ");
+(pname,price,tag,description) VALUES ("NVIDIA GeForce RTX 2070 SUPER",499,"GPU","The GeForece RTX 2070S is an high-level graphics card by NVIDIA suitable for ultra 1440p gaming");
 
 INSERT INTO product 
-(pname,price,tag,description) VALUES ("NVIDIA GeForce RTX 2080TI",1100,"GPU"," 11GB GDDR6
-CUDA Cores: 4352
-Display Connectors: DisplayPort, HDMI, USB Type-C
-Maximum Digital Resolution: 7680x4320 ");
+(pname,price,tag,description) VALUES ("NVIDIA GeForce RTX 2080TI",1100,"GPU","The GeForece RTX 2080TI is an high-level graphics card by NVIDIA suitable for ultra 4K gaming");
 
 INSERT INTO product 
-(pname,price,tag,description) VALUES ("NVIDIA GeForce RTX 2080 SUPER",740,"GPU"," 8GB GDDR6
-CUDA Cores: 3072
-Display Connectors: DisplayPort, HDMI, USB Type-C
-Maximum Digital Resolution: 7680x4320 ");
+(pname,price,tag,description) VALUES ("NVIDIA GeForce RTX 2080 SUPER",740,"GPU","The GeForece RTX 2080S is an high-level graphics card by NVIDIA suitable for high 4K gaming");
 
 INSERT INTO product 
-(pname,price,tag,description) VALUES ("NVIDIA Quadro RTX 6000",3500,"GPU"," 24GB GDDR6
-CUDA Cores: 4,608
-Display Connectors: DisplayPort, HDMI, USB Type-C
-the power of hardware-accelerated ray tracing, deep learning, and advanced shading to dramatically boost productivity");
+(pname,price,tag,description) VALUES ("NVIDIA Quadro RTX 6000",3500,"GPU","The Quadro RTX 6000 is a professional graphics card by NVIDIA suitable for professional workflows,Designers and artists");
 
 INSERT INTO product 
-(pname,price,tag,description) VALUES ("NVIDIA Titan RTX",2499,"GPU"," 24GB GDDR6
-CUDA Cores: 4608
-Display Connectors: DisplayPort, HDMI, USB Type-C
-Maximum Digital Resolution: 7680x4320 
-NVIDIA TITAN RTX is the fastest PC graphics card ever built");
+(pname,price,tag,description) VALUES ("NVIDIA Titan RTX",2499,"GPU","TITAN RTX is the fastest PC graphics card ever built suitable for gaming and professional workflows");
 
 # GPU Ends !
 
@@ -206,7 +180,7 @@ Sequential Read/Write speeds up to 550MB/s and 520MB/s respectively");
 
 INSERT INTO product 
 (pname,price,tag,description) VALUES ("HDD SSD",94,"Storage","
-A combination of Western Digital 1TB Internal Hard Drive HDD and Samsung SSD 860 EVO 250GB SATA III Internal SSD");
+Western Digital 1TB Internal Hard Drive HDD and Samsung SSD 860 EVO 250GB");
 
 INSERT INTO product 
 (pname,price,tag,description) VALUES ("Samsung SSD 970 EVO 500GB - NVMe",90,"Storage","
@@ -230,11 +204,11 @@ Sequential read and write performance levels of up to 3,500MB/s and 3,300MB/s, r
 
 INSERT INTO product 
 (pname,price,tag,description) VALUES ("SSD_HDDt1",130,"Storage","
-A combination of Western Digital 1TB Internal Hard Drive HDD and Samsung SSD 970 EVO 500GB NVMe SSD");
+Western Digital 1TB Internal Hard Drive HDD and Samsung 970 EVO 500GB NVMe SSD");
 
 INSERT INTO product 
 (pname,price,tag,description) VALUES ("SSD_HDDt2",190,"Storage","
-A combination of Western Digital 1TB Internal Hard Drive HDD and Samsung SSD 970 EVO 1000GB NVMe SSD");
+Western Digital 1TB Internal Hard Drive HDD and Samsung 970 EVO 1000GB NVMe SSD");
 
 
 # Storage Ends !
@@ -258,7 +232,7 @@ INSERT INTO product
 
 INSERT INTO product 
 (pname,price,tag,description) VALUES ("EVGA 500 W1, 80+ WHITE 500W,Power Supply",47.99,"Power Supply","
-Compatibility of the EVGA 500 W1, 80+ WHITE 500W,Power Supply 100 W1 0500 KR (100 W1 0500 KR) ");
+Compatibility of the EVGA 500 W1, 80+ WHITE 500W");
 
 
 
