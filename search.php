@@ -88,8 +88,26 @@ function exists(pid) {
 			for(start = page * product_per_page,end = start + product_per_page; start != end && start < products.length; ++start){
 				product_table += " <div class='col-lg-4'> <div class='card-item'> <figure> <div class='overlay'><i class='ti-plus'></i></div>";
 				product_table += "<img src='images/"+ products[start]['pid'] +".jpg' alt='Image' class='img-responsive'> </figure> <div class='text'>";
-				product_table += "<h2>" + products[start]['pname'] + "</h2> <strong style='font-size:18px'>$" + products[start]['price'] + "";
-				product_table += "</strong> <br> <p> " + products[start]['description'] + "</p>";
+				product_table += "<h2>";
+				if(products[start]['pname'].length > 25){
+					products[start]['pname']= products[start]['pname'].substr(0,22); 
+					products[start]['pname'][23]=".";
+					products[start]['pname'][24]=".";
+					products[start]['pname'][25]=".";
+				}
+				product_table += products[start]['pname'];
+				product_table += "</h2> <strong style='font-size:18px'>$" + products[start]['price'] + "";
+				product_table += "</strong> <br> <p> ";
+
+				if(products[start]['description'].length > 74) {
+					products[start]['description'] =products[start]['description'].substr(0,74)	
+					products[start]['description'][71] = ".";
+					products[start]['description'][72] = ".";
+					products[start]['description'][73] = ".";
+				}
+
+				product_table += products[start]['description'];
+				product_table += "</p>";
 				product_table += "<button value='buy' id='" + products[start]['pid'] + "' class='btn btn-primary'> <a href='orderproduct.php'>Purchase</a></button>";
 				product_table += "<button value='add' id='" + products[start]['pid'] + "' class='btn btn-primary'>Add to cart</button> </div> </div> </div> "; 
 				}

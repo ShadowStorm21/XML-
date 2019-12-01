@@ -185,8 +185,8 @@ include 'dbconnection.php';
 										<h2>';
 						// check if the title of the product is too long for item card
 						if( strlen($row[1]) > 25 ){
-							$row[1] = substr($row[1],0,22);	
-							$row[1][23] = '.'; $row[1][24] = '.'; $row[1][25] = '.';
+							$row[1] = substr($row[1],0,25);	
+							$row[1][22] = '.'; $row[1][23] = '.'; $row[1][24] = '.';
 						}
 						$html .= $row[1];
 						$html .='		</h2>
@@ -195,7 +195,7 @@ include 'dbconnection.php';
 						// check if the description of the product is too long for item card
 						if( strlen($row[4]) > 74 ){
 							$row[4] = substr($row[4],0,74);	
-							$row[4][75] = '.'; $row[4][76] = '.'; $row[4][77] = '.';
+							$row[4][71] = '.'; $row[4][72] = '.'; $row[4][73] = '.';
 						}
 						$html .= $row[4];
 						$html .='		</p>

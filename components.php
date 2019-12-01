@@ -172,17 +172,17 @@
 										<h2>';
 						// check if the title of the product is too long for item card
 						if( strlen($prod[1]) > 25 ){
-							$prod[1] = substr($prod[1],0,22);	
-							$prod[1][23] = '.'; $prod[1][24] = '.'; $prod[1][25] = '.';
+							$prod[1] = substr($prod[1],0,25);	
+							$prod[1][22] = '.'; $prod[1][23] = '.'; $prod[1][24] = '.';
 						}
 						$html .= $prod[1];
 						$html .='		</h2>
 										<strong style="font-size:18px">$'.$prod[2].'</strong>
 										<p>';
 						// check if the description of the product is too long for item card
-						if( strlen($prod[4]) > 74 ){
-							$prod[4] = substr($prod[4],0,74);	
-							$prod[4][75] = '.'; $prod[4][76] = '.'; $prod[4][77] = '.';
+						if( strlen($prod[4]) > 75 ){
+							$prod[4] = substr($prod[4],0,75);	
+							$prod[4][72] = '.'; $prod[4][73] = '.'; $prod[4][74] = '.';
 						}
 						$html .= $prod[4];
 						$html .='		</p>
