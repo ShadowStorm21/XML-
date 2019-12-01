@@ -155,7 +155,7 @@ include 'dbconnection.php';
 	$sql = "select count(*) from product;";
 	$result = mysqli_query($connection, $sql) or die("Error in Selecting " . mysqli_error($connection));
 	$n_products = mysqli_fetch_row($result)[0];
-	$upper = rand(7, $n_products);
+	$upper = rand(8, $n_products);
 	$lower = $upper - 7;
 
 	$html ='	<div class="section">
@@ -175,25 +175,37 @@ include 'dbconnection.php';
 		$sql = "select * from product where pid = $lower;";
 		$result = mysqli_query($connection, $sql) or die("Error in Selecting " . mysqli_error($connection));
 		$row = mysqli_fetch_row($result);
-		$html .= '	<div class="col-lg-4" >
-					<div class="card-item">
-						<figure>
-							<div class="overlay"><i class="ti-plus"></i></div>
-							<img src="images/'.$row[0].'.jpg" alt="Image" class="img-responsive">
-						</figure>
-						<div class="text">
-							<h2>'.$row[1].'</h2>
-							
-							<strong style="font-size:18px">$'.$row[2].'</strong>
-							<p>'.$row[4].'</p>
-								<button value=buy id='.$row[0].' class="btn btn-primary">Purchase</button>
-							<a ><button value=add id='.$row[0].' class="btn btn-primary">Add to cart</button></a>
-							
-						</div>
-					
-					
-					</div>
-				</div>';
+		$html .= '<div class="col-lg-4" >
+								<div class="card-item">
+									<figure>
+										<div class="overlay"><i class="ti-plus"></i></div>
+										<img src="images/'.$row[0].'.jpg" alt="Image" class="img-responsive">
+									</figure>
+										<div class="text">
+										<h2>';
+						// check if the title of the product is too long for item card
+						if( strlen($row[1]) > 25 ){
+							$row[1] = substr($row[1],0,22);	
+							$row[1][23] = '.'; $row[1][24] = '.'; $row[1][25] = '.';
+						}
+						$html .= $row[1];
+						$html .='		</h2>
+										<strong style="font-size:18px">$'.$row[2].'</strong>
+										<p>';
+						// check if the description of the product is too long for item card
+						if( strlen($row[4]) > 74 ){
+							$row[4] = substr($row[4],0,74);	
+							$row[4][75] = '.'; $row[4][76] = '.'; $row[4][77] = '.';
+						}
+						$html .= $row[4];
+						$html .='		</p>
+										<button value=buy id='.$row[0].' class="btn btn-primary">Purchase</button>
+										<a >
+											<button value=add id='.$row[0].' class="btn btn-primary">Add to cart</button>
+										</a>
+								</div>
+							</div>
+						</div>';
 	}
 
 
