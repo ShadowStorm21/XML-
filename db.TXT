@@ -213,11 +213,11 @@ Western Digital 1TB Internal Hard Drive HDD and Samsung 970 EVO 1000GB NVMe SSD"
 
 
 INSERT INTO product 
-(pname,price,tag,description) VALUES ("Corsair K95 RGB Platinum",129,"Mechanical Gaming Keyboard","
-100 percentage CHERRY MX Speed RGB mechanical key switches: Unleash blistering speed with the 1.2 millimeter actuation and durability of gold contact CHERRY MX mechanical key switches");
+(pname,price,tag,description) VALUES ("Corsair K95 RGB Platinum",129,"Keyboard","
+100 percentage CHERRY MX Speed RGB mechanical key switches");
 
 INSERT INTO product 
-(pname,price,tag,description) VALUES ("CORSAIR Dark Core",77.85,"Wireless Gaming Mouse ","
+(pname,price,tag,description) VALUES ("CORSAIR Dark Core",77.85,"Mouse ","
 Ultra-fast 1ms 2.4GHz and low-latency Bluetooth wireless technology");
 
 # Gears Ends !
