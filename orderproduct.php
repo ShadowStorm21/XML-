@@ -4,24 +4,82 @@ include 'dbconnection.php';
 ?>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"> </script>
 <script >
+
+	function field_warn(warning_str,color = "red"){
+		$("#pay_warn").text(warning_str);
+		$("#pay_warn").attr("style","color:" + color);			
+	}	
+
 	$(document).ready(function(){
+		field_warn("All fields required!");
 		$("#order").click( function(){
-			// send data to the database
-			$.ajax({
-				type:"post",
-				url :"order_info.php",
-				data:"ORDER",
-				success : function(data){
-					if(data.status == "Failed")
-						alert("Failed to order!");
-					else{
-						alert("Congratulations!,Your order has been sent");
-						$(location).attr('href', 'payment.php');
-					}
-				},
-				error : function(){alert("Error in sending order information!");}
-			});
+				if( check_name() && check_cart_number() && check_cvv() && check_address())
+					$.ajax({
+						type:"post",
+						url :"order_info.php",
+						data: "PAID_ORDER",
+						success : function(data){
+							alert(data);
+							if(data.status == "Failed")
+								alert("Failed to order!");
+							else{
+								alert("Congratulations!,Your order has been sent");
+								$(location).attr('href', 'orders.php');
+							}
+						},
+						error : function(){alert("Error in sending order information!");}
+					});
 		});	
+		// 
+		function check_name(){
+			if(!/^[a-zA-Z]+$/.test($("#ch").val())){	
+				field_warn("Name should contain only characters and no space/numbers nor special characters");
+				return false;
+			}
+			else if($("#ch").val().length < 4){
+				field_warn("Name should at least have 3 characters!");
+				return false;
+			}
+			else{
+				field_warn("GOOD","green");
+				return true;
+				}
+		}
+		function check_cart_number(){
+				if($("#cardnumber").val().length != 16){
+					field_warn("Credit Cart Number Should be 16 Number!");
+					return false;
+				}
+				else {
+					field_warn("GOOD","green");
+					return true;
+				}	
+		}
+		function check_cvv(){
+			if($("#cvv").val().length != 3){
+				field_warn("CVV number Should be 3!");
+				return false;
+			}
+			else {
+				field_warn("GOOD","green");
+				return true;
+			}	
+		}
+		function check_address(){
+			if($("#ba").val().length < 5 || $("#city").val().length < 5){
+				field_warn("Billing-Address/City should at least contain 5 characters");
+				return false;
+			}
+			else {
+				field_warn("GOOD","green");
+				return true;
+			}	
+		}
+		$("#ch").keyup( check_name);
+		$("#cardnumber").keyup(check_cart_number);
+		$("#cvv").keyup(check_cvv);
+		$("#ba").keyup(check_address);
+		$("#city").keyup(check_address);
 	});
 </script>
 
@@ -32,7 +90,7 @@ include 'dbconnection.php';
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-
+<link rel="stylesheet" type="text/css" href="css/table.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -104,6 +162,8 @@ include 'dbconnection.php';
 
 <!-- Header -->
 
+
+
 <header class="w3-container w3-red w3-center" style="padding:128px 16px">
 
   <h1 class="w3-margin w3-jumbo">Order Product(s)</h1>
@@ -114,7 +174,52 @@ include 'dbconnection.php';
  
 </header>
 
-  <?php 
+
+
+<?php 
+if(!isset($_SESSION['uname']) && !isset($_SESSION['uid'])) {
+		    echo"	    <div class='text-center heading'>";
+		    echo"		    <h2><center> Please, "."<a href='login.php' style='background-color:red'>Sign in</a>"."First to pay! </center></h2>";
+		    echo"	    </div>";
+		   
+            return;
+  }
+  ?>
+
+ 
+	<!-- payment -->
+<div class="w3-content w3-center">
+  <div class="form-group">
+    
+  <div class="heading">
+  <h2>Payment Information</h2>
+  </div>
+  <div class="form-group w3-red ">
+    <i class="material-icons" style="font-size:20px;color:white">account_box</i>
+    <input class="form-control " type="text" placeholder="Card Holder" id="ch" value="<?php echo $_SESSION['uname'];?>">
+  </div>
+
+  <div class="form-group w3-red">
+     <i class="material-icons" style="font-size:20px;color:white">payment</i>
+    <input class="form-control" type="Number" maxlength="16" minlength="16" placeholder="Card Number" id="cardnumber">
+  </div>
+  <div class="form-group w3-red">
+     <i class="fa fa-key icon"></i>
+    <input class="form-control" type="number" placeholder="CVV" id="cvv">
+  </div>
+  
+  <div class="form-group w3-red">
+   <i class="material-icons" style="font-size:20px;color:white">place</i>
+    <input class="form-control" type="text" placeholder="Billing Address" id="ba">
+  </div>
+  <div class="form-group w3-red">
+    <i class="material-icons" style="font-size:20px;color:white">location_city</i>
+    <input class="form-control" type="text" placeholder="City" id="city">
+  </div>
+	<p> <li id="pay_warn" style=""> All fields required! </li> </p>
+
+
+ <?php 
 	
         if(!isset($_SESSION['uname']) && !isset($_SESSION['uid'])) {
                
@@ -137,13 +242,14 @@ include 'dbconnection.php';
 			{
 				 echo"		    <h2><center> Total payment : $$_SESSION[total_plans]</center></h2>";
 			}
-		    echo"		    <p><h4><center><button id='order' class='btn btn-primary btn-block'> ORDER NOW </button></center></h4><p>";
+		    echo"		    <p><h4><center><button id='order' class='btn-1'> ORDER NOW </button></center></h4><p>";
 		    echo"	    </div>";
-			for($i = 0; $i < 20; $i++) echo "<br>";
 		
 	?>
 
 
+
+	<?php for($i = 0; $i < 20; $i++) echo "<br>";?>
 
 <!-- First Grid -->
 <div class="w3-row-padding w3-padding-32 w3-container w3-red">

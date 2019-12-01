@@ -37,7 +37,7 @@
 					alert("failed");
 				}
 				else
-					$(location).attr('href','payment.php');	
+					$(location).attr('href','orderproduct.php');	
 			},
 			error : function(){alert("Error in receiving data from session");}
 		});

@@ -30,7 +30,7 @@
 					}
 					$("#result").html(table);
 					store_total(total);
-					$("#_buy").click(function(){ $(location).attr('href', 'payment.php'); });
+					$("#_buy").click(function(){ $(location).attr('href', 'orderproduct.php'); });
 					$("button").click(function(){ remove($(this)); });
 
 					},

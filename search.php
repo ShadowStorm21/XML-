@@ -90,7 +90,7 @@ function exists(pid) {
 				product_table += "<img src='images/"+ products[start]['pid'] +".jpg' alt='Image' class='img-responsive'> </figure> <div class='text'>";
 				product_table += "<h2>" + products[start]['pname'] + "</h2> <strong style='font-size:18px'>$" + products[start]['price'] + "";
 				product_table += "</strong> <br> <p> " + products[start]['description'] + "</p>";
-				product_table += "<button value='buy' id='" + products[start]['pid'] + "' class='btn btn-primary'> <a href='payment.php'>Purchase</a></button>";
+				product_table += "<button value='buy' id='" + products[start]['pid'] + "' class='btn btn-primary'> <a href='orderproduct.php'>Purchase</a></button>";
 				product_table += "<button value='add' id='" + products[start]['pid'] + "' class='btn btn-primary'>Add to cart</button> </div> </div> </div> "; 
 				}
 				product_table += "</div></div>";
@@ -120,7 +120,7 @@ function exists(pid) {
 				if(data.status == "Failed")
 					alert("failed");
 				else
-					$(location).attr('href','payment.php');	
+					$(location).attr('href','orderproduct.php');	
 			},
 			error : function(){alert("Error in receiving data from session");}
 		});
