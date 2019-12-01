@@ -35,6 +35,30 @@ pdate datetime DEFAULT CURRENT_TIMESTAMP,
 primary key(pid),FOREIGN key(uid) REFERENCES users(uid),FOREIGN key(oid) REFERENCES orders(oid));
 
 
+create table forum (
+forum_id int auto_increment,
+title varchar(30) not null,
+subtitle varchar(60) null,
+posts_ids json,
+primary key(forum_id)
+);
+
+create table post (
+post_id int auto_increment,
+post_by int,
+subject varchar(50) not null,
+category enum ('news','complaint','hardware','discussion'),
+details TEXT not null,
+postdate datetime DEFAULT CURRENT_TIMESTAMP,
+views int ,
+primary key(post_id), foreign key(post_by) references users(uid)
+);
+
+
+insert INTO forum(title,subtitle) values("Breaking News!","Read the lastest trends, technology and computer hardware");
+insert INTO forum(title,subtitle) values("Community Discussion","See what people discuss about");
+
+
 
 
 # pre-defined products !
