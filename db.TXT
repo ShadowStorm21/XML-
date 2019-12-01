@@ -120,8 +120,6 @@ INSERT INTO product
 
 # RAM Ends !
 
-INSERT INTO product 
-(pname,price,tag,description) VALUES ("NO GPU",0,"GPU","No GPU");
 
 INSERT INTO product 
 (pname,price,tag,description) VALUES ("Radeon RX 550",99,"GPU","The Radeon RX 550 is an entry-level graphics card by AMD suitable for low 1080p gaming");
