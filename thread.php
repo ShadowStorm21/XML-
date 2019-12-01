@@ -13,8 +13,7 @@
 <script>
 $(document).ready(function(){
 		$("#redirect_mainpage").click(function(){$(location).attr('href','forum.php');});
-
-		});
+	});	
 	
 </script>
 
@@ -30,7 +29,7 @@ session_start();
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
-<link rel="stylesheet" type="text/css" href="../css/table.css">
+<link rel="stylesheet" type="text/css" href="css/table.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -137,7 +136,7 @@ session_start();
 			$forum_data = mysqli_fetch_assoc($result3);
 
 			$forum = "";
-			$forum .='<center><table style="font-family:Times New Roman;"> <thead style="color:#800000;font-size:30px;">
+			$forum .='<center><table class=table-style-two style="font-family:Times New Roman;"> <thead style="color:#800000;font-size:30px;">
 						<tr ><th style="width:400px;text-align:left;"> forum: <i>'.$forum_data['title'];
 			if($forum_data['forum_id'] == 1) 
 				$forum .= '<image src="images/globe.gif" height="32" width="32"/></th>'; 
@@ -146,10 +145,10 @@ session_start();
 			else 
 				$forum .= '</th>';
 
-			$forum .= '<th> <button id="redirect_mainpage" style="font-size:20px;text-decoration:underline;text-decoration-color:blue" class="w3-button">back to main forum </button></th>';
+			$forum .= '<th> <button class=btn-1 id="redirect_mainpage" style="font-size:20px;text-decoration:underline;text-decoration-color:black" >back to main forum </button></th>';
 			echo $forum;
 
-			$thread = "<center><table style='font-family:Times New Roman;'> <thead style='color:#800000;font-size:20px;'> 
+			$thread = "<center><table class=table-style-two style='font-family:Times New Roman;'> <thead style='color:#800000;font-size:20px;'> 
 						<tr><th style=';text-align:center'> Subject : $row[subject]  </th> <th> Category : $row[category] </th> 
 						<th>Posted in : ";
 			$thread .= substr($row['postdate'],0,strrpos($row['postdate']," ")) ."</th></tr></thead> ";

@@ -95,7 +95,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
-<link rel="stylesheet" type="text/css" href="../css/table.css">
+<link rel="stylesheet" type="text/css" href="css/table.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -199,8 +199,8 @@
 			// button to redirect user to the forum main page
 
 			$forum = "";
-			$forum .='<center><table style="font-family:Times New Roman;"> <thead style="color:#800000;font-size:30px;">
-						<tr ><th style="width:400px;text-align:left;"> forum: <i>'.$row['title'];
+			$forum .='<center><table class=table-style-two style="font-family:Times New Roman;"> <thead style="color:#800000;font-size:30px;">
+						<tr ><th style="width:634px;text-align:left;"> forum: <i>'.$row['title'];
 			if($row['forum_id'] == 1) 
 				$forum .= '<image src="images/globe.gif" height="32" width="32"/></th>'; 
 			else if ($row['forum_id'] == 2)
@@ -208,11 +208,12 @@
 			else 
 				$forum .= '</th>';
 
-			$forum .= '<th> <button id="redirect_mainpage" style="font-size:20px;text-decoration:underline;text-decoration-color:blue" class="w3-button">back to main forum </button>| Adding a post </th>';
+			$forum .= '<th> <button id="redirect_mainpage" style="font-size:20px;text-decoration:underline;text-decoration-color:black" class="btn-1">back to main forum </button> Adding a post </th>';
 			echo $forum;
+			echo "<br>";
 			
 			
-			$table ='<center><table style="font-family:Times New Roman;"> <thead style="color:#800000;font-size:20px;">
+			$table ='<center><table class=table-style-two style="font-family:Times New Roman;"> <thead style="color:#800000;font-size:20px;">
 						<tr ><th style="width:450px;text-align:center;"> Subject <i><b></i></b></th>
 			<th>  Category </th> <th> Message/description of post</th></tr> </thead><tbody style="color:#8B0000;font-style:italic;font-size:15px;">';
 
@@ -221,7 +222,7 @@
 			$table .='<td><input name="subject" required minlength=8 maxlength=50 class="w3-input" id="subject" type="text" placeholder="Title for your post"><br>';
 			$table .='<li style="" id="subject_warn">Subject must be of at least 8 characters and max of 50</li></td>';
 			// Category input
-			$table .='<td><select name="category" class="w3-button w3-dropdown" type="dropdown">';
+			$table .='<td><select name="category" class="btn-1 w3-dropdown" type="dropdown">';
 			$table .='<option value="news">News</option>';
 			$table .='<option value="complaint">complaint</option>';
 			$table .='<option value="hardware">hardware</option>';
@@ -234,7 +235,7 @@
 
 			// send data ;
 			$table .= '<table style="margin-left:1000px" style="font-family:Times New Roman;"> <thead style="color:#800000;font-size:17px;>">
-						<tr > <th><input class="w3-button" type="submit" name="send_post" id="submit" value="POST"></th> </tr></thead></table>';
+						<tr > <th><input class="btn-1" type="submit" name="send_post" id="submit" value="POST"></th> </tr></thead></table>';
 
 
 			$table .='</tr></form>';

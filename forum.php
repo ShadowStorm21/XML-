@@ -26,7 +26,7 @@ session_start();
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
-<link rel="stylesheet" type="text/css" href="../css/table.css">
+<link rel="stylesheet" type="text/css" href="css/table.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -121,7 +121,7 @@ session_start();
 			$n = mysqli_num_rows($result);
 
 			$table = "";
-			$table .='<center><table style="font-family:Times New Roman;"> <thead style="color:#800000;font-size:30px;">
+			$table .='<center><table class=table-style-two style="font-family:Times New Roman;"> <thead style="color:#800000;font-size:30px;">
 						<tr ><th></th><th style="width:500px;text-align:left;"> forum </th> <th>Posts</th></tr> </thead>
 						<tbody style="color:#8B0000;font-style:italic;font-size:25px;">
 						';

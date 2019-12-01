@@ -13,11 +13,10 @@
 		$("#redirect_mainpage").click(function(){$(location).attr('href','forum.php');});
 
 		// do something to increase the view if the viewer is registered and not the same user
-		$("#title td:first-child").click(
-		});
+		$("#title td:first-child").click( function(){ });
 
 		$('#title input').mouseenter(function(){
-				$(this).attr("style","text-decoration:underline;text-decoration-color:blue;");
+				$(this).attr("style","text-decoration:underline;text-decoration-color:black;");
 			});
 		$('#title input').mouseleave(function(){
 				$(this).attr("style","text-decoration:none;");
@@ -37,7 +36,7 @@ session_start();
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
-<link rel="stylesheet" type="text/css" href="../css/table.css">
+<link rel="stylesheet" type="text/css" href="css/table.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -144,7 +143,7 @@ session_start();
 
 
 			$forum = "";
-			$forum .='<center><table style="font-family:Times New Roman;"> <thead style="color:#800000;font-size:30px;">
+			$forum .='<center><table class=table-style-two style="font-family:Times New Roman;"> <thead style="color:#800000;font-size:30px;">
 						<tr ><th style="width:400px;text-align:left;"> forum: <i>'.$row['title'];
 			if($row['forum_id'] == 1) 
 				$forum .= '<image src="images/globe.gif" height="32" width="32"/></th>'; 
@@ -156,16 +155,18 @@ session_start();
 			$forum .= '
 			
 			<th>Posts : '.$total_posts.'</th> <th></th> 
-			<th> <button id="redirect_mainpage" style="font-size:20px;text-decoration:underline;text-decoration-color:blue" class="w3-button">back to main forum </button> 
+			<th> <button id=redirect_mainpage style="font-size:20px;text-decoration:underline;text-decoration-color:black" class="btn-1">back to main forum </button> 
 			<form method="post" action="add_post.php?current_forum='.$row['forum_id'].'">	
-			|<input type="submit"  style="font-size:20px;text-decoration:underline;text-decoration-color:blue" class="w3-button" 
+			<br>
+			<input type="submit"  style="font-size:20px;text-decoration:underline;text-decoration-color:black" class="btn-1" 
 			value="Post under :'.$row['title'].'"></form></th>
 			
 			</tr> </thead> </table> ';
 			echo $forum;
 			
+			echo "<br>";
 			
-			$table ='<center><table  style="font-family:Times New Roman;"> <thead style="color:#800000;font-size:20px;">
+			$table ='<center><table class=table-style-two style="font-family:Times New Roman;"> <thead style="color:#800000;font-size:20px;">
 						<tr ><th style="width:600px;text-align:center;"> Title <i><b></i></b></th><th> Posted by  </th> <th> Category </th>
 			 <th>Views</th><th>Date Posted</th></tr> </thead><tbody style="color:#8B0000;font-style:italic;font-size:15px;">';
 
