@@ -27,7 +27,6 @@ primary key(oid),FOREIGN key(uid) REFERENCES users(uid));
 
 CREATE TABLE payment (
 pid int AUTO_INCREMENT,
-cname VARCHAR(100) not null,
 uid int,
 oid int,
 total_price double not null,
