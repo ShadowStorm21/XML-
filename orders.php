@@ -129,15 +129,15 @@ include 'dbconnection.php';
 			$sql = "select * from orders where uid = $_SESSION[uid]";
 			$result = mysqli_query($connection, $sql) or die("Error in Selecting " . mysqli_error($connection));	
 			$n = mysqli_num_rows($result);
-			$table = '<center><table >';
-			$table .="<tr > <th> N </th> <th> products ordered </th><th> total price </th>  <th> ordering date </th> <th>  </th></tr> ";
+			$table = '<center><table class=table-style-two>';
+			$table .="<tr > <th> N </th> <th> products ordered </th><th> total price </th>  <th> ordering date   </th></tr> ";
 			for($i = 0; $i < $n; $i++){
 				$row = mysqli_fetch_assoc($result);
 				// number of orders 
 				$table .= '<tr><td>'. ($i + 1) . '</td>';
 
 				// embed product in another table 
-				$table .= "<td> <button value='$row[oid]' class='w3-gray w3-bar-item w3-button'>SEE ORDER PRODUCTS</button> </td>";
+				$table .= "<td> <button value='$row[oid]' class='w3-gray w3-bar-item btn-1'>SEE ORDER PRODUCTS</button> </td>";
 
 				// price and ordering date 
 				$table .= '<td> $'.$row['total_price'].'</td>';
