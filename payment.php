@@ -22,52 +22,55 @@ else
 	}
 	
 
-if(isset($_SESSION['uid']))
-{
-			
-if(isset($_POST['cardholder']) && isset($_POST['cardnumber']) && isset($_POST['cvv']) && isset($_POST['ba']) && isset($_POST['city']) && isset($_POST['pay'])){
-	
-	if(isset($_SESSION['total']))
-	{
-		$sql="INSERT INTO payment (cname,total_price, uid, oid) VALUES (:cn,:tp,:ui,:oi)";
-		$stmt = $conn->prepare($sql);
-		$stmt->execute(array(
-		':cn' => $_POST['cardholder'],
-		':tp' => $_SESSION['total'],
-		':ui' => $_SESSION['uid'],
-		':oi' => $_SESSION['order_id']));
-		echo "<script>alert('Transaction Successed');</script>";
-		header("Location:orders.php");
-		
-	}
-	else
-	{
-		$sql="INSERT INTO payment (cname,total_price, uid, oid) VALUES (:cn,:tp,:ui,:oi)";
-		$stmt = $conn->prepare($sql);
-		$stmt->execute(array(
-		':cn' => $_POST['cardholder'],
-		':tp' => $_SESSION['total_plans'],
-		':ui' => $_SESSION['uid'],
-		':oi' => $_SESSION['order_id']));
-		echo "<script>alert('Transaction Successed');</script>";
-		header("Location:orders.php");
-		
-	}
-}
-	
-else
-{
-$error = "All fields are required";
-}
 
-
-if(empty($_POST['cardholder']) && empty($_POST['cardnumber']) && empty($_POST['cvv']) && empty($_POST['ba']) && empty($_POST['city']) && isset($_POST['pay'])){
-
-$error = "All fields are required";}
-}
 
 
 ?>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"> </script>
+<script>
+
+$(document).ready(function(){
+	
+	$("#pay").click(function(){
+		
+		if($("div > input").val() == "")
+		{
+			alert("All fields are required");
+			
+		}
+		else
+		{
+			
+		 $.ajax({
+                type: "POST",
+                url: "payment_info.php",
+				data : "paid",
+                success: function (data) {
+				if(data.status == "Failed")
+						alert("Transaction Failed!");
+					else{
+						alert("Congratulations!,Your Payment has been accepted");
+						$(location).attr('href', 'orders.php');
+					}
+                 
+                },
+                error: function () {
+                    alert("Error");
+                }
+
+            });	
+		
+		}
+
+
+	});
+
+		
+
+});	
+
+
+</script>
 <html lang="en">
 <title>Payment </title>
 <meta charset="UTF-8">
@@ -175,49 +178,54 @@ $error = "All fields are required";}
 			{
 				
 		    echo"		    <h2><center> Total payment : $$_SESSION[total]</center></h2>";
+	
 			}
 			else
 			{
 				 echo"		    <h2><center> Total payment : $$_SESSION[total_plans]</center></h2>";
+				 
 			}
-		    //echo"		    <p><h4><center><button id='order' class='w3-button w3-red w3-circle'> ORDER NOW </button></center></h4><p>";
+		    
 		    echo"	    </div>";
-		
-	?>
+			
+			
+			?>
+			
+			
 <div class="w3-content w3-center">
   <div class="form-group">
     
-  <form method="post" style="width:100%">
+  <form style="width:100%">
   <div class="heading">
   <h2>Payment Information</h2>
   </div>
   <div class="form-group w3-red ">
     <i class="material-icons" style="font-size:20px;color:white">account_box</i>
-    <input class="form-control " type="text" placeholder="Card Holder" name="cardholder">
+    <input class="form-control " type="text" placeholder="Card Holder" id="ch">
   </div>
 
   <div class="form-group w3-red">
      <i class="material-icons" style="font-size:20px;color:white">payment</i>
-    <input class="form-control" type="Number" placeholder="Card Number" name="cardnumber">
+    <input class="form-control" type="Number" placeholder="Card Number" id="cardnumber">
   </div>
   <div class="form-group w3-red">
      <i class="fa fa-key icon"></i>
-    <input class="form-control" type="number" placeholder="CVV" name="cvv">
+    <input class="form-control" type="number" placeholder="CVV" id="cvv">
   </div>
   
   <div class="form-group w3-red">
    <i class="material-icons" style="font-size:20px;color:white">place</i>
-    <input class="form-control" type="text" placeholder="Billing Address" name="ba">
+    <input class="form-control" type="text" placeholder="Billing Address" id="ba">
   </div>
   <div class="form-group w3-red">
     <i class="material-icons" style="font-size:20px;color:white">location_city</i>
-    <input class="form-control" type="text" placeholder="City" name="city">
+    <input class="form-control" type="text" placeholder="City" id="city">
   </div>
   <div class="form-group">
   
 
 	<div>
-	<input type="submit" class="btn btn-primary btn-block" name="pay" value="Pay Now!" ><?php if(isset($error)){echo $error;} ?></input>
+	<button class="btn btn-primary btn-block" id="pay" value="Pay Now!">Pay Now!</button>
 	</div>
 	</div>
 
