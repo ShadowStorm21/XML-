@@ -22,6 +22,8 @@
 			url : "cart_session.php",
 			data : {"PRODUCT_EXISTS":$(pid).attr("id")},
 			success : function(n){ 
+				if(n)
+					alert("This product is already in your cart");
 			},
 			error : function(){alert("Error in checking product availibility");}
 		});	
