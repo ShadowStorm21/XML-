@@ -19,7 +19,6 @@ include 'dbconnection.php';
 						url :"order_info.php",
 						data: "PAID_ORDER",
 						success : function(data){
-							alert(data);
 							if(data.status == "Failed")
 								alert("Failed to order!");
 							else{
