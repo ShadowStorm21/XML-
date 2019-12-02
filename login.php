@@ -85,6 +85,7 @@ $error =  $_SESSION['confirm'];
     <a href="components.php" class="w3-bar-item w3-button w3-padding-large">Components</a>
     <a href="signup.php" class="w3-bar-item w3-button w3-padding-large">Sign up</a>
 	<a href="login.php" class="w3-bar-item w3-button w3-padding-large">Login</a>
+<a href="forum.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Forum</a>
 	<a href="contactus.php" class="w3-bar-item w3-button w3-padding-large">Contact us</a>
   </div>
 </div>
