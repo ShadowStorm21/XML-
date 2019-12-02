@@ -1,28 +1,69 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"> </script>
 <script >
-	$(document).ready(function(){
-		$("button").click(function(){
+	function is_registered(){
 			$.ajax({
-				type:"post",
-				url: "order_info.php",
-				data : {"order_id":$(this).attr("value")},
-				success : function(data){
-					$(location).attr('href','print.php');
+			type:"get",
+			url : "register_info.php",
+			data: "IS_LOGGED",
+			dataType: "json",
+			success: function(user_data){
+				if(user_data.status !="not_logged")	{
+					$("#register_ref").remove();
+					$("#register_ref3").remove();
+					$("#register_ref2").html("<div class='w3-red w3-dropdown-hover w3-right w3-bar-item w3-padding-large w3-hover-white'><i class='material-icons' style='font-size:30px'>person</i> <div class='w3-dropdown-content w3-animate-zoom w3-border' style='right:0'> <a href='orders.html' class='w3-bar-item w3-button'>Orders</a> <a href='changePassword.html' class='w3-bar-item w3-button'>Change Password</a> <a href='profile.html' class='w3-bar-item w3-button'>Update Profile</a> <a href='logout.php' class='w3-bar-item w3-button'>Logout</a> </div> </div> </div>");
+
+						$.ajax({
+							type:"get",
+							url :"order_info.php",
+							data: "ORDER_VIEW",
+							dataType: "json",
+							success: function(order_table) {
+								table = '<center><table class=table-style-two>';
+								table += "<tr > <th> N </th> <th> products ordered </th><th> total price </th>  <th> ordering date   </th></tr> ";
+								$(order_table).each(function(index,item){
+								table += '<tr><td>'+ (index + 1) + '</td>';
+								// embed product in another table 
+								table += "<td> <button value='"+item[0]+"' class='w3-gray w3-bar-item btn-1'>SEE ORDER PRODUCTS</button> </td>";
+								// price and ordering date 
+								table += '<td> $'+item[3]+'</td>';
+								table += '<td>'+item[4]+ '</td></tr>';		
+								});
+					table +='</center></table>';
+					$("#orders_table").html(table);
+					$("button").click(function(){
+						$.ajax({
+						type:"post",
+						url: "order_info.php",
+						data : {"order_id":$(this).attr("value")},
+						success : function(data){
+						$(location).attr('href','print.php');
+					},
+					error : function(){
+						alert("Error in sending order information"); }
+					});
+				});
 				},
-				error : function(){
-					alert("Error in sending order information");
+				error : function() {alert("Error in receiving order table");}
+			});	
+									}
+				else {
+					$(location).attr('href','login.html');
 				}
-			});
+			},
+			error : function(){alert("error in receiving customer infromation");} 
 		});	
+	}
+
+	function display_order(){ 
+		
+	}
+
+	$(document).ready(function(){
+		is_registered();
+			
 	});
 </script>
 
-
-<?php session_start();
-include 'dbconnection.php';
-	 if(!isset($_SESSION['uname']) && !isset($_SESSION['uid']))
-		header("location:login.php");
-	?>
 
 <html lang="en">
 <title>Orders</title>
@@ -50,64 +91,39 @@ include 'dbconnection.php';
 <!-- Navbar -->
 
 <div class="w3-top">
-  <div class="w3-bar w3-red w3-card w3-left-align w3-large ">
+  <div class="w3-bar w3-red w3-card w3-left-align w3-large w3-animate-zoom">
     <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-red"><i class="fa fa-bars"></i></a>
-    <a href="index.php" class="w3-bar-item w3-button w3-padding-large ">Home</a>
-    <a href="pricing.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Pricing</a>
-    <a href="components.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Components</a>
-	<?php  if(!isset($_SESSION['uid'])) {echo "<a href='signup.php' class='w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white'>Sign up</a>
-	<a href='login.php' class='w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white'>Login</a>";}?>
-<a href="forum.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Forum</a>
-	<a href="contactus.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Contact us</a>
-	<a href="search.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"><i class="fa fa-search" style="font-size:30px"></i></a>
-
-	<!-- Cart----------------------------------------------------------- -->
-
-	<a href="cart.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" id="_cart">
-	<?php 
-		if( isset($_SESSION['cart']) ) 
-			echo count($_SESSION['cart']);
-		else
-			echo "0";
-	?>
+    <a href="index.html" class="w3-bar-item w3-button w3-padding-large w3-white">Home</a>
+    <a href="pricing.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Pricing</a>
+    <a href="components.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Components</a>
+	<a id="register_ref" href="signup.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Sign up</a>
+	<a id="register_ref3" href='login.html' class='w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white'>Login</a>
+	<a href="forum.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Forum</a>
+	<a href="contactus.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Contact us</a>
+	<a href="search.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"><i class="fa fa-search" style="font-size:30px"></i></a>
+	<!-- Cart -->
+	<a href="cart.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" id="_cart_number">0
 	<i class="material-icons" style="font-size:20px">shopping_cart</i>
 	</a>
 
-	<?php if(isset($_SESSION['uname']) && isset($_SESSION['uid'])){echo "<div class='w3-dropdown-hover w3-right w3-bar-item w3-padding-large w3-hover-white'><i class='material-icons' style='font-size:30px'>person</i>
-  <div class='w3-dropdown-content w3-animate-zoom w3-border' style='right:0'>
-    <a href='orders.php' class='w3-bar-item w3-button'>Orders</a>
-    <a href='changePassword.php' class='w3-bar-item w3-button'>Change Password</a>
-    <a href='profile.php' class='w3-bar-item w3-button'>Update Profile</a>
-    <a href='logout.php' class='w3-bar-item w3-button'>Logout</a>
-  </div>
-
-  </div>
-</div>";} ?><!-- Change it later-->
+	<div id="register_ref2"> </div>
+	<!-- Change it later-->
 	
 	
   </div>
 
   <!-- Navbar on small screens -->
- <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large">
-    <a href="pricing.php" class="w3-bar-item w3-button w3-padding-large">Pricing</a>
-    <a href="components.php" class="w3-bar-item w3-button w3-padding-large">Components</a>
-  	<?php  if(!isset($_SESSION['uid'])) {echo "<a href='signup.php' class='w3-bar-item w3-button w3-padding-large w3-hover-white'>Sign up</a>
-	<a href='login.php' class='w3-bar-item w3-button w3-padding-large w3-hover-white'>Login</a>";}?>
-	<a href="contactus.php" class="w3-bar-item w3-button w3-padding-large">Contact us</a>
-	<?php if(isset($_SESSION['uname']) && isset($_SESSION['uid'])){echo "<div class='w3-dropdown-hover w3-right w3-bar-item w3-padding-large w3-hover-white'><i class='material-icons' style='font-size:30px'>person</i>
-  <div class='w3-dropdown-content w3-animate-zoom w3-border' style='right:0'>
-    <a href='changePassword.php' class='w3-bar-item w3-button'>Change Password</a>
-    <a href='profile.php' class='w3-bar-item w3-button'>Update Profile</a>
-    <a href='logout.php' class='w3-bar-item w3-button'>Logout</a>
-  </div>
-
-  </div>
-</div>";} ?>
+ <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large w3-animate-zoom">
+    <a href="pricing.html" class="w3-bar-item w3-button w3-padding-large">Pricing</a>
+    <a href="components.html" class="w3-bar-item w3-button w3-padding-large">Components</a>
+  	<a id="register_ref" href='signup.html' class='w3-bar-item w3-button w3-padding-large w3-hover-white'>Sign up</a>
+	<a href='login.html' class='w3-bar-item w3-button w3-padding-large w3-hover-white'>Login</a>";}?>
+	<a href="contactus.html" class="w3-bar-item w3-button w3-padding-large">Contact us</a>
+	<div id="#register_ref2"></div> 
   </div>
 </div>
 
 <!-- Header -->
-
 <header class="w3-container w3-red w3-center" style="padding:128px 16px">
 <div class=""></div>
   <h1 class="w3-margin w3-jumbo">Orders</h1>
@@ -125,32 +141,9 @@ include 'dbconnection.php';
 
 
 	<!-- orders table goes here -->
-	<?php 
-			$connection = mysqli_connect("localhost","root","","pc") or die("Error " . mysqli_error($connection));
-			$sql = "select * from orders where uid = $_SESSION[uid]";
-			$result = mysqli_query($connection, $sql) or die("Error in Selecting " . mysqli_error($connection));	
-			$n = mysqli_num_rows($result);
-			$table = '<center><table class=table-style-two>';
-			$table .="<tr > <th> N </th> <th> products ordered </th><th> total price </th>  <th> ordering date   </th></tr> ";
-			for($i = 0; $i < $n; $i++){
-				$row = mysqli_fetch_assoc($result);
-				// number of orders 
-				$table .= '<tr><td>'. ($i + 1) . '</td>';
-
-				// embed product in another table 
-				$table .= "<td> <button value='$row[oid]' class='w3-gray w3-bar-item btn-1'>SEE ORDER PRODUCTS</button> </td>";
-
-				// price and ordering date 
-				$table .= '<td> $'.$row['total_price'].'</td>';
-				$table .= '<td>'.$row['ordate']. '</td></tr>';
-			}
-			$table .='</center></table>';
-			echo $table;
-
-	?>
-
-
-	<?php for($i = 0;$i<20;$i++) echo "<br/>"; ?>
+	<p id="orders_table"></p>
+	
+	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
 						
 		
