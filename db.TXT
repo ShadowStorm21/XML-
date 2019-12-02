@@ -1,3 +1,266 @@
+create database pc;
+use pc;
+
+CREATE TABLE users (
+uid int auto_increment,
+uname VARCHAR(30) not null,
+email VARCHAR(50) unique,
+contactno VARCHAR(20) not null,
+regdate datetime DEFAULT CURRENT_TIMESTAMP,
+pass VARCHAR(100) NOT NULL,
+primary key(uid)); 
+
+CREATE TABLE product (
+pid int auto_increment,
+pname VARCHAR(100) not null,
+price double not null,
+tag VARCHAR(15) not null,
+description VARCHAR(1000),
+primary key(pid));
+
+CREATE TABLE orders (
+oid int AUTO_INCREMENT,uid int,
+pids json not null,
+total_price double not null,
+ordate datetime DEFAULT CURRENT_TIMESTAMP,
+primary key(oid),FOREIGN key(uid) REFERENCES users(uid));
+
+CREATE TABLE payment (
+pid int AUTO_INCREMENT,
+uid int,
+oid int,
+total_price double not null,
+pdate datetime DEFAULT CURRENT_TIMESTAMP,
+primary key(pid),FOREIGN key(uid) REFERENCES users(uid),FOREIGN key(oid) REFERENCES orders(oid));
+
+
+create table forum (
+forum_id int auto_increment,
+icon_path varchar(100) null,
+title varchar(30) not null,
+subtitle varchar(60) null,
+posts_ids json,
+primary key(forum_id)
+);
+
+create table post (
+post_id int auto_increment,
+post_by int,
+subject varchar(50) not null,
+category enum ('news','complaint','hardware','discussion','reply'),
+details TEXT not null,
+postdate datetime DEFAULT CURRENT_TIMESTAMP,
+primary key(post_id), foreign key(post_by) references users(uid)
+);
+create table reply (
+post_id int,reply_id int,
+foreign key(post_id) references post(post_id), foreign key(reply_id) references post(post_id)
+);
+
+insert INTO forum(icon_path,title,subtitle) values("globe.gif","Breaking News!","Read the lastest trends, technology and computer hardware");
+insert INTO forum(icon_path,title,subtitle) values("discussion.gif","Community Discussion","See what people discuss about");
+
+
+
+
+# pre-defined products !
+
+# order matters dont not change anything
+
+INSERT INTO product 
+(pname,price,tag,description) VALUES ("Intel Pentium Gold G5400",60,"CPU"," 2 Cores / 4 Threads
+Up to 3.7GHz Core Turbo");
+
+INSERT INTO product 
+(pname,price,tag,description) VALUES ("AMD Ryzen 3 3200G",87,"CPU"," 4 Cores / 4 Threads
+Up to 4.0 GHz Core Turbo Unlocked");
+
+INSERT INTO product 
+(pname,price,tag,description) VALUES ("AMD Athlon 220GE",61,"CPU"," 2 Cores / 4 Threads
+Up to 3.5 GHz Core Turbo Unlocked");
+
+INSERT INTO product 
+(pname,price,tag,description) VALUES ("Intel i3-9100F",87,"CPU"," 4 Cores / 4 Threads
+Up to 4.2 GHz Core Turbo");
+
+INSERT INTO product 
+(pname,price,tag,description) VALUES ("Intel i5-9400",189,"CPU"," 6 Cores / 6 Threads
+Up to 4.1 GHz Core Turbo");
+
+INSERT INTO product 
+(pname,price,tag,description) VALUES ("Intel i3-9600K",240,"CPU"," 6 Cores / 6 Threads
+Up to 4.6 GHz Core Turbo Unlocked");
+
+INSERT INTO product 
+(pname,price,tag,description) VALUES ("Intel i9 9900k",480,"CPU"," 8 Cores / 16 Threads
+Up to 5.0 GHz All Core Turbo Unlocked
+Scalability: 1S Only");
+
+INSERT INTO product 
+(pname,price,tag,description) VALUES ("Intel i7-9700K",339,"CPU"," 8 Cores / 8 Threads
+Up to 4.9 GHz Core Turbo Unlocked");
+
+INSERT INTO product 
+(pname,price,tag,description) VALUES ("AMD Ryzen 9 3900X",480,"CPU","
+ 12 Cores / 24 Threads
+Up to 4.6 GHz Core Turbo Unlocked");
+
+INSERT INTO product 
+(pname,price,tag,description) VALUES ("AMD Ryzen 7 3800X",375,"CPU","
+ 8 Cores / 16 Threads
+Up to 4.5 GHz Core Turbo Unlocked");
+
+INSERT INTO product 
+(pname,price,tag,description) VALUES ("AMD Ryzen 7 3700X",325,"CPU","
+ 8 Cores / 16 Threads
+Up to 4.4 GHz Core Turbo Unlocked");
+
+INSERT INTO product 
+(pname,price,tag,description) VALUES ("AMD Ryzen 5 3600X",240,"CPU","
+ 6 Cores / 12 Threads
+Up to 4.4 GHz Core Turbo Unlocked");
+
+INSERT INTO product 
+(pname,price,tag,description) VALUES ("AMD Ryzen 5 3600",199,"CPU","
+ 6 Cores / 12 Threads
+Up to 4.2 GHz Core Turbo Unlocked");
+
+
+# CPU Ends !
+
+INSERT INTO product 
+(pname,price,tag,description) VALUES ("G.Skill Trident 4GB",22,"RAM","G.Skill Trident Z 4GB DDR4 2666MHz memory speed");
+
+INSERT INTO product 
+(pname,price,tag,description) VALUES ("G.Skill Trident 8GB",40,"RAM","G.Skill Trident Z 8GB DDR4 2666MHz memory speed");
+
+INSERT INTO product 
+(pname,price,tag,description) VALUES ("G.Skill Trident 16GB",70,"RAM","G.Skill Trident Z 16GB DDR4 3400MHz memory speed");
+
+INSERT INTO product 
+(pname,price,tag,description) VALUES ("G.Skill Trident 32GB",130,"RAM","G.Skill Trident Z 32GB DDR4 3400MHz memory speed");
+
+INSERT INTO product 
+(pname,price,tag,description) VALUES ("G.Skill Trident 64GB",300,"RAM","G.Skill Trident Z 64GB DDR4 3600MHz memory speed");
+
+
+# RAM Ends !
+
+
+INSERT INTO product 
+(pname,price,tag,description) VALUES ("Radeon RX 550",99,"GPU","The Radeon RX 550 is an entry-level graphics card by AMD suitable for low 1080p gaming");
+
+INSERT INTO product 
+(pname,price,tag,description) VALUES ("Radeon RX 560",110,"GPU","The Radeon RX 560 is an entry-level graphics card by AMD suitable for low to medium 1080p gaming");
+
+INSERT INTO product 
+(pname,price,tag,description) VALUES ("Radeon RX 570",140,"GPU","The Radeon RX 570 is an entry-level graphics card by AMD suitable for high to medium 1080p gaming");
+
+INSERT INTO product 
+(pname,price,tag,description) VALUES ("NVIDIA GeForce GTX 1650",150,"GPU","The GeForece GTX 1650 is an medium-level graphics card by NVIDIA suitable for high to medium 1080p gaming");
+
+INSERT INTO product 
+(pname,price,tag,description) VALUES ("Radeon RX 590",189,"GPU","The Radeon RX 590 is an medium-level graphics card by AMD suitable for high 1080p gaming");
+
+INSERT INTO product 
+(pname,price,tag,description) VALUES ("NVIDIA GeForce GTX 1660ti",260,"GPU","The GeForece GTX 1660ti is an medium-level graphics card by NVIDIA suitable for high to ultra 1080p gaming");
+
+INSERT INTO product 
+(pname,price,tag,description) VALUES ("Radeon RX 5700",329,"GPU","The Radeon RX 5700 is an high-level graphics card by AMD suitable for high 1440p gaming");
+
+INSERT INTO product 
+(pname,price,tag,description) VALUES ("NVIDIA GeForce RTX 2060 SUPER",410,"GPU","The GeForece RTX 2060S is an high-level graphics card by NVIDIA suitable for high 1440p gaming");
+
+INSERT INTO product 
+(pname,price,tag,description) VALUES ("Radeon RX 5700XT",429,"GPU","The Radeon RX 5700XT is an high-level graphics card by AMD suitable for ultra 1440p gaming");
+
+INSERT INTO product 
+(pname,price,tag,description) VALUES ("NVIDIA GeForce RTX 2070 SUPER",499,"GPU","The GeForece RTX 2070S is an high-level graphics card by NVIDIA suitable for ultra 1440p gaming");
+
+INSERT INTO product 
+(pname,price,tag,description) VALUES ("NVIDIA GeForce RTX 2080TI",1100,"GPU","The GeForece RTX 2080TI is an high-level graphics card by NVIDIA suitable for ultra 4K gaming");
+
+INSERT INTO product 
+(pname,price,tag,description) VALUES ("NVIDIA GeForce RTX 2080 SUPER",740,"GPU","The GeForece RTX 2080S is an high-level graphics card by NVIDIA suitable for high 4K gaming");
+
+INSERT INTO product 
+(pname,price,tag,description) VALUES ("NVIDIA Quadro RTX 6000",3500,"GPU","The Quadro RTX 6000 is a professional graphics card by NVIDIA suitable for professional workflows,Designers and artists");
+
+INSERT INTO product 
+(pname,price,tag,description) VALUES ("NVIDIA Titan RTX",2499,"GPU","TITAN RTX is the fastest PC graphics card ever built suitable for gaming and professional workflows");
+
+# GPU Ends !
+
+INSERT INTO product 
+(pname,price,tag,description) VALUES ("WD 1TB Hard Drive",45,"Storage","
+WD Blue 1TB PC Hard Drive - 7200 RPM Class, SATA 6 Gb/s, 64 MB Cache, 3.5");
+
+INSERT INTO product 
+(pname,price,tag,description) VALUES ("WD 2TB Hard Drive",49.99,"Storage","WD Blue 2TB PC Hard Drive - 5400 RPM Class, SATA 6 Gb/s, 256 MB Cache, 3.5");
+
+INSERT INTO product 
+(pname,price,tag,description) VALUES ("Samsung SSD 860 EVO 250GB",50,"Storage","
+Sequential Read/Write speeds up to 550MB/s and 520MB/s respectively");
+
+INSERT INTO product 
+(pname,price,tag,description) VALUES ("HDD SSD",94,"Storage","
+Western Digital 1TB Internal Hard Drive HDD and Samsung SSD 860 EVO 250GB");
+
+INSERT INTO product 
+(pname,price,tag,description) VALUES ("Samsung SSD 970 EVO 500GB - NVMe",90,"Storage","
+Sequential read and write performance levels of up to 3,500MB/s and 2,500MB/s, respectively");
+
+INSERT INTO product 
+(pname,price,tag,description) VALUES ("Samsung SSD 970 EVO 1TB - NVMe",150,"Storage","
+Sequential read and write performance levels of up to 3,500MB/s and 2,500MB/s, respectively");
+
+INSERT INTO product 
+(pname,price,tag,description) VALUES ("Samsung SSD 970 PRO 512GB - NVMe",150,"Storage","
+Sequential read and write performance levels of up to 3,500MB/s and 2,700MB/s, respectively");
+
+INSERT INTO product 
+(pname,price,tag,description) VALUES ("Samsung SSD 970 EVO plus 2TB - NVMe",399,"Storage","
+Sequential read and write performance levels of up to 3,500MB/s and 3,300MB/s, respectively");
+
+INSERT INTO product 
+(pname,price,tag,description) VALUES ("Samsung SSD 970 EVO plus 1TB - NVMe",199,"Storage","
+Sequential read and write performance levels of up to 3,500MB/s and 3,300MB/s, respectively");
+
+INSERT INTO product 
+(pname,price,tag,description) VALUES ("SSD_HDDt1",130,"Storage","
+Western Digital 1TB Internal Hard Drive HDD and Samsung 970 EVO 500GB NVMe SSD");
+
+INSERT INTO product 
+(pname,price,tag,description) VALUES ("SSD_HDDt2",190,"Storage","
+Western Digital 1TB Internal Hard Drive HDD and Samsung 970 EVO 1000GB NVMe SSD");
+
+
+# Storage Ends !
+
+
+INSERT INTO product 
+(pname,price,tag,description) VALUES ("Corsair K95 RGB Platinum",129,"Keyboard","
+100 percentage CHERRY MX Speed RGB mechanical key switches");
+
+INSERT INTO product 
+(pname,price,tag,description) VALUES ("CORSAIR Dark Core",77.85,"Mouse ","
+Ultra-fast 1ms 2.4GHz and low-latency Bluetooth wireless technology");
+
+# Gears Ends !
+
+INSERT INTO product 
+(pname,price,tag,description) VALUES ("AeroCool Cylon RGB Mid Tower with Acrylic Side Window, Black case",50,"Case","AeroCool Cylon RGB Mid Tower with Acrylic Side Window, Black");
+
+INSERT INTO product 
+(pname,price,tag,description) VALUES ("EVGA 750 GQ, 80+ GOLD 750W, Semi Modular, Power Supply",94.99,"Power Supply"," efficient operation 80 PLUS Gold, with 90 percent (115VAC) / 92 percent");
+
+INSERT INTO product 
+(pname,price,tag,description) VALUES ("EVGA 500 W1, 80+ WHITE 500W,Power Supply",47.99,"Power Supply","
+Compatibility of the EVGA 500 W1, 80+ WHITE 500W");
+
+
+
+
 INSERT into users(uname,email,contactno,pass) values("Meeter the eater","Admin@Admin.pc",938,"none");
 insert into post(post_by,subject,category,details) values (1,"Rules for Posting All forums!","news","
 Welcome to the computer hardware community , please read these tip for posting and commenting carefully
@@ -18,3 +281,6 @@ insert into post(post_by,subject,category,details) values (1,"My Intel processor
 ");
 insert INTO forum(icon_path,title,subtitle,posts_ids) values("globe.gif","Breaking News!","Read the lastest trends, technology and computer hardware","[1]");
 insert INTO forum(icon_path,title,subtitle,posts_ids) values("discussion.gif","Community Discussion","See what people discuss about","[2]");
+
+
+
