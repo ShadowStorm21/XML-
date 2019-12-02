@@ -1,18 +1,28 @@
 <?php session_start();
 include 'dbconnection.php';
 if(isset($_POST['username']) && isset($_POST['contactno']) && isset($_POST['email']) && isset($_POST['pass']) && isset($_POST['cpass']) && isset($_POST['register'])){
-	if(filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)){
+	if(!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)){
+		$error = "Invalid Email Format Used";
+	}
+	else if ($_POST['pass'] != $_POST['cpass']) {
+		echo($error ="Error... Passwords do not match");
+	}
+	else if (strlen($_POST['contactno']) !== 8) {
+		 $error = "Phone number must be 8 digits";
+	}
+			 
+	else{	
 		$sql="INSERT INTO users (uname,contactno, email, pass) VALUES (:un,:co,:em,:pa)";
 		$stmt = $conn->prepare($sql);
 		$stmt->execute(array(
 		':un' => $_POST['username'],
-		':co' => $_POST['contactno'],
+		 ':co' => $_POST['contactno'],
 		':em' => $_POST['email'],
 		':pa' => encrypt($_POST['pass'])));
 		$_SESSION['email']=$_POST['email'];
 		header("Location:index.php");
 	}
-	else {$error = "Invalid Email Format Used";}
+	
 }
 
 
@@ -36,7 +46,7 @@ $error = "All Fields required";}
 	<!-- Icomoon Icon Fonts-->
 	<link rel="stylesheet" href="css/icomoon.css">
 	<!-- Theme style  -->
-	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/mstyles.css">
 <style>
 
 /* Style the form icons */
@@ -60,20 +70,9 @@ $error = "All Fields required";}
     <a href="components.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Components</a>
     <a href="signup.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-white">Sign up</a>
 	<a href="login.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Login</a>
-	<a href="forum.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Forum</a>
 	<a href="contactus.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Contact us</a>
-	<a href="search.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"><i class="fa fa-search" style="font-size:30px"></i></a>
-	<!-- Cart -->
-	<a href="cart.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" id="_cart">
-	<?php 
-		if( isset($_SESSION['cart']) ) 
-			echo count($_SESSION['cart']);
-		else
-			echo "0";
-	?>
-	<i class="material-icons" style="font-size:20px">shopping_cart</i>
-			
-	</a>
+	<a href="search.php" class="w3-bar-item w3-button w3-hide-small w3-spin w3-padding-large w3-hover-white"><i class="fa fa-search" style="font-size:30px"></i></a>
+	<a href="cart.php" class="w3-bar-item w3-button w3-hide-small w3-spin w3-padding-large w3-hover-white"><i class="material-icons" style="font-size:30px">shopping_cart</i></a>
 	
   </div>
 
@@ -150,6 +149,7 @@ $error = "All Fields required";}
  <p>Powered by <a class="copyright" href="https://www.hct.edu.om" target="_blank">Higher College of Technology</a></p>
  <small class="block">&copy; 2019 Higher College of Technology. All Rights Reserved.</small> 
 </footer>
+
 
 </body>
 </html>
