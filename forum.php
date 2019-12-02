@@ -131,10 +131,9 @@ session_start();
 				$table .= "<tr>";
 				$table .='<form method="post" action="posts.php?current_forum='.$row['forum_id'].'">';
 
-				if( $i == 0)
-					$table .='<td><image src="images/globe.gif" height="32" width="32"/></td>';
-				else if ($i == 1)
-					$table .='<td><image src="images/discussion.gif" height="32" width="32"/></td>';
+				if($row['icon_path'] != null){
+					$table .="<td><image src='images/$row[icon_path]' height=32 width=32/></td>";
+				}
 				else 
 					$table .='<td></td>';
 

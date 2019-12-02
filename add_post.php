@@ -8,7 +8,7 @@
 			if(isset($_POST['send_post'])){
 				// insert the current post to the database as well as the post id to the forum table
 				$connection = mysqli_connect("localhost","root","","pc") or die("Error " . mysqli_error($connection));
-				$sql = "insert into post(post_by,subject,category,details,views) values($_SESSION[uid],'$_POST[subject]','$_POST[category]','$_POST[details]',0);";
+				$sql = "insert into post(post_by,subject,category,details) values($_SESSION[uid],'$_POST[subject]','$_POST[category]','$_POST[details]');";
 				$result = mysqli_query($connection, $sql) or die("Error in Selecting " . mysqli_error($connection));
 				$sql = "select posts_ids from forum where forum_id = $_GET[current_forum];";
 				$result = mysqli_query($connection, $sql) or die("Error in Selecting " . mysqli_error($connection));
@@ -201,10 +201,8 @@
 			$forum = "";
 			$forum .='<center><table class=table-style-two style="font-family:Times New Roman;"> <thead style="color:#800000;font-size:30px;">
 						<tr ><th style="width:634px;text-align:left;"> forum: <i>'.$row['title'];
-			if($row['forum_id'] == 1) 
-				$forum .= '<image src="images/globe.gif" height="32" width="32"/></th>'; 
-			else if ($row['forum_id'] == 2)
-				$forum .= '<image src="images/discussion.gif" height="32" width="32"/></th>'; 
+			if($row['icon_path'] != null)
+					$forum .="<image src='images/$row[icon_path]' height=32 width=32/></th>";
 			else 
 				$forum .= '</th>';
 

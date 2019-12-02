@@ -36,6 +36,7 @@ primary key(pid),FOREIGN key(uid) REFERENCES users(uid),FOREIGN key(oid) REFEREN
 
 create table forum (
 forum_id int auto_increment,
+icon_path varchar(100) null,
 title varchar(30) not null,
 subtitle varchar(60) null,
 posts_ids json,
@@ -46,16 +47,20 @@ create table post (
 post_id int auto_increment,
 post_by int,
 subject varchar(50) not null,
-category enum ('news','complaint','hardware','discussion'),
+category enum ('news','complaint','hardware','discussion','reply'),
 details TEXT not null,
 postdate datetime DEFAULT CURRENT_TIMESTAMP,
-views int ,
 primary key(post_id), foreign key(post_by) references users(uid)
 );
+create table reply (
+post_id int,reply_id int,
+foreign key(post_id) references post(post_id), foreign key(reply_id) references post(post_id)
+);
 
-
-insert INTO forum(title,subtitle) values("Breaking News!","Read the lastest trends, technology and computer hardware");
-insert INTO forum(title,subtitle) values("Community Discussion","See what people discuss about");
+insert INTO forum(icon_path,title,subtitle) values("globe.gif","Breaking News!","Read the lastest trends, technology and computer hardware");
+insert INTO forum(icon_path,title,subtitle) values("discussion.gif","Community Discussion","See what people discuss about");
+insert into post(post_by,subject,category,details,views) values(1,"A dog has been missing for a decade ","news","A dog has been missing for a
+decade and got back to his owner yesterday , but the big surprise is the owner had already bought another good boi, doggo is now sad , doggo is skrrt skrrt inside :( ",0);
 
 
 

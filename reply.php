@@ -1,4 +1,25 @@
-<?php
+<?php session_start();
+			if($_SERVER['REQUEST_METHOD'] != 'POST') {
+					header("location:forum.php");
+			}
+			if(!isset($_SESSION['uname']) && !isset($_SESSION['uid'])){
+				header("location:login.php");
+			}
+			if(isset($_POST['reply'])){
+				// insert id of the post in reply table and the replier to the same table
+
+				// insert as post > insert as reply > save both of them
+				$connection = mysqli_connect("localhost","root","","pc") or die("Error " . mysqli_error($connection));
+				$sql = "insert into post(post_by,subject,category,details) values($_SESSION[uid],' ','reply','$_POST[details]');";
+				$result = mysqli_query($connection, $sql) or die("Error in Selecting " . mysqli_error($connection));	
+				$sql = "select post_id from post where post_by = $_SESSION[uid] order by postdate desc limit 1";
+				$result = mysqli_query($connection, $sql) or die("Error in Selecting " . mysqli_error($connection));
+				$post_id = mysqli_fetch_assoc($result);
+
+				$sql = "insert into reply(post_id,reply_id) values($_GET[post_id],$post_id[post_id]);";
+				$result = mysqli_query($connection, $sql) or die("Error in Selecting " . mysqli_error($connection));			
+				header("location:thread.php?post_id=$_GET[post_id]&current_forum=$_GET[current_forum]");
+				}
 ?>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"> </script>
 
@@ -6,26 +27,35 @@
 
 <script>
 
+	function switch_button(state) {
+		if(state=="on")
+			$("#submit").removeAttr("disabled");
+		else 
+			$("#submit").attr("disabled","true");
+	}
+
+	$(document).ready(function(){
 	$(document).ready(function(){
 		$("#redirect_mainpage").click(function(){$(location).attr('href','forum.php');});
+	});	
 
-		// do something to increase the view if the viewer is registered and not the same user
-		$("#title td:first-child").click( function(){ });
+			$("#details").keyup(function(){
+			if( $(this).val().length >= 30 ) {
+				$("#details_warn").attr("style","color:green");
+				$("#details_warn").text("Condition satisfied");
+				switch_button("on");
+			}
+			else{
+				$("#details_warn").attr("style","color:#800000");
+				$("#detials_warn").text("Subject must be of at least 8 characters and max of 50");
+				switch_button("off");
+			}
+		});
 
-		$('#title input').mouseenter(function(){
-				$(this).attr("style","text-decoration:underline;text-decoration-color:black;");
-			});
-		$('#title input').mouseleave(function(){
-				$(this).attr("style","text-decoration:none;");
-			});
 	});
 </script>
 
 
-<?php
-session_start();
-
-?>
 
 <html lang="en">
 <title>Forum</title>
@@ -91,9 +121,9 @@ session_start();
 	<a href="contactus.php" class="w3-bar-item w3-button w3-padding-large">Contact us</a>
 	<?php if(isset($_SESSION['uname']) && isset($_SESSION['uid'])){echo "<div class='w3-dropdown-hover w3-right w3-bar-item w3-padding-large w3-hover-white'><i class='material-icons' style='font-size:30px'>person</i>
   <div class='w3-dropdown-content w3-animate-zoom w3-border' style='right:0'>
-    <a href='changePassword.php' class='w3-bar-item w3-button'>Change Password</a>
-    <a href='profile.php' class='w3-bar-item w3-button'>Update Profile</a>
-    <a href='logout.php' class='w3-bar-item w3-button'>Logout</a>
+     <a href='../changePassword.php' class='w3-bar-item w3-button'>Change Password</a>
+    <a href='../profile.php' class='w3-bar-item w3-button'>Update Profile</a>
+    <a href='../logout.php' class='w3-bar-item w3-button'>Logout</a>
   </div>
 
   </div>
@@ -129,76 +159,56 @@ session_start();
 			$result = mysqli_query($connection, $sql) or die("Error in Selecting " . mysqli_error($connection));	
 			$n = mysqli_num_rows($result);
 			$row = mysqli_fetch_assoc($result);
-			$total_posts = 0;
-					if($row['posts_ids'] != null){
-						$posts = json_decode($row['posts_ids']);
-						foreach($posts as $post){
-							$total_posts++; 
-							}
-			}
 
+			$sql2 = "select * from post where post_id = $_GET[post_id];";
+			$result2 = mysqli_query($connection, $sql2) or die("Error in Selecting " . mysqli_error($connection));	
+			$poster_data = mysqli_fetch_assoc($result2);
 
+			$sql3 = "select * from users where uid = (select post_by from post where post_id = $_GET[post_id] limit 1);";
+			$result3 = mysqli_query($connection, $sql3) or die("Error in Selecting " . mysqli_error($connection));	
+			$user = mysqli_fetch_assoc($result3);
+
+			// button to redirect user to insert a post
+			
+
+			// button to redirect user to the forum main page
 
 			$forum = "";
 			$forum .='<center><table class=table-style-two style="font-family:Times New Roman;"> <thead style="color:#800000;font-size:30px;">
-						<tr ><th style="width:450px;text-align:left;"> forum: <i>'.$row['title'];
+						<tr ><th style="width:634px;text-align:left;"> forum: <i>'.$row['title'];
 			if($row['icon_path'] != null)
 					$forum .="<image src='images/$row[icon_path]' height=32 width=32/></th>";
 			else 
 				$forum .= '</th>';
 
-			$forum .= '
-			
-			<th>Posts : '.$total_posts.'</th> <th></th> 
-			<th> <button id=redirect_mainpage style="font-size:20px;text-decoration:underline;text-decoration-color:black" class="btn-1">back to main forum </button> 
-			<form method="post" action="add_post.php?current_forum='.$row['forum_id'].'">	
-			<br>
-			<input type="submit"  style="font-size:20px;text-decoration:underline;text-decoration-color:black" class="btn-1" 
-			value="Post under :'.$row['title'].'"></form></th>
-			
-			</tr> </thead> </table> ';
+			$forum .= '<th> <button id="redirect_mainpage" style="font-size:20px;text-decoration:underline;text-decoration-color:black" class="btn-1">back to main forum </button> </th>';
 			echo $forum;
-			
 			echo "<br>";
+			$result = mysqli_query($connection, $sql) or die("Error in Selecting " . mysqli_error($connection));	
+			
 			
 			$table ='<center><table class=table-style-two style="font-family:Times New Roman;"> <thead style="color:#800000;font-size:20px;">
-						<tr ><th style="width:600px;text-align:center;"> Title <i><b></i></b></th><th> Posted by  </th> <th> Category </th>
-			 <th>Threads</th><th>Date Posted</th></tr> </thead><tbody style="color:#8B0000;font-style:italic;font-size:15px;">';
+						<tr ><th style="width:450px;text-align:center;" colspan=2> '.$poster_data['subject'].", by : $user[uname] ".' <i><b></i></b></th>
+			 <th> Reply </th></tr> </thead><tbody style="color:#8B0000;font-style:italic;font-size:15px;">';
 
-			if($total_posts != 0){
-				$posts = json_decode($row['posts_ids']);
-						foreach($posts as $postid){
-							// post inforamtion
-							$sql = "select * from post where post_id= $postid;";
-							$result = mysqli_query($connection, $sql) or die("Error in Selecting " . mysqli_error($connection));
-							$post = mysqli_fetch_assoc($result); 
+			$table .='<form method="post"><tr>';
+			// subject input;
+			$table .='<td colspan=2><textarea rows="20" cols="25" disabled name="subject" class="w3-input" id="subject" type="text" placeholder="'.$poster_data['details'].'"></textarea><br></td>';
+			// description input;
+			$table .='<td th style="width:450px;text-align:center;">
+			<textarea id="details" rows="20" cols="25" class="w3-input" minlength="30" required id="subject" name="details" placeholder="Your Details here"></textarea>';
+			$table .='<li style="" id="details_warn">details must be of at least 30 characters</li></td>';
 
-							// user inforamtion 
-							$sql = "select uname from users where uid= $post[post_by];";
-							$result = mysqli_query($connection, $sql) or die("Error in Selecting " . mysqli_error($connection));	
-							$uname =  mysqli_fetch_assoc($result);
+			// send data ;
+			$table .= '<table style="margin-left:850px" style="font-family:Times New Roman;"> <thead style="color:#800000;font-size:17px;>">
+						<tr > <th><input class="btn-1" type="submit" name="reply" id="submit" value="REPLY"></th> </tr></thead></table>';
 
-							$table .= "<form method='post' action='thread.php?post_id=".$post['post_id']."&current_forum=".$_GET['current_forum']."'>";
-							$table .= '<tr id="title"><td style="" id="'.$post['post_id'].'""> <input style="" type="submit" class="w3-button" value="'
-							.$post['subject'].'"></td><td><i><b>'.$uname['uname'].'</i></b></td>';
-							$table .= "</form>";
 
-							$table .= '<td><i><b>'.$post['category'].'</i></b></td>';
-
-							// threads
-							$sql = "select count(reply_id) from reply where post_id = $post[post_id];";
-							$result = mysqli_query($connection, $sql) or die("Error in Selecting " . mysqli_error($connection));
-
-							
-							$table .= '<td><i><b>'.mysqli_fetch_assoc($result)['count(reply_id)'].'</i><b></td><td><i>'.$post['postdate'].'</i></td></tr>';
-						}
-			}
-
+			$table .='</tr></form>';
 
 
 			$table .= '</tbody></table></center>';
 			echo $table;
-			
 		?>
 
 

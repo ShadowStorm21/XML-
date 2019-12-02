@@ -1,10 +1,5 @@
 <?php
-			if($_SERVER['REQUEST_METHOD'] != 'POST') {
-					header("location:forum.php");
-			}
-			if(!isset($_GET['post_id'])) {
-				header("location:forum.php");
-			}
+
 ?>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"> </script>
 
@@ -128,22 +123,22 @@ session_start();
 			$sql2 = "select * from users where uid = (select post_by from post where post_id = $row[post_id]);";
 			$result2 = mysqli_query($connection, $sql2) or die("Error in Selecting " . mysqli_error($connection));	
 			$user = mysqli_fetch_assoc($result2);
+
+			
 			
 			// create table  
 
-			$sql3 = "select title,forum_id from forum where forum_id = $_GET[current_forum]";
+			$sql3 = "select * from forum where forum_id = $_GET[current_forum]";
 			$result3 = mysqli_query($connection, $sql3) or die("Error in Selecting " . mysqli_error($connection));	
 			$forum_data = mysqli_fetch_assoc($result3);
 
 			$forum = "";
 			$forum .='<center><table class=table-style-two style="font-family:Times New Roman;"> <thead style="color:#800000;font-size:30px;">
-						<tr ><th style="width:400px;text-align:left;"> forum: <i>'.$forum_data['title'];
-			if($forum_data['forum_id'] == 1) 
-				$forum .= '<image src="images/globe.gif" height="32" width="32"/></th>'; 
-			else if ($forum_data['forum_id'] == 2)
-				$forum .= '<image src="images/discussion.gif" height="32" width="32"/></th>'; 
+						<tr ><th style="width:435px;text-align:left;"> forum: <i>'.$forum_data['title'];
+			if($forum_data['icon_path'] != null)
+					$forum .="<image src='images/$forum_data[icon_path]' height=32 width=32 /></th>";
 			else 
-				$forum .= '</th>';
+					$forum .= '</th>';
 
 			$forum .= '<th> <button class=btn-1 id="redirect_mainpage" style="font-size:20px;text-decoration:underline;text-decoration-color:black" >back to main forum </button></th>';
 			echo $forum;
@@ -155,9 +150,39 @@ session_start();
 			$thread .= "<tbody style='color:#800000;font-size:15px;'>";
 			$thread .= "<tr style='height:130px'> <td style='text-align:center'> <li>$user[uname]</li> <br> <i><b>Registered Since</b>: $user[regdate] </i></td>";
 			$thread .= "<td style='width:600px;text-align:left' colspan='2'>$row[details] </td></tr>"; 
+			
+			$thread .= "<form method='post' action='reply.php?post_id=$row[post_id]&current_forum=$forum_data[forum_id]'>"; 
+			$thread .= "<td colspan=3> <image src='images/discussion.gif' style='float:right' width=20 height=20/> 
+						<button style='float:right' class='btn-1'>Reply </button></td>"; 
+			$thread .= "</form>";
 			$thread .= "</tbody>";
 			$thread .= '</table></center>';
 			echo $thread;	
+
+			// check if this thread has replies
+			$sql3 = "select reply_id from reply where post_id = $_GET[post_id]";
+			$result3 = mysqli_query($connection, $sql3) or die("Error in Selecting " . mysqli_error($connection));	
+			$replies = mysqli_fetch_all($result3);
+
+			foreach($replies as $reply_id){
+				// query the reply 
+				$sql4 = "select * from post where post_id =  $reply_id[0];";
+				$result4 = mysqli_query($connection, $sql4) or die("Error in Selecting " . mysqli_error($connection));	
+				$reply = mysqli_fetch_assoc($result4);
+				// query the user 
+				$sql5 = "select * from users where uid = $reply[post_by];";
+				$result5 = mysqli_query($connection, $sql5) or die("Error in Selecting " . mysqli_error($connection));	
+				$reply_user = mysqli_fetch_assoc($result5);
+
+				$thread = "<br><center><table class=table-style-two style='font-family:Times New Roman;'>";
+				$thread .= "<tbody style='color:#800000;font-size:15px;'>";
+				$thread .= "<tr style=''> <td style='text-align:center'> <li>$reply_user[uname]</li> <br> <i><b>Registered Since</b>: $reply_user[regdate] </i></td>";
+				$thread .= "<td style='width:600px;text-align:left' colspan='2'>$reply[details] </td></tr>"; 
+				$thread .= "</tbody>";
+				$thread .= '</table></center>';
+				echo $thread;
+			}
+
 		?>
 
 
