@@ -59,8 +59,8 @@ foreign key(post_id) references post(post_id), foreign key(reply_id) references 
 
 insert INTO forum(icon_path,title,subtitle) values("globe.gif","Breaking News!","Read the lastest trends, technology and computer hardware");
 insert INTO forum(icon_path,title,subtitle) values("discussion.gif","Community Discussion","See what people discuss about");
-insert into post(post_by,subject,category,details,views) values(1,"A dog has been missing for a decade ","news","A dog has been missing for a
-decade and got back to his owner yesterday , but the big surprise is the owner had already bought another good boi, doggo is now sad , doggo is skrrt skrrt inside :( ",0);
+insert into post(post_by,subject,category,details) values(1,"A dog has been missing for a decade ","news","A dog has been missing for a
+decade and got back to his owner yesterday , but the big surprise is the owner had already bought another good boi, doggo is now sad , doggo is skrrt skrrt inside :( ");
 
 
 
