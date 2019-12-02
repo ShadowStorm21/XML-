@@ -15,33 +15,28 @@ try
 			
 			
 			
-			$sql = "SELECT count(*) as currentUser FROM users WHERE email = '$email' AND pass = '$pass'";
+			$sql = "SELECT * FROM users WHERE email = '$email' AND pass = '$pass'";
 			$result = mysqli_query($connection, $sql) or die("Error in Selecting " . mysqli_error($connection));
 			$row = mysqli_fetch_array($result);
-
-			$count = $row['currentUser'];
-
-			if($count > 0)
+			if($email == $row['email'] && $pass ==$row['pass'])
 			{
-				
+			
 					echo 1;
-				
-					
-					
+	
 			}			
 			else
 			{	
 				
 				echo 0;
-				$notlogged = 0;
-				echo $name;
+				
+				
 				
 			}
 				
 				
-			}
-		
 			
+		
+				
 			mysqli_close($connection);
 			}
 			
