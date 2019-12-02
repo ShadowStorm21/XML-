@@ -14,10 +14,8 @@
 				if(user_data.status !="not_logged")	{
 					$("#register_ref").remove();
 					$("#register_ref3").remove();
-					$("#register_ref2").html("<div class='w3-red w3-dropdown-hover w3-right w3-bar-item w3-padding-large w3-hover-white'><i class='material-icons' style='font-size:30px'>person</i> <div class='w3-dropdown-content w3-animate-zoom w3-border' style='right:0'> <a href='orders.php' class='w3-bar-item w3-button'>Orders</a> <a href='changePassword.php' class='w3-bar-item w3-button'>Change Password</a> <a href='profile.php' class='w3-bar-item w3-button'>Update Profile</a> <a href='logout.php' class='w3-bar-item w3-button'>Logout</a> </div> </div> </div>");
+					$("#register_ref2").html("<div class='w3-red w3-dropdown-hover w3-right w3-bar-item w3-padding-large w3-hover-white'><i class='material-icons' style='font-size:30px'>person</i> <div class='w3-dropdown-content w3-animate-zoom w3-border' style='right:0'> <a href='orders.html' class='w3-bar-item w3-button'>Orders</a> <a href='changePassword.html' class='w3-bar-item w3-button'>Change Password</a> <a href='profile.html' class='w3-bar-item w3-button'>Update Profile</a> <a href='logout.php' class='w3-bar-item w3-button'>Logout</a> </div> </div> </div>");
 				}
-				else
-					$("#register_ref2").remove();
 			},
 			error : function(){alert("error in receiving customer infromation");} 
 		});	
@@ -58,7 +56,7 @@
 					alert("failed");
 				}
 				else
-					$(location).attr('href','orderproduct.php');	
+					$(location).attr('href','orderproduct.html');	
 			},
 			error : function(){alert("Error in receiving data from session");}
 		});
@@ -139,16 +137,16 @@
 <div class="w3-top">
   <div class="w3-bar w3-red w3-card w3-left-align w3-large w3-animate-zoom">
     <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-red"><i class="fa fa-bars"></i></a>
-    <a href="index.php" class="w3-bar-item w3-button w3-padding-large w3-white">Home</a>
-    <a href="pricing.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Pricing</a>
-    <a href="components.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Components</a>
-	<a id="register_ref" href="signup.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Sign up</a>
-	  <a id="register_ref3" href='login.php' class='w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white'>Login</a>
-	<a href="forum.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Forum</a>
-	<a href="contactus.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Contact us</a>
-	<a href="search.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"><i class="fa fa-search" style="font-size:30px"></i></a>
+    <a href="index.html" class="w3-bar-item w3-button w3-padding-large w3-white">Home</a>
+    <a href="pricing.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Pricing</a>
+    <a href="components.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Components</a>
+	<a id="register_ref" href="signup.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Sign up</a>
+	<a id="register_ref3" href='login.html' class='w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white'>Login</a>
+	<a href="forum.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Forum</a>
+	<a href="contactus.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Contact us</a>
+	<a href="search.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"><i class="fa fa-search" style="font-size:30px"></i></a>
 	<!-- Cart -->
-	<a href="cart.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" id="_cart_number">0
+	<a href="cart.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" id="_cart_number">0
 	<i class="material-icons" style="font-size:20px">shopping_cart</i>
 	</a>
 
@@ -160,11 +158,11 @@
 
   <!-- Navbar on small screens -->
  <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large w3-animate-zoom">
-    <a href="pricing.php" class="w3-bar-item w3-button w3-padding-large">Pricing</a>
-    <a href="components.php" class="w3-bar-item w3-button w3-padding-large">Components</a>
-  	<a id="register_ref" href='signup.php' class='w3-bar-item w3-button w3-padding-large w3-hover-white'>Sign up</a>
-	<a href='login.php' class='w3-bar-item w3-button w3-padding-large w3-hover-white'>Login</a>";}?>
-	<a href="contactus.php" class="w3-bar-item w3-button w3-padding-large">Contact us</a>
+    <a href="pricing.html" class="w3-bar-item w3-button w3-padding-large">Pricing</a>
+    <a href="components.html" class="w3-bar-item w3-button w3-padding-large">Components</a>
+  	<a id="register_ref" href='signup.html' class='w3-bar-item w3-button w3-padding-large w3-hover-white'>Sign up</a>
+	<a href='login.html' class='w3-bar-item w3-button w3-padding-large w3-hover-white'>Login</a>";}?>
+	<a href="contactus.html" class="w3-bar-item w3-button w3-padding-large">Contact us</a>
 	<div id="#register_ref2"></div> 
   </div>
 </div>

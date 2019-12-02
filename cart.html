@@ -1,4 +1,4 @@
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"> </script>
+﻿<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"> </script>
 <script >
 function is_registered(){
 			$.ajax({
@@ -10,7 +10,7 @@ function is_registered(){
 				if(user_data.status !="not_logged")	{
 					$("#register_ref").remove();
 					$("#register_ref3").remove();
-					$("#register_ref2").html("<div class='w3-red w3-dropdown-hover w3-right w3-bar-item w3-padding-large w3-hover-white'><i class='material-icons' style='font-size:30px'>person</i> <div class='w3-dropdown-content w3-animate-zoom w3-border' style='right:0'> <a href='orders.html' class='w3-bar-item w3-button'>Orders</a> <a href='changePassword.html' class='w3-bar-item w3-button'>Change Password</a> <a href='profile.html' class='w3-bar-item w3-button'>Update Profile</a> <a href='logout.html' class='w3-bar-item w3-button'>Logout</a> </div> </div> </div>");
+					$("#register_ref2").html("<div class='w3-red w3-dropdown-hover w3-right w3-bar-item w3-padding-large w3-hover-white'><i class='material-icons' style='font-size:30px'>person</i> <div class='w3-dropdown-content w3-animate-zoom w3-border' style='right:0'> <a href='orders.html' class='w3-bar-item w3-button'>Orders</a> <a href='changePassword.html' class='w3-bar-item w3-button'>Change Password</a> <a href='profile.html' class='w3-bar-item w3-button'>Update Profile</a> <a href='logout.php' class='w3-bar-item w3-button'>Logout</a> </div> </div> </div>");
 				}
 				else
 					$("#register_ref2").remove();
