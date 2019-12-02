@@ -97,6 +97,8 @@ function check_name(){
 		});	
 	}
 
+    
+       
 	function output_form(username) {
 			var form = "";	
 			form += ' <div class="w3-content w3-center"> <div class="form-group"> <div class="heading"> <h2>Payment Information</h2> </div>';
@@ -110,20 +112,23 @@ function check_name(){
 			form += '<p> <li id="pay_warn" style=""> All fields required! </li> </p>';
 			$("#payment_form").html(form);
 			head = "<div class='text-center heading'>";
-			$.ajax({
+		    head += "<p><h4><center><button id='order' class='btn-1'> ORDER NOW </button></center></h4></p>";
+			head += "</div>";
+			$("#total2").html(head);
+            total();
+	}
+function total() {
+        $.ajax({
 				type:"get",
 				url : "cart_info.php",
 				data: "ORDER_PRODUCT_TOTAL",
 				success : function(total){
-					head +="<h2><center> Total payment :$" + total + "</center></h2> ";
+					head ="<h2><center> Total payment :$" + total + "</center></h2> ";
+                    $("#total").html(head);
 				},
 				error : function() { alert("Error in retrieving total");}
 			});
-			head += "<p><h4><center><button id='order' class='btn-1'> ORDER NOW </button></center></h4></p>";
-			head += "</div>";
-			$("#total").html(head);
-	}
-
+   }
 
 	function field_warn(warning_str,color = "red"){
 		$("#pay_warn").text(warning_str);
@@ -227,6 +232,7 @@ function check_name(){
 
 
 	<p id="total"></p>
+	<p id="total2"></p>
 
 	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
