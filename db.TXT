@@ -57,10 +57,26 @@ post_id int,reply_id int,
 foreign key(post_id) references post(post_id), foreign key(reply_id) references post(post_id)
 );
 
-insert INTO forum(icon_path,title,subtitle) values("globe.gif","Breaking News!","Read the lastest trends, technology and computer hardware");
-insert INTO forum(icon_path,title,subtitle) values("discussion.gif","Community Discussion","See what people discuss about");
+INSERT into users(uname,email,contactno,pass) values("Meeter the eater","Admin@Admin.pc",938,"none");
+insert into post(post_by,subject,category,details) values (1,"Rules for Posting All forums!","news","
+Welcome to the computer hardware community , please read these tip for posting and commenting carefully
+- Don't be rude!
+- Post only about computer hardware
+- Don't advocate for any political moves or parties
+- Don't post rumors , otherwise you will be banned
 
-
+and that's it , happy postting:)
+ 
+");
+insert into post(post_by,subject,category,details) values (1,"My Intel processor Has a bug, help!","hardware","
+	Hi ,
+	MY intel processor has been acting peculiarly recently , it did shut down the computer without any warning 
+	and sometime to blinks my screen , also each two minutes it freezes and continue to do weird shits!,
+	i'm posting this from , phone and to be honest this is driving my crazy because i have work to do 
+	please help!
+");
+insert INTO forum(icon_path,title,subtitle,posts_ids) values("globe.gif","Breaking News!","Read the lastest trends, technology and computer hardware","[1]");
+insert INTO forum(icon_path,title,subtitle,posts_ids) values("discussion.gif","Community Discussion","See what people discuss about","[2]");
 
 
 # pre-defined products !
