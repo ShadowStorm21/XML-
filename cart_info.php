@@ -30,6 +30,13 @@
 				echo json_encode($compo_data);
 	
 	}
+	if( isset($_GET['ORDER_PRODUCT_TOTAL']) ){
+		if(isset($_SESSION['total']))
+			echo $_SESSION['total'];
+		else {
+			echo 0;
+		}
+	}
 	if( isset($_POST['DEL_PROD']) ){
 		$key = array_search($_POST['DEL_PROD'], $_SESSION['cart']);
 		if ( $key !== false) {
@@ -56,6 +63,7 @@
 
 			$connection = mysqli_connect("localhost","root","","pc") or die("Error " . mysqli_error($connection));
 			 
+			
 			$pname;
 			$sql;
 			$pname = $_GET['PRODUCT_NAME'];
