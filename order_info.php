@@ -34,7 +34,13 @@
 		}
 
 	}
-
+	if(isset($_GET['ORDER_VIEW'])){
+			$connection = mysqli_connect("localhost","root","","pc") or die("Error " . mysqli_error($connection));
+			$sql = "select * from orders where uid = $_SESSION[uid]";
+			$result = mysqli_query($connection, $sql) or die("Error in Selecting " . mysqli_error($connection));
+			$result = mysqli_fetch_all($result);
+			echo json_encode($result);
+	}
 	if( isset($_POST['ORDER'])){
 			header("Access-Control-Allow-Origin: *");
 		try
