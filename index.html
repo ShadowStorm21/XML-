@@ -13,6 +13,7 @@
 			success: function(user_data){
 				if(user_data.status !="not_logged")	{
 					$("#register_ref").remove();
+					$("#register_ref3").remove();
 					$("#register_ref2").html("<div class='w3-red w3-dropdown-hover w3-right w3-bar-item w3-padding-large w3-hover-white'><i class='material-icons' style='font-size:30px'>person</i> <div class='w3-dropdown-content w3-animate-zoom w3-border' style='right:0'> <a href='orders.php' class='w3-bar-item w3-button'>Orders</a> <a href='changePassword.php' class='w3-bar-item w3-button'>Change Password</a> <a href='profile.php' class='w3-bar-item w3-button'>Update Profile</a> <a href='logout.php' class='w3-bar-item w3-button'>Logout</a> </div> </div> </div>");
 				}
 				else
@@ -142,6 +143,7 @@
     <a href="pricing.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Pricing</a>
     <a href="components.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Components</a>
 	<a id="register_ref" href="signup.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Sign up</a>
+	  <a id="register_ref3" href='login.php' class='w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white'>Login</a>
 	<a href="forum.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Forum</a>
 	<a href="contactus.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Contact us</a>
 	<a href="search.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"><i class="fa fa-search" style="font-size:30px"></i></a>
