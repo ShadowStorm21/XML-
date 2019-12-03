@@ -200,12 +200,12 @@ function exists(pid) {
 <div class="w3-top">
   <div class="w3-bar w3-red w3-card w3-left-align w3-large w3-animate-zoom">
     <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-red"><i class="fa fa-bars"></i></a>
-    <a href="index.html" class="w3-bar-item w3-button w3-padding-large w3-white">Home</a>
+    <a href="index.html" class="w3-bar-item w3-button w3-padding-large w3-hover-white">Home</a>
     <a href="components.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Components</a>
 	<a id="register_ref" href="signup.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Sign up</a>
 	<a id="register_ref3" href='login.html' class='w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white'>Login</a>
 	<a href="contactus.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Contact us</a>
-	<a href="search.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"><i class="fa fa-search" style="font-size:30px"></i></a>
+	<a href="search.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-white"><i class="fa fa-search" style="font-size:30px"></i></a>
 	<!-- Cart -->
 	<a href="cart.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" id="_cart_number">0
 	<i class="material-icons" style="font-size:20px">shopping_cart</i>
@@ -251,7 +251,7 @@ function exists(pid) {
 	<p id="product_page"> </p> 
 	<p id="product_list"> </p> 
 	<p id="next_page_btn"> </p> 
-	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+	<br><br><br><br>
 	
 
 <!-- First Grid -->
@@ -283,8 +283,27 @@ function exists(pid) {
  <p>Powered by <a class="copyright" href="https://www.hct.edu.om" target="_blank">Higher College of Technology</a></p>
  <small class="block">&copy; 2019 Higher College of Technology. All Rights Reserved.</small> 
  </div>
+ 	<div class="w3-container w3-padding-32 w3-right">
+		<button  class="btn btn-primary" onclick="scrollToTop(1000);"><i class="icon-arrow-up" style="font-size:30px; color:white;"></i></button>
+	</div>
 </footer>
-
+<!--Function to scroll to top with animation-->
+	<script>
+function scrollToTop(scrollDuration) {
+    var cosParameter = window.scrollY / 2,
+        scrollCount = 0,
+        oldTimestamp = performance.now();
+    function step (newTimestamp) {
+        scrollCount += Math.PI / (scrollDuration / (newTimestamp - oldTimestamp));
+        if (scrollCount >= Math.PI) window.scrollTo(0, 0);
+        if (window.scrollY === 0) return;
+        window.scrollTo(0, Math.round(cosParameter + cosParameter * Math.cos(scrollCount)));
+        oldTimestamp = newTimestamp;
+        window.requestAnimationFrame(step);
+    }
+    window.requestAnimationFrame(step);
+}
+	</script>
 </body>
 </html>
 
