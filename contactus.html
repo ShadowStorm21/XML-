@@ -1,0 +1,227 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"> </script>
+<script>
+
+function field_warn(warning_str,color = "red"){
+		$("#reg_warn").text(warning_str);
+		$("#reg_warn").attr("style","color:" + color);			
+	}
+	// General page functions 
+
+	function is_registered(){
+			$.ajax({
+			type:"get",
+			url : "register_info.php",
+			data: "IS_LOGGED",
+			//dataType: "json",
+			success: function(user_data){
+				if(user_data.status !="not_logged")	{
+					$("#register_ref").remove();
+					$("#register_ref3").remove();
+					$("#register_ref2").html("<div class='w3-red w3-dropdown-hover w3-right w3-bar-item w3-padding-large w3-hover-white'><i class='material-icons' style='font-size:30px'>person</i> <div class='w3-dropdown-content w3-animate-zoom w3-border' style='right:0'> <a href='orders.html' class='w3-bar-item w3-button'>Orders</a> <a href='changePassword.html' class='w3-bar-item w3-button'>Change Password</a> <a href='profile.html' class='w3-bar-item w3-button'>Update Profile</a> <a href='logout.php' class='w3-bar-item w3-button'>Logout</a> </div> </div> </div>");
+				}
+			},
+			error : function(){alert("error in receiving customer infromation");} 
+		});	
+	}
+	
+	
+
+	$(document).ready(function(){
+		is_registered();
+		$("#update").click(function(){
+		
+		field_warn("All fields are required!");
+		
+
+		if( check_name() && check_email() && check_contactno() && check_message())
+		
+			alert("Message Have been sent Successfully,now you will be directed to the homepage");
+			$(location).attr('href','index.html');
+	});
+		
+		
+			function check_name(){
+				if($("#name").val().length < 4){
+					field_warn("name length Should be more than 3 Characters!");
+					return false;
+				}
+				else {
+					field_warn("Great","green");
+					return true;
+				}	
+		}
+		
+		function check_email(){
+
+			if(!/([a-zA-Z])*@([a-zA-Z])*\.com/.test($("#email").val())){	
+				field_warn("Email should can contain characters and numbers but not spaces nor special characters");
+				return false;
+			}
+			else if($("#email").val().length < 6){
+				field_warn("Email should at least have 5 characters!");
+				return false;
+			}
+			else{
+				field_warn("Great!","green");
+				return true;
+				}
+		}
+		
+		function check_contactno(){
+			if(!/[79][0-9][0-9][0-9][0-9][0-9][0-9][0-9]/.test($("#contactno").val()))
+			{
+				field_warn("Contact number Should be start with 7 or 9!");
+				return false;
+			}
+			else {
+				field_warn("Great","green");
+				return true;
+			}	
+		}
+		
+		function check_message(){
+				if($("#message").val().length < 5){
+					field_warn("Message length Should be more than 5 Characters!");
+					return false;
+				}
+				else {
+					field_warn("Great","green");
+					return true;
+				}	
+		}
+		
+		$("#name").keyup( check_name);
+		$("#email").keyup(check_email);
+		$("#contactno").keyup(check_contactno);
+		$("#message").keyup(check_message);
+
+	
+	});
+</script>
+<html lang="en">
+<title>PC Builder</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
+	<!-- Bootstrap  -->
+	<link rel="stylesheet" href="css/bootstrap.css">
+
+	<!-- Theme style  -->
+	<link rel="stylesheet" href="css/style.css">
+
+	<!-- Icomoon Icon Fonts-->
+	<link rel="stylesheet" href="css/icomoon.css">
+
+
+<body>
+
+<!-- Navbar -->
+<div class="w3-top">
+  <div class="w3-bar w3-red w3-card w3-left-align w3-large ">
+    <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-red"><i class="fa fa-bars"></i></a>
+    <a href="index.html" class="w3-bar-item w3-button w3-padding-large w3-hover-white">Home</a>
+    <a href="components.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Components</a>
+	<a id="register_ref" href="signup.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Sign up</a>
+	<a id="register_ref3" href='login.html' class='w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white'>Login</a>
+	<a href="contactus.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-white">Contact us</a>
+		<a href="search.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"><i class="fa fa-search" style="font-size:30px"></i></a>
+	<!-- Cart -->
+	<a href="cart.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" id="_cart">
+
+	<i class="material-icons" style="font-size:20px">shopping_cart</i>
+			
+	</a>
+	<div id="register_ref2"> </div>
+		<!-- Change it later-->
+  </div>
+
+  <!-- Navbar on small screens -->
+ <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large">
+    <a href="components.html" class="w3-bar-item w3-button w3-padding-large">Components</a>
+  	<a id="register_ref" href='signup.html' class='w3-bar-item w3-button w3-padding-large w3-hover-white'>Sign up</a>
+	<a href='login.html' class='w3-bar-item w3-button w3-padding-large w3-hover-white'>Login</a>
+	<a href="contactus.html" class="w3-bar-item w3-button w3-padding-large">Contact us</a>
+	<div id="register_ref2"> </div>
+  </div>
+</div>
+
+<!-- Header -->
+
+<header class="w3-container w3-red w3-center" style="padding:128px 16px">
+
+  <h1 class="w3-margin w3-jumbo">Get In Touch</h1>
+  
+</header>
+
+	<div class="section border-bottom heading">
+		<div class="container">
+			<div>
+				<div class="col-md-12">
+					<div class="col-md-6 w3-margin w3-padding-64">
+					
+					<div>
+						<div class="form-group">
+						
+							<div class="col-md-12">
+								<label class="sr-only">Name</label>
+								<input type="text" id="name" class="form-control" placeholder="Your username">
+							</div>
+							
+						</div>
+
+						<div class="form-group">
+							<div class="col-md-12">
+								<label class="sr-only" >Email</label>
+								<input type="text" id="email" class="form-control" placeholder="Your email">
+							</div>
+						</div>
+
+						<div class="form-group">
+							<div class="col-md-12">
+								<label class="sr-only" >Contact No</label>
+								<input type="text" id="contactno" class="form-control" placeholder="Your Contact Number">
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<div class="col-md-12">
+								<label class="sr-only" >Message</label>
+								<textarea  id="message" cols="30" rows="10" class="form-control" placeholder="Write us something"></textarea>
+							</div>
+						</div>
+								
+						<div class="form-group w3-margin w3-center">
+							<button  id="update" class="btn btn-primary" >Update</button>
+						</div>
+					<p> <li id="reg_warn" style="w3-center"> All fields required! </li> </p>
+					</div>		
+				</div>
+				
+				</div>
+			</div>
+		</div>
+		
+	</div>
+	
+<!-- Footer -->
+<footer class="w3-container w3-padding-64 w3-center">  
+  <div class="w3-xlarge w3-padding-32">
+    <i class="fa fa-facebook-official w3-hover-opacity"></i>
+    <i class="fa fa-instagram w3-hover-opacity"></i>
+    <i class="fa fa-snapchat w3-hover-opacity"></i>
+    <i class="fa fa-pinterest-p w3-hover-opacity"></i>
+    <i class="fa fa-twitter w3-hover-opacity"></i>
+    <i class="fa fa-linkedin w3-hover-opacity"></i>
+ </div>
+ <p>Powered by <a class="copyright" href="https://www.hct.edu.om" target="_blank">Higher College of Technology</a></p>
+ <small class="block">&copy; 2019 Higher College of Technology. All Rights Reserved.</small> 
+</footer>
+
+</body>
+</html>
