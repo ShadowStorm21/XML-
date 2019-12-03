@@ -2,7 +2,9 @@
 
 session_start();
 
+
 		
+			
 header("Access-Control-Allow-Origin: *");
 try
 		{   
@@ -11,7 +13,7 @@ try
 		
 			$email = $_POST['email'];
 			$pass = $_POST['pass'];
-			$decryptpass = ($pass);
+			//$decryptpass = ($pass);
 			
 			
 			
@@ -21,13 +23,16 @@ try
 			if($email == $row['email'] && $pass ==$row['pass'])
 			{
 			
-					echo 1;
+					echo "Logged";
+					$_SESSION['uid'] = $row['uid'];
+					$_SESSION['uname'] = $row['uname'];
+
 	
 			}			
 			else
 			{	
 				
-				echo 0;
+				echo "Error";
 				
 				
 				
@@ -50,7 +55,7 @@ try
 
 		  die($ex->getMessage());
 		}
-	
+		
 
    
 
