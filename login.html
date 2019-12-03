@@ -1,9 +1,16 @@
-
+﻿
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"> </script>
 <script>
 
 	
 $(document).ready(function(){
+$.ajax({
+			type:"get",
+			url : "cart_session.php",
+			data : "N",
+			success : function(n){ $("#_cart_number").html(n + "<i class='material-icons' style='font-size:20px'>shopping_cart</i>");},
+			error : function(){alert("Error in receiving data from session");}
+		});
 	
 	$("#login").click(function(){
 		
@@ -33,7 +40,7 @@ $(document).ready(function(){
 					else
 					{
 						alert("You have been logged successfully!");
-					 $(location).attr('href','index.php');
+					 $(location).attr('href','index.html');
 					}
 			
 				},
@@ -78,33 +85,28 @@ $(document).ready(function(){
 <div class="w3-top">
   <div class="w3-bar w3-red w3-card w3-left-align w3-large ">
     <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-red"><i class="fa fa-bars"></i></a>
-    <a href="index.php" class="w3-bar-item w3-button w3-padding-large w3-hover-white">Home</a>
-    <a href="pricing.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Pricing</a>
-    <a href="components.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Components</a>
+    <a href="index.html" class="w3-bar-item w3-button w3-padding-large w3-hover-white">Home</a>
+    <a href="pricing.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Pricing</a>
+    <a href="components.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Components</a>
     <a href="signup.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Sign up</a>
 	<a href="login.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-white">Login</a>
-		<a href="search.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"><i class="fa fa-search" style="font-size:30px"></i></a>
+		<a href="search.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"><i class="fa fa-search" style="font-size:30px"></i></a>
 	<!-- Cart -->
-	<a href="cart.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" id="_cart">
-	<?php 
-		if( isset($_SESSION['cart']) ) 
-			echo count($_SESSION['cart']);
-		else
-			echo "0";
-	?>
+	<a href="cart.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" id="_cart_number">0
 	<i class="material-icons" style="font-size:20px">shopping_cart</i>
+      </a>
 	
 	
   </div>
 
   <!-- Navbar on small screens -->
  <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large">
-    <a href="pricing.php" class="w3-bar-item w3-button w3-padding-large">Pricing</a>
-    <a href="components.php" class="w3-bar-item w3-button w3-padding-large">Components</a>
-    <a href="signup.php" class="w3-bar-item w3-button w3-padding-large">Sign up</a>
-	<a href="login.php" class="w3-bar-item w3-button w3-padding-large">Login</a>
-<a href="forum.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Forum</a>
-	<a href="contactus.php" class="w3-bar-item w3-button w3-padding-large">Contact us</a>
+    <a href="pricing.html" class="w3-bar-item w3-button w3-padding-large">Pricing</a>
+    <a href="components.html" class="w3-bar-item w3-button w3-padding-large">Components</a>
+    <a href="signup.html" class="w3-bar-item w3-button w3-padding-large">Sign up</a>
+	<a href="login.html" class="w3-bar-item w3-button w3-padding-large">Login</a>
+<a href="forum.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Forum</a>
+	<a href="contactus.html" class="w3-bar-item w3-button w3-padding-large">Contact us</a>
   </div>
 </div>
 

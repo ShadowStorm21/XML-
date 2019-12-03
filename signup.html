@@ -1,4 +1,4 @@
-<html lang="en">
+﻿<html lang="en">
 <title>PC Builder</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -36,7 +36,13 @@ function field_warn(warning_str,color = "red"){
 
 
 $(document).ready(function(){
-
+$.ajax({
+			type:"get",
+			url : "cart_session.php",
+			data : "N",
+			success : function(n){ $("#_cart_number").html(n + "<i class='material-icons' style='font-size:20px'>shopping_cart</i>");},
+			error : function(){alert("Error in receiving data from session");}
+		});
 
 	
 	$("#register").click(function(){
@@ -156,22 +162,23 @@ $(document).ready(function(){
 
 <!-- Navbar -->
 <div class="w3-top">
-  <div class="w3-bar w3-red w3-card w3-left-align w3-large ">
-    <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-red"><i class="fa fa-bars"></i></a>
-    <a href="index.html" class="w3-bar-item w3-button w3-padding-large w3-hover-white">Home</a>
-    <a href="pricing.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Pricing</a>
-    <a href="components.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Components</a>
-    <a href="signup.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-white">Sign up</a>
-	<a href="login.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Login</a>
-	<a href="contactus.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Contact us</a>
-	<a href="search.html" class="w3-bar-item w3-button w3-hide-small w3-spin w3-padding-large w3-hover-white"><i class="fa fa-search" style="font-size:30px"></i></a>
-	<a href="cart.html" class="w3-bar-item w3-button w3-hide-small w3-spin w3-padding-large w3-hover-white"><i class="material-icons" style="font-size:30px">shopping_cart</i></a>
-	
-  </div>
+    <div class="w3-bar w3-red w3-card w3-left-align w3-large ">
+        <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-red"><i class="fa fa-bars"></i></a>
+        <a href="index.html" class="w3-bar-item w3-button w3-padding-large w3-hover-white">Home</a>
+        <a href="components.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Components</a>
+        <a href="signup.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-white">Sign up</a>
+        <a href="login.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Login</a>
+        <a href="contactus.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Contact us</a>
+        <a href="search.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"><i class="fa fa-search" style="font-size:30px"></i></a>
+        <a href="cart.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" id="_cart_number">
+            0
+            <i class="material-icons" style="font-size:20px">shopping_cart</i>
+        </a>
+
+    </div>
 
   <!-- Navbar on small screens -->
  <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large">
-    <a href="pricing.html" class="w3-bar-item w3-button w3-padding-large">Pricing</a>
     <a href="components.html" class="w3-bar-item w3-button w3-padding-large">Components</a>
     <a href="signup.html" class="w3-bar-item w3-button w3-padding-large">Sign up</a>
 	<a href="login.html" class="w3-bar-item w3-button w3-padding-large">Login</a>
