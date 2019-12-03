@@ -9,7 +9,7 @@
 			type:"get",
 			url : "register_info.php",
 			data: "IS_LOGGED",
-			dataType: "json",
+			//dataType: "json",
 			success: function(user_data){
 				if(user_data.status !="not_logged")	{
 					$("#register_ref").remove();
